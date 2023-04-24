@@ -1,12 +1,12 @@
-const route = (event) =>{
+const route = (event) => {
     event = event || window.event;
     event.preventDefault();
-    window.history.pushState({},"",event.target.href);
+    window.history.pushState({}, "", event.target.href);
     handleLocation();
 };
 
-const vaiTela = (route) =>{
-    window.history.pushState({},"",route);
+const vaiTela = (route) => {
+    window.history.pushState({}, "", route);
     handleLocation();
 }
 
@@ -23,7 +23,7 @@ const handleLocation = async() => {
     const path = window.location.pathname;
     console.log(path);
     const route = routes[path] || routes[404];
-    const html = await fetch(route).then((data)=> data.text());
+    const html = await fetch(route).then((data) => data.text());
     document.querySelector("#main").innerHTML = html;
 }
 

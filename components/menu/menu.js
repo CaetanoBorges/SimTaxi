@@ -76,7 +76,7 @@ debliwui_menu.innerHTML = `
     </style>
 
     <div class="container">
-        <img src="http://cdn.binga.ao/conta/icones/menu.png" class="aciona-menu">
+        <img src="assets/barras-menu.png" class="aciona-menu">
         
         <div class="conteudo" style="display:none">
             <div class="backdrop"></div>
@@ -84,20 +84,23 @@ debliwui_menu.innerHTML = `
                 <br><br>
                 <ul>
                     <a href="" class="url-inicio">
-                        <li id="menu-inicio"> <img src="http://cdn.binga.ao/conta/icones/pessoa.png"> <span>Página inicial</span></li>
+                        <li id="menu-inicio"> <img src="assets/handshake-menu.png"> <span>Página inicial</span></li>
                     </a>
                     <a href="" class="url-dados">
-                        <li id="menu-dados"> <img src="http://cdn.binga.ao/conta/icones/identidade.png"> <span>Dados pessoais</span></li>
+                        <li id="menu-dados"> <img src="assets/location-menu.png"> <span>Dados pessoais</span></li>
                     </a>
                     <a href="" class="url-seguranca" onclick="sair()">
-                        <li id="menu-seguranca"> <img src="http://cdn.binga.ao/conta/icones/seguranca.png"> <span>Segurança</span></li>
+                        <li id="menu-seguranca"> <img src="assets/money-menu.png"> <span>Segurança</span></li>
                     </a>
                     <a href="" class="url-pagamentos">
-                        <li id="menu-pagamento"> <img src="http://cdn.binga.ao/conta/icones/pagamentos.png"> <span>Pagamentos e subscrições</span></li>
+                        <li id="menu-pagamento"> <img src="assets/rota-menu.png"> <span>Pagamentos e subscrições</span></li>
+                    </a>
+                    <a href="" class="url-pagamentos">
+                        <li id="menu-pagamento"> <img src="assets/pagamento-menu.png"> <span>Pagamentos e subscrições</span></li>
                     </a>
                     <div class="linha-divisoria"></div>
                     <a href="" class="url-informacoes">
-                        <li id="menu-informacoes"> <img src="http://cdn.binga.ao/conta/icones/informacoes.png"> <span>Sair</span></li>
+                        <li id="menu-informacoes"> <img src="assets/user-menu.png"> <span>Sair</span></li>
                     </a>
                 </ul>
             </div>

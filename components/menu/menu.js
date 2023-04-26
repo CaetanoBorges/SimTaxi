@@ -9,6 +9,7 @@ debliwui_menu.innerHTML = `
             height:fit-content;
             z-index: 10102;
             padding:0;
+            font-size:12px;
         }
         .conteudo{
             width:250px;
@@ -83,24 +84,24 @@ debliwui_menu.innerHTML = `
             <div class="relativa">
                 <br><br>
                 <ul>
-                    <a href="" class="url-inicio">
-                        <li id="menu-inicio"> <img src="assets/handshake-menu.png"> <span>Página inicial</span></li>
+                    <a href="/" class="url-dados" onclick="route()">
+                        <li id="menu-dados"> <img src="assets/location-menu.png"> <span>Corridas</span></li>
                     </a>
-                    <a href="" class="url-dados">
-                        <li id="menu-dados"> <img src="assets/location-menu.png"> <span>Dados pessoais</span></li>
+                    <a href="" class="url-pagamentos" onclick="route()">
+                        <li id="menu-pagamento"> <img src="assets/rota-menu.png"> <span>Rotas</span></li>
                     </a>
-                    <a href="" class="url-seguranca" onclick="sair()">
-                        <li id="menu-seguranca"> <img src="assets/money-menu.png"> <span>Segurança</span></li>
-                    </a>
-                    <a href="" class="url-pagamentos">
-                        <li id="menu-pagamento"> <img src="assets/rota-menu.png"> <span>Pagamentos e subscrições</span></li>
-                    </a>
-                    <a href="" class="url-pagamentos">
-                        <li id="menu-pagamento"> <img src="assets/pagamento-menu.png"> <span>Pagamentos e subscrições</span></li>
+                    <a href="" class="url-pagamentos" onclick="route()">
+                        <li id="menu-pagamento"> <img src="assets/pagamento-menu.png"> <span>Pagamentos</span></li>
                     </a>
                     <div class="linha-divisoria"></div>
-                    <a href="" class="url-informacoes">
-                        <li id="menu-informacoes"> <img src="assets/user-menu.png"> <span>Sair</span></li>
+                    <a href="" class="url-informacoes" onclick="route()">
+                        <li id="menu-informacoes"> <img src="assets/user-menu.png"> <span>Minha conta</span></li>
+                    </a>
+                    <a href="" class="url-seguranca" onclick="route()">
+                        <li id="menu-seguranca"> <img src="assets/money-menu.png"> <span>Políticas de reembolso</span></li>
+                    </a>
+                    <a href="/lorem" class="url-inicio">
+                        <li id="menu-inicio"> <img src="assets/handshake-menu.png"> <span>Políticas de privacidade</span></li>
                     </a>
                 </ul>
             </div>
@@ -116,10 +117,11 @@ debliwui_menu.innerHTML = `
 
 class debliwuimenu extends HTMLElement {
 
-    constructor() {
-        super();
+    constructor(route) {
+        super(route);
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(debliwui_menu.content.cloneNode(true));
+        this.route = route;
     }
 
     fechar(esse) {
@@ -131,11 +133,27 @@ class debliwuimenu extends HTMLElement {
             container.style.display = "none";
         }
     }
+    routes = {
+        404: "/pages/404.html",
+        "/index.html": "/pages/home.html",
+        "/": "/pages/home.html",
+        "/about": "/pages/sobre.html",
+        "/lorem": "/pages/lorem.html"
+    }
+
+    handleLocation = async() => {
+        const path = window.location.pathname;
+        console.log(path);
+        const route = routes[path] || routes[404];
+        const html = await fetch(route).then((data) => data.text());
+        window.document.querySelector("#main").innerHTML = html;
+    }
+
 
     connectedCallback() {
         var esse = this;
 
-        var token = this.getAttribute('token');
+        var route = this.getAttribute('route');
         this.shadowRoot.querySelector('.aciona-menu').addEventListener("click", function() {
             let container = esse.shadowRoot.querySelector('.conteudo');
 
@@ -155,23 +173,28 @@ class debliwuimenu extends HTMLElement {
             }
         });
 
-        this.shadowRoot.querySelector('.url-inicio').setAttribute("href", "inicio.php?ftpadbc=" + token);
-        this.shadowRoot.querySelector('.url-dados').setAttribute("href", "dados.php?ftpadbc=" + token);
+        this.shadowRoot.querySelector('.url-inicio').addEventListener("click", function(event) {
+            event = event || window.event;
+            event.preventDefault();
+            window.history.pushState({}, "", "/" + (this.href).split("/")[3]);
+            handleLocation();
+        });
+        //this.shadowRoot.querySelector('.url-dados').setAttribute("href", "dados.php?ftpadbc=" + token);
 
-        this.shadowRoot.querySelector('.url-seguranca').setAttribute("href", "seguranca.php?ftpadbc=" + token);
-        this.shadowRoot.querySelector('.url-pagamentos').setAttribute("href", "pagamentos.php?ftpadbc=" + token);
+        //this.shadowRoot.querySelector('.url-seguranca').setAttribute("href", "seguranca.php?ftpadbc=" + token);
+        //this.shadowRoot.querySelector('.url-pagamentos').setAttribute("href", "pagamentos.php?ftpadbc=" + token);
         //this.shadowRoot.querySelector('.url-informacoes').setAttribute("href", "informacoes.php?ftpadbc=" + token);
-        this.shadowRoot.querySelector('.url-informacoes').addEventListener("click", function(e) {
+        /*this.shadowRoot.querySelector('.url-informacoes').addEventListener("click", function(e) {
             e.preventDefault();
         });
-
-
-
 
         this.shadowRoot.querySelector('.url-informacoes').addEventListener("click", function() {
             console.log(localStorage.removeItem("ftpadb-binga"));
             location.href = "http://entrar.binga.ao";
-        });
+        });*/
+
+
+
 
     }
 

@@ -27,13 +27,16 @@
     <script src="router.js"></script>
     <script src="components/menu/menu.js"></script>
     <script src="components/pesquisa/pesquisa.js"></script>
+    <script src="components/corrida/corrida.js"></script>
     <script>
         var root = document.querySelector(".root");
         var pesquisa = new debliwuipesquisa();
+        var corrida = new debliwuicorrida();
         var menu = new debliwuimenu();
 
 
         root.prepend(menu);
+        root.prepend(corrida);
         root.prepend(pesquisa);
     </script>
 </body>

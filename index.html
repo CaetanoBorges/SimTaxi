@@ -20,30 +20,21 @@
 
 <body>
     <div class="root">
-        <div class="nav">
-            <nav>
-                <a href="/" onclick="route()">
-                    HOME
-                </a>
-                <a href="/about" onclick="route()">
-                    SOBRE
-                </a>
-                <a href="/lorem" onclick="route()">
-                    LOREM
-                </a>
-            </nav>
-
-        </div>
         <div id="main">
         </div>
     </div>
 
     <script src="router.js"></script>
     <script src="components/menu/menu.js"></script>
+    <script src="components/pesquisa/pesquisa.js"></script>
     <script>
-        var menu = new debliwuimenu();
         var root = document.querySelector(".root");
+        var pesquisa = new debliwuipesquisa();
+        var menu = new debliwuimenu();
+
+
         root.prepend(menu);
+        root.prepend(pesquisa);
     </script>
 </body>
 

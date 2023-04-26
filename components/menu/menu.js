@@ -9,19 +9,22 @@ debliwui_menu.innerHTML = `
             height:fit-content;
             z-index: 10102;
             padding:0;
-            font-size:12px;
+            font-size:12pt;
         }
         .conteudo{
-            width:250px;
+            position:absolute;
+            top:0;
+            width:300px;
             height:100vh;
-            border-right:2px solid #b4075920;
-            background: #fff7fc;
+            background: #ffffff;
             z-index: 10102;
         }
         .relativa{
             position: relative;
             z-index: 10102;
             overflow:auto;
+            height:100vh;
+            background-color: #ffffff;
         }
         .backdrop{
             width:100%;
@@ -29,8 +32,9 @@ debliwui_menu.innerHTML = `
             position:fixed;
             width:100%;
             left: 0;
-            top:47px;
+            top:0;
             height:100vh;
+            background: #00000074;
         }
         
         ul {
@@ -52,15 +56,16 @@ debliwui_menu.innerHTML = `
         
         ul li {
             width: 100%;
-            padding: 5px;
+            padding: 5px 5px 10px 5px;
             display: flex;
             align-items:center;
             margin: 7px 0;
+            border-bottom:1px solid #00000010;
         }
         
         ul li img {
             width: 25px;
-            margin: 0 10px 0 20px;
+            margin: 0 30px 0 30px;
         }
 
         .aciona-menu{
@@ -69,6 +74,26 @@ debliwui_menu.innerHTML = `
             cursor:pointer;
             z-index:11111;
         }
+        .user{
+            background-color:#6EC85F;
+            width:90%;
+            height:25vh;
+            display:flex;
+            align-items:baseline;
+            flex-direction:column;
+            justify-content: flex-end;
+            padding: 0 0 3vh 10%;
+
+        }
+        .user div{
+            width:72pt;height:72pt;
+            border-radius:50%;
+        }
+        .user img{
+            width:100%;
+            }
+
+            .sair{position:absolute;bottom:10pt;right:10pt;color:#2fd913;}
         @media screen and (max-width:700px) {
             .conteudo{
                 display:none;
@@ -77,31 +102,38 @@ debliwui_menu.innerHTML = `
     </style>
 
     <div class="container">
-        <img src="assets/barras-menu.png" class="aciona-menu">
+        <img src="assets/barras-menu.svg" class="aciona-menu">
         
         <div class="conteudo" style="display:none">
             <div class="backdrop"></div>
             <div class="relativa">
-                <br><br>
+                <span class="sair">Sair</span>
+                <div class="user">
+                    <div> <img src="assets/avatar.png"> </div>
+                    <p>Nome do usuario</p>
+                </div>
                 <ul>
-                    <a href="/" class="url-dados" onclick="route()">
-                        <li id="menu-dados"> <img src="assets/location-menu.png"> <span>Corridas</span></li>
+                    <a href="/" class="home">
+                        <li> <img src="assets/home.svg"> <span>Início</span></li>
                     </a>
-                    <a href="" class="url-pagamentos" onclick="route()">
-                        <li id="menu-pagamento"> <img src="assets/rota-menu.png"> <span>Rotas</span></li>
+                    <a href="/corridas" class="corridas">
+                        <li> <img src="assets/location-menu.svg"> <span>Corridas</span></li>
                     </a>
-                    <a href="" class="url-pagamentos" onclick="route()">
-                        <li id="menu-pagamento"> <img src="assets/pagamento-menu.png"> <span>Pagamentos</span></li>
+                    <a href="/rotas" class="rotas">
+                        <li> <img src="assets/rota-menu.svg"> <span>Rotas</span></li>
+                    </a>
+                    <a href="/pagamentos" class="pagamentos">
+                        <li> <img src="assets/pagamento-menu.svg"> <span>Pagamentos</span></li>
                     </a>
                     <div class="linha-divisoria"></div>
-                    <a href="" class="url-informacoes" onclick="route()">
-                        <li id="menu-informacoes"> <img src="assets/user-menu.png"> <span>Minha conta</span></li>
+                    <a href="/conta" class="conta">
+                        <li> <img src="assets/user-menu.svg"> <span>Minha conta</span></li>
                     </a>
-                    <a href="" class="url-seguranca" onclick="route()">
-                        <li id="menu-seguranca"> <img src="assets/money-menu.png"> <span>Políticas de reembolso</span></li>
+                    <a href="/reembolso" class="reembolso">
+                        <li> <img src="assets/money-menu.svg"> <span>Políticas de reembolso</span></li>
                     </a>
-                    <a href="/lorem" class="url-inicio">
-                        <li id="menu-inicio"> <img src="assets/handshake-menu.png"> <span>Políticas de privacidade</span></li>
+                    <a href="/privacidade" class="privacidade">
+                        <li> <img src="assets/handshake-menu.svg"> <span>Políticas de privacidade</span></li>
                     </a>
                 </ul>
             </div>
@@ -135,10 +167,13 @@ class debliwuimenu extends HTMLElement {
     }
     routes = {
         404: "/pages/404.html",
-        "/index.html": "/pages/home.html",
         "/": "/pages/home.html",
-        "/about": "/pages/sobre.html",
-        "/lorem": "/pages/lorem.html"
+        "/corridas": "/pages/corridas.html",
+        "/rotas": "/pages/rotas.html",
+        "/pagamentos": "/pages/pagamentos.html",
+        "/conta": "/pages/conta.html",
+        "/reembolso": "/pages/reembolso.html",
+        "/privacidade": "/pages/privacidade.html"
     }
 
     handleLocation = async() => {
@@ -173,25 +208,13 @@ class debliwuimenu extends HTMLElement {
             }
         });
 
-        this.shadowRoot.querySelector('.url-inicio').addEventListener("click", function(event) {
+        this.shadowRoot.querySelector('.privacidade').addEventListener("click", function(event) {
             event = event || window.event;
             event.preventDefault();
             window.history.pushState({}, "", "/" + (this.href).split("/")[3]);
             handleLocation();
         });
-        //this.shadowRoot.querySelector('.url-dados').setAttribute("href", "dados.php?ftpadbc=" + token);
-
-        //this.shadowRoot.querySelector('.url-seguranca').setAttribute("href", "seguranca.php?ftpadbc=" + token);
-        //this.shadowRoot.querySelector('.url-pagamentos').setAttribute("href", "pagamentos.php?ftpadbc=" + token);
-        //this.shadowRoot.querySelector('.url-informacoes').setAttribute("href", "informacoes.php?ftpadbc=" + token);
-        /*this.shadowRoot.querySelector('.url-informacoes').addEventListener("click", function(e) {
-            e.preventDefault();
-        });
-
-        this.shadowRoot.querySelector('.url-informacoes').addEventListener("click", function() {
-            console.log(localStorage.removeItem("ftpadb-binga"));
-            location.href = "http://entrar.binga.ao";
-        });*/
+       
 
 
 

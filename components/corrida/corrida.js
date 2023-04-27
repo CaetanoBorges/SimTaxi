@@ -11,7 +11,7 @@ debliwui_corrida.innerHTML = `
             background: #FFFFFF;
             box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.25);
             border-radius:50px 50px 0 0;
-            z-index: 10000;
+            z-index: 20000;
         }
 
         .inputs{
@@ -21,7 +21,7 @@ debliwui_corrida.innerHTML = `
             justify-content:space-around;
         }
         .inputs .inputde{
-            width: 207px;
+            width: 100%;
             height: 31px;
             background: rgba(217, 217, 217, 0.35);
             border-radius: 5px 5px 0px 0px;
@@ -34,7 +34,7 @@ debliwui_corrida.innerHTML = `
         }
 
         .inputs .inputpara{
-            width: 207px;
+            width: 100%;
             height: 31px;
             background: rgba(217, 217, 217, 0.35);
             border-radius: 0px 0px 5px 5px;
@@ -48,7 +48,7 @@ debliwui_corrida.innerHTML = `
 
         .inputs div{
             position:relative;
-            margin:5px;
+            margin:5px 0;
         }
         .inputs .span{
             position:absolute;
@@ -76,30 +76,30 @@ debliwui_corrida.innerHTML = `
 
 
         .basic-info{
-            width:96%;
-            padding:2%;
-            display:block;
-            font-size:12px;
+            width:100%;
+            padding:2% 0;
+            display:flex;
+            font-size:13px;
+
             margin: 10px 0 15px 0;
 
         }
 
         .basic-info p{
-           display:inline-block;
+           
 
         }
         .basic-info .basic-distancia-preco span{
             color:#6EC85F;
         }
         .basic-tempo{
-            float:right;
+            
         }
 
         .btn-chamar-taxi{
-            width: 207px;
+            width: 100%;
             height: 31px;
             background: #2FD913;
-            border:none;
             border-radius: 5px;
             display:block;
             margin:0 auto;
@@ -107,6 +107,69 @@ debliwui_corrida.innerHTML = `
             cursor:pointer;
         }
 
+        .status-um{ display:none;}
+        .selects{display:flex;width:100%;align-items:center;justify-content:space-between;}
+        .selects select {width: 87px;
+height: 31px;background: #FFFFFF;
+border: 1px solid rgba(0, 0, 0, 0.41);
+border-radius: 5px;text-align:center;}
+        .selects p{
+height: 15px;
+font-size: 12px;
+line-height: 15px;
+color: rgba(0, 0, 0, 0.67);}
+
+
+        .cupom{width:100%;}
+        .cupom .titulo{
+            font-size: 12px;
+            text-transform:uppercase;
+            line-height: 15px;
+            color: rgba(0, 0, 0, 0.67);
+        }
+        .cupom .descricao{
+            font-size: 10px;
+            line-height: 12px;
+            color: rgba(0, 0, 0, 0.51);
+            margin: 0 0 5px 0;
+        }
+        .cupom input{
+            width: 98%;
+            height: 31px;
+            background: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.41);
+            border-radius: 5px;
+            padding-left:2%;
+        }
+
+        .concluir{width:100%;}
+        
+        .btn-chamar-taxi-concluir{
+            width: 100%;
+            height: 31px;
+            background: #2FD913;
+            border-radius: 5px;
+            display:block;
+            margin:0 auto;
+            border: 1px solid #2FD913;
+            cursor:pointer;
+        }
+        .concluir .preco{
+            font-size: 16px;
+            line-height: 19px;
+            color: rgba(0, 0, 0, 0.53);
+            margin-top:10px;
+        }
+        .concluir .desconto{
+            font-size: 16px;
+            line-height: 19px;
+            color: #D97E13;
+        }
+        .concluir .total{
+            font-size: 16px;
+            line-height: 19px;
+            color: #2FD913;margin-bottom:10px;
+        }
         @media screen and (max-width:500px) {
             .container{
                 width:90%;
@@ -125,6 +188,56 @@ debliwui_corrida.innerHTML = `
                     <p class="basic-tempo"> Tempo de viagem <br><span>1h20</span></p>
                 </section>
                 <button class="btn-chamar-taxi">CHAMAR TAXI</button>
+                <div class="status-um">
+                    <section class="selects">
+                        <div>
+                            <p>Carro ou moto?</p>
+                            <select>
+                                <option>Carro</option>
+                                <option>Moto</option>
+                            </select>
+                        </div>
+                        <div>
+                            <p>Nº de pessoas</p>
+                            <select>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
+                        </div>
+                    </section>
+                    <section class="selects">
+                        <div>
+                            <p>Categoria</p>
+                            <select>
+                                <option>Normal</option>
+                                <option>VIP</option>
+                                <option>Executivo</option>
+                            </select>
+                        </div>
+                        <div>
+                            <p>Ida e volta?</p>
+                            <select>
+                                <option>Não</option>
+                                <option>Sim</option>
+                            </select>
+                        </div>
+                    </section>
+                </div>
+                <div class="cupom status-um">
+                    <p class="titulo">TEM CUPOM</p>
+                    <p class="descricao">Insira o código do cupom para obter
+desconto.</p>
+                    <input type="text">
+                <div>
+                
+                <div class="concluir status-um">
+                    <p class="preco">Preço: 4 000 kz<p>
+                    <p class="desconto">Desconto: 0 kz<p>
+                    <p class="total">Total: 4 000 kz<p>
+                    <button class="btn-chamar-taxi-concluir">CONCLUIR</button>
+                </div>
+                 
             </section>
             <img src="assets/switch.png" class="switch">
         </div>
@@ -150,10 +263,10 @@ class debliwuicorrida extends HTMLElement {
             let inputs = esse.shadowRoot.querySelector('.inputs');
 
             if (inputs.style.display == "flex") {
-                
+
             } else {
                 inputs.style.display = "flex";
-                
+
             }
         }, true);
 

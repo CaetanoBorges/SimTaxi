@@ -80,7 +80,7 @@ debliwui_corrida.innerHTML = `
             padding:2% 0;
             display:flex;
             font-size:13px;
-
+            justify-content:space-between;
             margin: 10px 0 15px 0;
 
         }
@@ -184,8 +184,8 @@ color: rgba(0, 0, 0, 0.67);}
                 <div><span class="span">De</span><input type="text" class="inputde"></div>
                 <div><span class="span">para</span><input type="text" class="inputpara"></div>
                 <section class="basic-info">
-                    <p class="basic-distancia-preco"> Distância: 12 km <br><span>Preço: 4 000 kz</span></p>
-                    <p class="basic-tempo"> Tempo de viagem <br><span>1h20</span></p>
+                    <p class="basic-distancia-preco"> KM: 12 km <br><span>Preço: 4 000 kz</span></p>
+                    <p class="basic-tempo"> Tempo <br><span>1h20</span></p>
                 </section>
                 <button class="btn-chamar-taxi">CHAMAR TAXI</button>
                 <div class="status-um">

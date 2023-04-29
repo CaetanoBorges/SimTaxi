@@ -208,6 +208,43 @@ color: rgba(0, 0, 0, 0.67);}
             filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
             border-radius: 10px;
         }
+
+        .confirmar-sms{
+            background: rgba(217, 217, 217, 0.1);
+            display:none;
+            margin-top:20px !important;
+        }
+        .confirmar-sms .header{
+            width:100%;
+            text-align:center;
+            padding:15px 0;
+            background: rgba(217, 217, 217, 0.45);
+            border-radius: 5px 5px 0px 0px;
+            font-size:16pt;
+        }
+        .confirmar-sms .descricao{
+            text-align:center;
+            padding:15px 0;
+            font-size: 12px;
+            line-height: 15px;
+            color: #000000;
+            margin-top:15px;
+        }
+        .confirmar-sms div{
+            width:100%;
+            border-radius: 0px 0px 5px 5px;
+            padding-bottom:15px;
+        }
+        .confirmar-sms div input{
+            display:block;
+            margin: 0 auto;
+            width: 80%;
+            height: 31px;
+            background: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.41);
+            border-radius: 5px;
+            padding-left:10px;
+        }
         .btn-confirmar-sms{
             width: 100%;
             height: 31px;
@@ -218,6 +255,17 @@ color: rgba(0, 0, 0, 0.67);}
             cursor:pointer;
             display:none;
         }
+        .btn-concluir-sms{
+            width: 100%;
+            height: 31px;
+            background: #2FD913;
+            border-radius: 5px;
+            margin:15px 0;
+            border: 1px solid #2FD913;
+            cursor:pointer;
+            display:none;
+        }
+
         @media screen and (max-width:500px) {
             .container{
                 width:98%;}
@@ -299,6 +347,19 @@ color: rgba(0, 0, 0, 0.67);}
 
                 <button class="btn-confirmar-sms">CONFIRMAR POR SMS</button>
 
+                
+                <div class="confirmar-sms">
+                    <p class="header">TOTAL 8 6431</p>
+                    <p class="descricao">POR FAVOR
+                    <br>CONFIRME O NÚMERO<br>
+                    QUE RECEBEU POR SMS</p>
+                    <div>
+                        <input type="text" placeholder="Número de verificação">
+                    </div>
+                </div>
+
+                <button class="btn-concluir-sms">CONFIRMAR E CONCLUIR</button>
+
             </section>
             <img src="assets/switch.png" class="switch">
         </div>
@@ -322,6 +383,8 @@ class debliwuicorrida extends HTMLElement {
         var container = this.shadowRoot.querySelector('.container');
         var chamar = this.shadowRoot.querySelector('.btn-chamar-taxi');
         var concluir = this.shadowRoot.querySelector('.btn-taxi-concluir');
+        var confirmar = this.shadowRoot.querySelector('.btn-confirmar-sms');
+        var concluirSMS = this.shadowRoot.querySelector('.btn-concluir-sms');
 
         //console.log(chamar, concluir, container);
 
@@ -365,6 +428,16 @@ class debliwuicorrida extends HTMLElement {
             divConcluir.style.display = "none";
             pagamentos.style.display = "block";
             confirmar.style.display = "block";
+        })
+        confirmar.addEventListener("click", function() {
+            var pagamentos = esse.shadowRoot.querySelector('.pagamentos');
+            var divConcluirSMS = esse.shadowRoot.querySelector('.confirmar-sms');
+            var concluir = esse.shadowRoot.querySelector('.btn-concluir-sms');
+
+            this.style.display = "none";
+            divConcluirSMS.style.display = "block";
+            pagamentos.style.display = "none";
+            concluir.style.display = "block";
         })
 
     }

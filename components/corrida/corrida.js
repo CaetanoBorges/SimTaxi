@@ -11,7 +11,7 @@ debliwui_corrida.innerHTML = `
             background: #FFFFFF;
             box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.25);
             border-radius:50px 50px 0 0;
-            z-index: 20000;
+            z-index: 10101;
             width:400px;
         }
 
@@ -172,9 +172,59 @@ color: rgba(0, 0, 0, 0.67);}
         }
 
         .centro{width:75%;}
+
+        .pagamentos{
+            background: rgba(217, 217, 217, 0.1);
+            display:none;
+            margin-top:20px !important;
+        }
+        .pagamentos .header{
+            width:100%;
+            text-align:center;
+            padding:15px 0;
+            background: rgba(217, 217, 217, 0.45);
+            border-radius: 5px 5px 0px 0px;
+            font-size:16pt;
+        }
+        .pagamentos .descricao{
+            text-align:center;
+            padding:15px 0;
+            font-size: 10px;
+            line-height: 12px;
+            color: rgba(0, 0, 0, 0.54);
+            margin-top:15px;
+        }
+        .pagamentos div{
+            width:100%;
+            display:flex;
+            align-items:center;
+            justify-content:space-evenly;
+            text-align:center;
+            border-radius: 0px 0px 5px 5px;
+        }
+        .pagamentos div img{
+            width:22%;
+            cursor:pointer;
+            filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
+            border-radius: 10px;
+        }
+        .btn-confirmar-sms{
+            width: 100%;
+            height: 31px;
+            background: #2FD913;
+            border-radius: 5px;
+            margin:15px 0;
+            border: 1px solid #2FD913;
+            cursor:pointer;
+            display:none;
+        }
         @media screen and (max-width:500px) {
             .container{
                 width:98%;}
+                .pagamentos div img{
+            width:38%;
+        }
+                
         }
     </style>
 
@@ -182,8 +232,8 @@ color: rgba(0, 0, 0, 0.67);}
         <div class="inputs">
             <img src="assets/start-finish.png" style="margin-right:1%;">
             <section class="centro">
-                <div><span class="span">De</span><input type="text" class="inputde"></div>
-                <div><span class="span">para</span><input type="text" class="inputpara"></div>
+                <div><span class="span">De</span><input type="text" class="inputde btn-select"></div>
+                <div><span class="span">para</span><input type="text" class="inputpara btn-select"></div>
                 <section class="basic-info">
                     <p class="basic-distancia-preco"> KM: 12 km <br><span>Preço: 4 000 kz</span></p>
                     <p class="basic-tempo"> Tempo <br><span>1h20</span></p>
@@ -193,14 +243,14 @@ color: rgba(0, 0, 0, 0.67);}
                     <section class="selects">
                         <div>
                             <p>Carro ou moto?</p>
-                            <select>
+                            <select class="btn-select">
                                 <option>Carro</option>
                                 <option>Moto</option>
                             </select>
                         </div>
                         <div>
                             <p>Nº de pessoas</p>
-                            <select>
+                            <select class="btn-select">
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -210,7 +260,7 @@ color: rgba(0, 0, 0, 0.67);}
                     <section class="selects">
                         <div>
                             <p>Categoria</p>
-                            <select>
+                            <select class="btn-select">
                                 <option>Normal</option>
                                 <option>VIP</option>
                                 <option>Executivo</option>
@@ -218,7 +268,7 @@ color: rgba(0, 0, 0, 0.67);}
                         </div>
                         <div>
                             <p>Ida e volta?</p>
-                            <select>
+                            <select class="btn-select">
                                 <option>Não</option>
                                 <option>Sim</option>
                             </select>
@@ -227,10 +277,9 @@ color: rgba(0, 0, 0, 0.67);}
                 </div>
                 <div class="cupom status-um">
                     <p class="titulo">TEM CUPOM</p>
-                    <p class="descricao">Insira o código do cupom para obter
-desconto.</p>
+                    <p class="descricao">Insira o código do cupom para obter desconto.</p>
                     <input type="text">
-                <div>
+                </div>
                 
                 <div class="concluir status-um">
                     <p class="preco">Preço: 4 000 kz<p>
@@ -238,10 +287,22 @@ desconto.</p>
                     <p class="total">Total: 4 000 kz<p>
                 </div>
                  
+
+                <div class="pagamentos">
+                    <p class="header">TOTAL 8 6431</p>
+                    <p class="descricao">Escolha um método de pagamento</p>
+                    <div>
+                        <img src="assets/paypal.png"> 
+                        <img src="assets/stripe.png"> 
+                    </div>
+                </div>
+
+                <button class="btn-confirmar-sms">CONFIRMAR POR SMS</button>
+
             </section>
             <img src="assets/switch.png" class="switch">
         </div>
-    <button class="btn-taxi-concluir status-um">CONCLUIR</button>
+        <button class="btn-taxi-concluir status-um">CONCLUIR</button>
     </div>
 `;
 
@@ -261,7 +322,9 @@ class debliwuicorrida extends HTMLElement {
         var container = this.shadowRoot.querySelector('.container');
         var chamar = this.shadowRoot.querySelector('.btn-chamar-taxi');
         var concluir = this.shadowRoot.querySelector('.btn-taxi-concluir');
-        console.log(chamar, concluir, container);
+
+        //console.log(chamar, concluir, container);
+
         container.addEventListener("click", function() {
             let inputs = esse.shadowRoot.querySelector('.inputs');
 
@@ -273,15 +336,35 @@ class debliwuicorrida extends HTMLElement {
             }
         }, true);
         chamar.addEventListener("click", function() {
-            let inputs = esse.shadowRoot.querySelector('.status-um');
+            let inputs = esse.shadowRoot.querySelectorAll('.status-um');
+            inputs.forEach((value, key) => {
+                if (value.style.display == "block") {
+                    console.log(value.style);
+                }
+                if (value.style.display != "block") {
+                    chamar.style.display = "none";
+                    value.style.display = "block";
+                    concluir.style.display = "block";
+                }
+            })
 
-            if (inputs.style.display == "block") {
+        });
+        concluir.addEventListener("click", function() {
+            var selects = esse.shadowRoot.querySelectorAll('.btn-select');
+            var cupom = esse.shadowRoot.querySelector('.cupom');
+            var pagamentos = esse.shadowRoot.querySelector('.pagamentos');
+            var divConcluir = esse.shadowRoot.querySelector('.concluir');
+            var confirmar = esse.shadowRoot.querySelector('.btn-confirmar-sms');
 
-            } else {
-                chamar.style.display = "none";
-                inputs.style.display = "block";
-                concluir.style.display = "block";
-            }
+            selects.forEach((value, key) => {
+                value.setAttribute("disabled", "disabled");
+
+            });
+            this.style.display = "none";
+            cupom.style.display = "none";
+            divConcluir.style.display = "none";
+            pagamentos.style.display = "block";
+            confirmar.style.display = "block";
         })
 
     }
@@ -290,5 +373,4 @@ class debliwuicorrida extends HTMLElement {
 
 }
 
-window.customElements.define('debliwui-corrida', debliwuicorrida)
 window.customElements.define('debliwui-corrida', debliwuicorrida)

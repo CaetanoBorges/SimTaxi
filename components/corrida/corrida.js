@@ -4,7 +4,7 @@ debliwui_corrida.innerHTML = `
         	*{margin:0;padding:0;}
         .container{
             position:fixed;
-            padding: 45px 5% 20px 5%;
+            padding: 45px 1% 20px 1%;
             height:fit-content;
             right: 0;
             bottom:0;
@@ -12,6 +12,7 @@ debliwui_corrida.innerHTML = `
             box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.25);
             border-radius:50px 50px 0 0;
             z-index: 20000;
+            width:400px;
         }
 
         .inputs{
@@ -60,7 +61,7 @@ debliwui_corrida.innerHTML = `
 
         }
         .inputs img{
-            margin: 15px 5%;
+            margin: 15px 0;
         }
 
         *:focus {
@@ -144,13 +145,12 @@ color: rgba(0, 0, 0, 0.67);}
 
         .concluir{width:100%;}
         
-        .btn-chamar-taxi-concluir{
-            width: 100%;
+        .btn-taxi-concluir{
+            width: 75%;
             height: 31px;
             background: #2FD913;
             border-radius: 5px;
-            display:block;
-            margin:0 auto;
+            margin:15px 0 5px 10.5%;
             border: 1px solid #2FD913;
             cursor:pointer;
         }
@@ -170,17 +170,18 @@ color: rgba(0, 0, 0, 0.67);}
             line-height: 19px;
             color: #2FD913;margin-bottom:10px;
         }
+
+        .centro{width:75%;}
         @media screen and (max-width:500px) {
             .container{
-                width:90%;
-            }
+                width:98%;}
         }
     </style>
 
     <div class="container">
         <div class="inputs">
-            <img src="assets/start-finish.png">
-            <section>
+            <img src="assets/start-finish.png" style="margin-right:1%;">
+            <section class="centro">
                 <div><span class="span">De</span><input type="text" class="inputde"></div>
                 <div><span class="span">para</span><input type="text" class="inputpara"></div>
                 <section class="basic-info">
@@ -235,12 +236,12 @@ desconto.</p>
                     <p class="preco">Preço: 4 000 kz<p>
                     <p class="desconto">Desconto: 0 kz<p>
                     <p class="total">Total: 4 000 kz<p>
-                    <button class="btn-chamar-taxi-concluir">CONCLUIR</button>
                 </div>
                  
             </section>
             <img src="assets/switch.png" class="switch">
         </div>
+    <button class="btn-taxi-concluir status-um">CONCLUIR</button>
     </div>
 `;
 
@@ -257,8 +258,10 @@ class debliwuicorrida extends HTMLElement {
 
     connectedCallback() {
         var esse = this;
-        console.log(this.status);
         var container = this.shadowRoot.querySelector('.container');
+        var chamar = this.shadowRoot.querySelector('.btn-chamar-taxi');
+        var concluir = this.shadowRoot.querySelector('.btn-taxi-concluir');
+        console.log(chamar, concluir, container);
         container.addEventListener("click", function() {
             let inputs = esse.shadowRoot.querySelector('.inputs');
 
@@ -269,6 +272,17 @@ class debliwuicorrida extends HTMLElement {
 
             }
         }, true);
+        chamar.addEventListener("click", function() {
+            let inputs = esse.shadowRoot.querySelector('.status-um');
+
+            if (inputs.style.display == "block") {
+
+            } else {
+                chamar.style.display = "none";
+                inputs.style.display = "block";
+                concluir.style.display = "block";
+            }
+        })
 
     }
 
@@ -276,4 +290,5 @@ class debliwuicorrida extends HTMLElement {
 
 }
 
+window.customElements.define('debliwui-corrida', debliwuicorrida)
 window.customElements.define('debliwui-corrida', debliwuicorrida)

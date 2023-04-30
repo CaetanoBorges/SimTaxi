@@ -369,10 +369,20 @@ color: rgba(0, 0, 0, 0.67);}
 
 class debliwuicorrida extends HTMLElement {
 
-    constructor() {
-        super();
+    constructor(loader) {
+        super(loader);
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(debliwui_corrida.content.cloneNode(true));
+        this.loader = loader;
+    }
+
+    fechar() {
+        let container = this.shadowRoot.querySelector('.container');
+        container.style.display = "none";
+    }
+    abrir() {
+        let container = this.shadowRoot.querySelector('.container');
+        container.style.display = "block";
     }
 
     status = 1;
@@ -438,6 +448,15 @@ class debliwuicorrida extends HTMLElement {
             divConcluirSMS.style.display = "block";
             pagamentos.style.display = "none";
             concluir.style.display = "block";
+        })
+        concluirSMS.addEventListener("click", function() {
+
+            esse.loader.abrir();
+            esse.fechar();
+            vaiTela("/taxiacaminho");
+            localStorage.setItem("corridaativa", "sim");
+            esse.loader.fechar();
+            handleLocation();
         })
 
     }

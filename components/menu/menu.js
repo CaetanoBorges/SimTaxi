@@ -132,7 +132,7 @@ debliwui_menu.innerHTML = `
                     <a href="/reembolso" class="reembolso">
                         <li> <img src="assets/money-menu.svg"> <span>Políticas de reembolso</span></li>
                     </a>
-                    <a href="/privacidade" class="privacidade">
+                    <a href="/taxiacaminho" class="privacidade">
                         <li> <img src="assets/handshake-menu.svg"> <span>Políticas de privacidade</span></li>
                     </a>
                 </ul>
@@ -173,18 +173,26 @@ class debliwuimenu extends HTMLElement {
         "/pagamentos": "/pages/pagamentos.html",
         "/conta": "/pages/conta.html",
         "/reembolso": "/pages/reembolso.html",
-        "/privacidade": "/pages/privacidade.html"
+        "/privacidade": "/pages/privacidade.html",
+
+        "/taxiacaminho": "/pages/taxiacaminho.html"
     }
 
-    handleLocation = async() => {
+    handleLocation = async(routes) => {
         const path = window.location.pathname;
-        console.log(path);
         const route = routes[path] || routes[404];
         const html = await fetch(route).then((data) => data.text());
         window.document.querySelector("#main").innerHTML = html;
     }
 
-
+    fechar() {
+        let container = this.shadowRoot.querySelector('.container');
+        container.style.display = "none";
+    }
+    abrir() {
+        let container = this.shadowRoot.querySelector('.container');
+        container.style.display = "block";
+    }
     connectedCallback() {
         var esse = this;
 
@@ -212,9 +220,10 @@ class debliwuimenu extends HTMLElement {
             event = event || window.event;
             event.preventDefault();
             window.history.pushState({}, "", "/" + (this.href).split("/")[3]);
-            handleLocation();
+            esse.handleLocation(esse.routes);
         });
-       
+
+
 
 
 

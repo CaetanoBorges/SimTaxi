@@ -78,11 +78,19 @@ class debliwuipesquisa extends HTMLElement {
         this.shadowRoot.appendChild(debliwui_pesquisa.content.cloneNode(true));
     }
 
+    fechar() {
+        let container = this.shadowRoot.querySelector('.container');
+        container.style.display = "none";
+    }
+    abrir() {
+        let container = this.shadowRoot.querySelector('.container');
+        container.style.display = "block";
+    }
 
     connectedCallback() {
         var esse = this;
 
-    
+
 
     }
 

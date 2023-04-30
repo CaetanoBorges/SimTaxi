@@ -29,17 +29,42 @@
     <script src="components/pesquisa/pesquisa.js"></script>
     <script src="components/corrida/corrida.js"></script>
     <script src="components/loader/loader.js"></script>
+    <script src="components/btnCorrida/btncorrida.js"></script>
     <script>
         var root = document.querySelector(".root");
-        var pesquisa = new debliwuipesquisa();
-        var corrida = new debliwuicorrida();
-        var menu = new debliwuimenu();
         var loader = new debliwuiloader();
-
+        var pesquisa = new debliwuipesquisa();
+        var corrida = new debliwuicorrida(loader);
+        var menu = new debliwuimenu();
+        var btncorrida = new debliwuibtncorrida();
 
         root.prepend(menu);
         root.prepend(corrida);
         root.prepend(pesquisa);
+        root.prepend(btncorrida);
+        setInterval(() => {
+            if ((window.location.pathname) == "/") {
+                var corridaStatus = localStorage.getItem("corridaativa");
+
+                if (corridaStatus != "sim") {
+                    corrida.abrir();
+                }
+                if (corridaStatus == "sim") {
+                    btncorrida.abrir();
+                    corrida.fechar();
+                }
+                menu.abrir();
+                pesquisa.abrir();
+            }
+            if ((window.location.pathname) != "/") {
+                menu.fechar();
+                corrida.fechar();
+                pesquisa.fechar();
+                btncorrida.fechar();
+            }
+        }, 10);
+
+
         root.prepend(loader);
     </script>
 </body>

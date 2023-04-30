@@ -20,7 +20,9 @@ const routes = {
     "/pagamentos": "/pages/pagamentos.html",
     "/conta": "/pages/conta.html",
     "/reembolso": "/pages/reembolso.html",
-    "/privacidade": "/pages/privacidade.html"
+    "/privacidade": "/pages/privacidade.html",
+    "/taxiacaminho": "/pages/taxiacaminho.html",
+    "/corrida": "/pages/corrida.html"
 }
 
 const handleLocation = async() => {

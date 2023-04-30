@@ -1,1 +1,149 @@
-<h1>CORRIDA</h1>
+<div class="corrida">
+    <div class="locations">
+        <img src="assets/start-finish.png">
+        <div>
+            <p>Mapunda</p>
+            <p>ARIMBA</p>
+        </div>
+    </div>
+
+    <div class="detailsButtons">
+        <div>
+            <p class="pdistancia">Distância: 12 km</p>
+            <p class="ptempo">Tempo de viagem: 1h20</p>
+            <p>Moto ou carro: 12 km</p>
+            <p>Nº de pessoas: 12 km</p>
+            <p>Ida e volta: 12 km</p>
+            <p>Total: 12 km</p>
+            <p>Pagamento: 12 km</p>
+        </div>
+        <div>
+            <button class="btn-chamar-cheguei">CHEGUEI</button>
+            <button class="btn-chamar-cancelar">CANCELAR</button>
+            <button class="btn-chamar-panico">PÂNICO</button>
+        </div>
+    </div>
+
+    <div class="chatdacorrida">
+        <h3>CHAT DA CORRIDA</h3>
+        <div class="actions">
+            <input type="text" id="">
+            <img src="assets/icon-send.png">
+        </div>
+    </div>
+
+</div>
+<style>
+    .chatdacorrida h3 {
+        padding: 1vh 0;
+        background: rgba(217, 217, 217, 0.45);
+        text-align: center;
+    }
+    
+    .actions {
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+        position: fixed;
+        bottom: 3vh;
+        left: 10%;
+        filter: drop-shadow(0px 0px 7px rgba(0, 0, 0, 0.25));
+    }
+    
+    .actions input {
+        width: 70%;
+        background: #FFFFFF;
+        border: 1px solid rgba(0, 0, 0, 0.41);
+        border-radius: 15px;
+        padding: 0 5%;
+    }
+    
+    .actions img {
+        width: 33px;
+        height: 31px;
+        background: #2FD913;
+        border-radius: 15px;
+    }
+    
+    .corrida {
+        width: 80%;
+        padding: 10%;
+        height: 84vh;
+    }
+    
+    .pdistancia {
+        color: black !important;
+    }
+    
+    .ptempo {
+        color: black !important;
+    }
+    
+    .btn-chamar-cheguei {
+        width: 114px;
+        height: 31px;
+        background: #2FD913;
+        border-radius: 5px;
+        display: block;
+        margin: 10PX auto;
+        border: 1px solid #2FD913;
+        cursor: pointer;
+    }
+    
+    .btn-chamar-cancelar {
+        width: 114px;
+        height: 31px;
+        background: #D97E13;
+        border-radius: 5px;
+        display: block;
+        margin: 10PX auto;
+        border: 1px solid #D97E13;
+        cursor: pointer;
+    }
+    
+    .btn-chamar-panico {
+        width: 114px;
+        height: 31px;
+        background: #FF0000;
+        border-radius: 5px;
+        display: block;
+        margin: 10PX auto;
+        border: 1px solid #FF0000;
+        cursor: pointer;
+    }
+    
+    .detailsButtons {
+        display: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+    
+    .detailsButtons p {
+        font-size: 10px;
+        line-height: 12px;
+        color: rgba(0, 0, 0, 0.67);
+    }
+    
+    .locations {
+        width: 100%;
+        display: flex;
+        align-items: center
+    }
+    
+    .locations img {
+        margin-right: 15px;
+    }
+    
+    .locations .de {
+        color: #d97e13;
+        font-size: 12px;
+        line-height: 15px;
+    }
+    
+    .locations .para {
+        color: #6EC85F;
+        font-size: 12px;
+        line-height: 15px;
+    }
+</style>

@@ -25,6 +25,7 @@
     </div>
 
     <script src="router.js"></script>
+    <script src="js/home.js"></script>
     <script src="components/menu/menu.js"></script>
     <script src="components/pesquisa/pesquisa.js"></script>
     <script src="components/corrida/corrida.js"></script>
@@ -42,27 +43,7 @@
         root.prepend(corrida);
         root.prepend(pesquisa);
         root.prepend(btncorrida);
-        setInterval(() => {
-            if ((window.location.pathname) == "/") {
-                var corridaStatus = localStorage.getItem("corridaativa");
-
-                if (corridaStatus != "sim") {
-                    corrida.abrir();
-                }
-                if (corridaStatus == "sim") {
-                    btncorrida.abrir();
-                    corrida.fechar();
-                }
-                menu.abrir();
-                pesquisa.abrir();
-            }
-            if ((window.location.pathname) != "/") {
-                menu.fechar();
-                corrida.fechar();
-                pesquisa.fechar();
-                btncorrida.fechar();
-            }
-        }, 10);
+        HOME.corridaStatus();
 
 
         root.prepend(loader);

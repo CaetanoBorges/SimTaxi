@@ -1,0 +1,156 @@
+<div class="motorista">
+    <div class="card">
+        <div class="identificacao">
+            <img src="assets/foto.png" alt="">
+            <div>
+                <p>Nome: NOME DO MOTORISTA</p>
+                <p>Genero: Masculino</p>
+                <p>Nascimento: 1989</p>
+            </div>
+        </div>
+
+
+        <div class="descricao">
+            <p>CLASSIFICAÇÕES</p>
+            <p style="margin-right:10px">CLASSIFICAR</p>
+        </div>
+
+        <div class="classificacao">
+            <div class="reacoes">
+                <div>
+                    <img src="assets/thumbs-down-reacoes.svg" alt="">
+                    <p>134</p>
+                </div>
+
+                <div>
+                    <img src="assets/thumbs-up-reacoes.svg" alt="">
+                    <p>134</p>
+                </div>
+            </div>
+            <div class="reagir">
+                <img src="assets/thumbs-down-regular.svg" alt="">
+                <img src="assets/thumbs-up-regular.svg" alt="">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="detalhesveiculo">
+        <h3>DETALHES DO VEICULO</h3>
+        <div class="detalhes">
+            <div class="ficha-tecnica">
+                <p>Matricula: LDA-29-98</p>
+                <p>Marca: Toyota</p>
+                <p>Cor: Branco</p>
+                <p>Modelo: Hilux L200</p>
+                <p>Tipo: Carro</p>
+            </div>
+            <div class="imagens">
+                <img src="assets/fotocarro.png" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .detalhesveiculo {
+        margin-top: 13vh;
+    }
+    
+    .detalhes {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .detalhes .ficha-tecnica p {
+        font-size: 12px;
+        line-height: 15px;
+    }
+    
+    .detalhes .imagens {
+        width: 50%;
+    }
+    
+    .detalhes .imagens img {
+        width: 100%;
+    }
+    
+    .detalhesveiculo h3 {
+        padding: 1vh 0;
+        background: rgba(217, 217, 217, 0.45);
+        text-align: center;
+    }
+    
+    .descricao {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .classificacao {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .classificacao .reagir {
+        display: flex;
+        width: 40%;
+        justify-content: space-between;
+    }
+    
+    .classificacao .reagir img {
+        width: 42px;
+        height: 42px;
+    }
+    
+    .classificacao .reacoes {
+        display: flex;
+        width: 32%;
+        justify-content: space-between;
+        font-size: 12px;
+        margin-left: 14px;
+    }
+    
+    .classificacao .reacoes p {
+        margin: 0;
+    }
+    
+    .classificacao .reacoes img {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .motorista {
+        width: 100%;
+        height: 84vh;
+        padding: 14vh 0 0 0;
+    }
+    
+    .card {
+        width: 90%;
+        padding: 5%;
+        background: #D9D9D9;
+        box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+    }
+    
+    .card .identificacao {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        align-items: center;
+        justify-content: space-around;
+    }
+    
+    .card .identificacao img {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+    }
+    
+    .card .identificacao p {
+        margin: 2px 0;
+        font-size: 12px;
+        line-height: 15px;
+    }
+</style>

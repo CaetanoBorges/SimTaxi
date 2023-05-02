@@ -22,7 +22,8 @@ const routes = {
     "/reembolso": "/pages/reembolso.html",
     "/privacidade": "/pages/privacidade.html",
     "/taxiacaminho": "/pages/taxiacaminho.html",
-    "/corrida": "/pages/corrida.html"
+    "/corrida": "/pages/corrida.html",
+    "/motorista": "/pages/motorista.html"
 }
 
 const handleLocation = async() => {

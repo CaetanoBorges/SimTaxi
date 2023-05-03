@@ -28,7 +28,10 @@ const HOME = {
             if ((window.location.pathname) == "/motorista") {
 
                 menu.abrir();
-
+                setTimeout(function(){
+                    MOTORISTA.reagirButtons(MOTORISTA);
+                },100);
+                
             }
             if ((window.location.pathname) == "/corrida") {
 

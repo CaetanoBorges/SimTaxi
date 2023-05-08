@@ -10,17 +10,28 @@ const HOME = {
                 btncorrida.fechar();
             }
             if ((window.location.pathname) == "/") {
-                var corridaStatus = localStorage.getItem("corridaativa");
+                var corridaAtiva = localStorage.getItem("corridaativa");
+                var corridaPendente = localStorage.getItem("corridapendente");
 
-                if (corridaStatus != "sim") {
+                if (corridaAtiva != "sim" && corridaPendente != "sim") {
                     corrida.abrir();
+                    pesquisa.abrir();
+                    this.fechaCorridaPendente();
                 }
-                if (corridaStatus == "sim") {
+                if (corridaAtiva == "sim") {
                     btncorrida.abrir();
                     corrida.fechar();
+                    pesquisa.fechar();
+                    this.fechaCorridaPendente();
+                }
+                if (corridaPendente == "sim") {
+                    btncorrida.fechar();
+                    corrida.fechar();
+                    pesquisa.fechar();
+                    this.abreCorridaPendente();
                 }
                 menu.abrir();
-                pesquisa.abrir();
+
 
                 this.smsschrol = false;
 
@@ -45,5 +56,14 @@ const HOME = {
 
             }
         }, 10)
+    },
+    "fechaCorridaPendente": function() {
+        document.querySelector(".corrida-pendente").style.display = "none";
+    },
+    "abreCorridaPendente": function() {
+        if (document.querySelector(".corrida-pendente")) {
+            document.querySelector(".corrida-pendente").style.display = "block";
+        }
+
     }
 }

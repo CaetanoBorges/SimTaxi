@@ -7,7 +7,7 @@ debliwui_pesquisa.innerHTML = `
             right: 15px;
             top:18px;
             height:fit-content;
-            z-index: 10102;
+            z-index: 999;
             padding:0;
             font-size:12pt;
         }

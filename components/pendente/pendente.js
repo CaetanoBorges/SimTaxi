@@ -610,7 +610,14 @@ class debliwuipendente extends HTMLElement {
         this.itens = mostrarquantos;
 
     }
-
+    fechar() {
+        let container = this.shadowRoot.querySelector('.container');
+        container.style.display = "none";
+    }
+    abrir() {
+        let container = this.shadowRoot.querySelector('.container');
+        container.style.display = "block";
+    }
     connectedCallback() {
         var esse = this;
         var slider = this.shadowRoot.querySelector('.slider');

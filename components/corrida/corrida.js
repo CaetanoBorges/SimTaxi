@@ -453,8 +453,8 @@ class debliwuicorrida extends HTMLElement {
 
             esse.loader.abrir();
             esse.fechar();
-            vaiTela("/taxiacaminho");
-            localStorage.setItem("corridaativa", "sim");
+            //vaiTela("/taxiacaminho");
+            localStorage.setItem("corridapendente", "sim");
             esse.loader.fechar();
             handleLocation();
         })

@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HOME</title>
-    <script src="assets/lightSlider.css"></script>
     <style>
         @font-face {
             font-family: principal;
@@ -29,6 +28,7 @@
     <script src="assets/lightSlider.js"></script>
     <script src="router.js"></script>
     <script src="js/home.js"></script>
+    <script src="js/corrida.js"></script>
     <script src="js/motorista.js"></script>
     <script src="components/menu/menu.js"></script>
     <script src="components/pesquisa/pesquisa.js"></script>
@@ -40,6 +40,7 @@
     <script src="components/btnCancelar/btncancelar.js"></script>
     <script src="components/btnPanico/btnpanico.js"></script>
     <script src="components/slideImg/slideImg.js"></script>
+    <script src="components/pendente/pendente.js"></script>
     <script>
         var root = document.querySelector(".root");
         var loader = new debliwuiloader();
@@ -53,11 +54,11 @@
         root.prepend(pesquisa);
         root.prepend(btncorrida);
         HOME.corridaStatus();
-        
+        CORRIDA.pendente();
+
 
 
         root.prepend(loader);
-        
     </script>
 </body>
 

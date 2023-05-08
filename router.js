@@ -29,8 +29,12 @@ const routes = {
 const handleLocation = async() => {
     const path = window.location.pathname;
     console.log(path);
-    if(path == "/motorista"){
+    if (path == "/motorista") {
         MOTORISTA.carroSlide();
+
+        setTimeout(function() {
+            MOTORISTA.reagirButtons(MOTORISTA);
+        }, 100);
     }
     const route = routes[path] || routes[404];
     const html = await fetch(route).then((data) => data.text());

@@ -1,6 +1,6 @@
-const debliwui_slideimg = document.createElement('template');
+const debliwui_pendente = document.createElement('template');
 
-debliwui_slideimg.innerHTML = `
+debliwui_pendente.innerHTML = `
     <style>
    
 /*! lightslider - v1.1.3 - 2015-04-14
@@ -402,7 +402,7 @@ debliwui_slideimg.innerHTML = `
     cursor: grabbing
 }
 
- .container{
+ .slider{
         width:100%;
         height:fit-content;
         background: #fff;
@@ -410,12 +410,12 @@ debliwui_slideimg.innerHTML = `
         position: relative;
        
 }
-.container li{
+.slider li{
         display: block;
         width: 100%;
 
 }
-.container img{
+.slider img{
         width: 100%;
 }
 
@@ -423,21 +423,187 @@ debliwui_slideimg.innerHTML = `
    
     
 }
-</style>
+/* TERMINA CSS SLIDE */
 
-    <ul class="container">
-       
-    </ul>
+/* COMECA CSS DO RESTO */
+.btn-aceitar-regeitar{
+    width: 62px;
+    height: 42px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    cursor: pointer;
+}
+.okay{
+    background: #2FD913;
+}
+.nao{
+    background: #ff0000;
+}
+ .detalhesveiculo {
+        margin-top: 5vh;
+    }
+    
+    .detalhes {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .detalhes .ficha-tecnica p {
+        font-size: 12px;
+        line-height: 15px;
+        margin: 0 0 4px 0;
+    }
+    
+    .detalhes .imagens {
+        width: 50%;
+    }
+    
+    .detalhes .imagens img {
+        width: 100%;
+    }
+    
+    .detalhesveiculo h3 {
+        padding: 1vh 0;
+        background: rgba(217, 217, 217, 0.45);
+        text-align: center;
+    }
+    
+    .descricao {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .classificacao {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .classificacao .reagir {
+        display: flex;
+        width: 50%;
+        justify-content: space-between;
+    }
+    
+    .classificacao .reagir img {
+        width: 42px;
+        height: 42px;
+        cursor: pointer;
+    }
+    
+    .classificacao .reacoes {
+        display: flex;
+        width: 32%;
+        justify-content: space-between;
+        font-size: 12px;
+    }
+    
+    .classificacao .reacoes p {
+        margin: 0;
+    }
+    
+    .classificacao .reacoes img {
+        width: 20px;
+        height: 20px;
+    }
+        
+    .card {
+        width: 90%;
+        padding: 5%;
+        background: #D9D9D9;
+        box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+    }
+    
+    .card .identificacao {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        align-items: center;
+        justify-content: space-around;
+    }
+    
+    .card .identificacao img {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+    }
+    
+    .card .identificacao p {
+        margin: 2px 0;
+        font-size: 12px;
+        line-height: 15px;
+    }
+</style>
+    <div class="card">
+        <div class="identificacao">
+            <img src="assets/foto.png" alt="">
+            <div>
+                <p>Nome: NOME DO MOTORISTA</p>
+                <p>Genero: Masculino</p>
+                <p>Nascimento: 1989</p>
+            </div>
+        </div>
+
+
+        <div class="classificacao">
+            <div class="reacoes">
+                <div>
+                    <img src="assets/thumbs-down-reacoes.svg" alt="">
+                    <p>134</p>
+                </div>
+
+                <div>
+                    <img src="assets/thumbs-up-reacoes.svg" alt="">
+                    <p>134</p>
+                </div>
+            </div>
+            <div class="reagir">
+                <div class="okay btn-aceitar-regeitar">
+                    OKAY
+                </div>
+                <div class="nao btn-aceitar-regeitar">
+                    NAO
+                </div>
+            </div>
+        </div>
+
+        <div class="detalhesveiculo">
+            <div class="detalhes">
+                <div class="ficha-tecnica">
+                    <p>Matricula: LDA-29-98</p>
+                    <p>Marca: Toyota</p>
+                    <p>Cor: Branco</p>
+                    <p>Modelo: Hilux L200</p>
+                    <p>Tipo: Carro</p>
+                </div>
+                <div class="imagens" id="">
+                    <ul class="slider">
+        
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    
+    
 `;
 
 
 
-class debliwuislideimg extends HTMLElement {
+class debliwuipendente extends HTMLElement {
 
     constructor($, imagens, mostrarquantos = 1) {
         super();
         this.attachShadow({ mode: 'open' });
-        this.shadowRoot.appendChild(debliwui_slideimg.content.cloneNode(true));
+        this.shadowRoot.appendChild(debliwui_pendente.content.cloneNode(true));
 
         this.jquery = $;
         this.imagens = imagens;
@@ -447,11 +613,11 @@ class debliwuislideimg extends HTMLElement {
 
     connectedCallback() {
         var esse = this;
-        var container = this.shadowRoot.querySelector('.container');
+        var slider = this.shadowRoot.querySelector('.slider');
 
         this.imagens.forEach((element, key) => {
             if (typeof(element) == "string") {
-                $(container).append(`<li>${element}</li>`);
+                $(slider).append(`<li>${element}</li>`);
             } else {
 
             }
@@ -459,7 +625,7 @@ class debliwuislideimg extends HTMLElement {
         });
 
 
-        var slider = $(container).lightSlider({
+        var slider = $(slider).lightSlider({
             gallery: false,
             item: esse.itens,
             speed: 800,
@@ -472,7 +638,7 @@ class debliwuislideimg extends HTMLElement {
             pause: 2000,
             adaptiveHeight: true,
             onSliderLoad: function() {
-                $(container).removeClass('cS-hidden');
+                $(slider).removeClass('cS-hidden');
             }
         }).css("z-index", "0");
 
@@ -481,4 +647,4 @@ class debliwuislideimg extends HTMLElement {
 
 }
 
-window.customElements.define('debliwui-slideimg', debliwuislideimg)
+window.customElements.define('debliwui-pendente', debliwuipendente)

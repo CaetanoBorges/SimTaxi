@@ -28,10 +28,8 @@ const HOME = {
             if ((window.location.pathname) == "/motorista") {
 
                 menu.abrir();
-                setTimeout(function(){
-                    MOTORISTA.reagirButtons(MOTORISTA);
-                },100);
-                
+                this.smsschrol = false;
+
             }
             if ((window.location.pathname) == "/corrida") {
 
@@ -40,8 +38,7 @@ const HOME = {
                         this.smsschrol = true;
                         var height = document.querySelector(".mensagens").scrollHeight;
                         document.querySelector(".mensagens").scrollTo(0, height);
-                        var corridaButtons = document.querySelector(".corrida-buttons");
-                        //corridaButtons.append(window.btnmotorista);
+
                     }
                 }
 

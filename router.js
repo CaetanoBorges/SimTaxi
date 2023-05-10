@@ -1,5 +1,5 @@
+var corrida = false;
 const route = (event) => {
-    console.log(event);
     event = event || window.event;
     event.preventDefault();
     window.history.pushState({}, "", event.target.href);
@@ -17,7 +17,6 @@ const routes = {
     "/": "/pages/home.html",
     "/corridas": "/pages/corridas.html",
     "/rotas": "/pages/rotas.html",
-    "/pagamentos": "/pages/pagamentos.html",
     "/conta": "/pages/conta.html",
     "/reembolso": "/pages/reembolso.html",
     "/privacidade": "/pages/privacidade.html",
@@ -28,6 +27,7 @@ const routes = {
 
 const handleLocation = async() => {
     const path = window.location.pathname;
+    const hash = window.location.hash;
     console.log(path);
     if (path == "/motorista") {
         MOTORISTA.carroSlide();
@@ -36,6 +36,28 @@ const handleLocation = async() => {
             MOTORISTA.reagirButtons(MOTORISTA);
         }, 100);
     }
+    if (hash == "") {
+        corrida ? corrida.fecharChamarUmFn(corrida) : "";
+    }
+    if (hash == "#chamarumtaxi") {
+        corrida ? corrida.fecharChamarFn(corrida) : "";
+        corrida ? corrida.abrirChamarUmFn(corrida) : "";
+    }
+    if (hash == "#chamarotaxi") {
+        corrida ? corrida.fecharConcluirFn(corrida) : "";
+        corrida ? corrida.abrirChamarFn(corrida) : "";
+    }
+    if (hash == "#concluirpedidodotaxi") {
+        corrida ? corrida.fecharConfirmarFn(corrida) : "";
+        corrida ? corrida.abrirConcluirFn(corrida) : "";
+    }
+    if (hash == "#confirmarpedidodotaxi") {
+        corrida ? corrida.abrirConfirmarFn(corrida) : "";
+    }
+    if (hash == "#pedidoconcluido") {
+        corrida ? corrida.abrirConcluirSMSFn(corrida) : "";
+    }
+
     const route = routes[path] || routes[404];
     const html = await fetch(route).then((data) => data.text());
     document.querySelector("#main").innerHTML = html;

@@ -397,8 +397,11 @@ class debliwuicorrida extends HTMLElement {
         container.style.display = "block";
     }
 
-    chamarUmFn(esse){
+    abrirChamarUmFn(esse) {
         let inputs = esse.shadowRoot.querySelector('.inputs');
+        let container = esse.shadowRoot.querySelector('.container');
+        let btnChamarUm = esse.shadowRoot.querySelector('.btn-chamar-um');
+
         container.style.background = "#ffffff";
         container.style.boxShadow = "0px 0px 5px 2px rgba(0, 0, 0, 0.25)";
         btnChamarUm.style.display = "none";
@@ -409,13 +412,28 @@ class debliwuicorrida extends HTMLElement {
 
         }
     }
+    fecharChamarUmFn(esse) {
+        let inputs = esse.shadowRoot.querySelector('.inputs');
+        let container = esse.shadowRoot.querySelector('.container');
+        let btnChamarUm = esse.shadowRoot.querySelector('.btn-chamar-um');
 
-    chamarFn(esse){
+        container.style.background = "none";
+        container.style.boxShadow = "none";
+        btnChamarUm.style.display = "block";
+        if (inputs.style.display == "flex") {
+            inputs.style.display = "none";
+        } else {
+
+
+        }
+    }
+
+    abrirChamarFn(esse) {
         let inputs = esse.shadowRoot.querySelectorAll('.status-um');
+        let chamar = esse.shadowRoot.querySelector('.btn-chamar-taxi');
+        let concluir = esse.shadowRoot.querySelector('.btn-taxi-concluir');
         inputs.forEach((value, key) => {
-            if (value.style.display == "block") {
-                console.log(value.style);
-            }
+            if (value.style.display == "block") {}
             if (value.style.display != "block") {
                 chamar.style.display = "none";
                 value.style.display = "block";
@@ -424,46 +442,90 @@ class debliwuicorrida extends HTMLElement {
         })
 
     }
+    fecharChamarFn(esse) {
+        let inputs = esse.shadowRoot.querySelectorAll('.status-um');
+        let chamar = esse.shadowRoot.querySelector('.btn-chamar-taxi');
+        let concluir = esse.shadowRoot.querySelector('.btn-taxi-concluir');
+        inputs.forEach((value, key) => {
+            if (value.style.display == "block") {
 
-    concluirFn(esse){
-        var selects = esse.shadowRoot.querySelectorAll('.btn-select');
-        var cupom = esse.shadowRoot.querySelector('.cupom');
-        var pagamentos = esse.shadowRoot.querySelector('.pagamentos');
-        var divConcluir = esse.shadowRoot.querySelector('.concluir');
-        var confirmar = esse.shadowRoot.querySelector('.btn-confirmar-sms');
+                chamar.style.display = "block";
+                value.style.display = "none";
+                concluir.style.display = "none";
+            }
+            if (value.style.display != "block") {}
+        })
+
+    }
+
+    abrirConcluirFn(esse) {
+        let selects = esse.shadowRoot.querySelectorAll('.btn-select');
+        let cupom = esse.shadowRoot.querySelector('.cupom');
+        let pagamentos = esse.shadowRoot.querySelector('.pagamentos');
+        let divConcluir = esse.shadowRoot.querySelector('.concluir');
+        let confirmar = esse.shadowRoot.querySelector('.btn-confirmar-sms');
+        let concluir = esse.shadowRoot.querySelector('.btn-taxi-concluir');
 
         selects.forEach((value, key) => {
             value.setAttribute("disabled", "disabled");
 
         });
-        this.style.display = "none";
+        concluir.style.display = "none";
         cupom.style.display = "none";
         divConcluir.style.display = "none";
         pagamentos.style.display = "block";
         confirmar.style.display = "block";
     }
 
-    confirmarFn(esse) {
+    fecharConcluirFn(esse) {
+        let selects = esse.shadowRoot.querySelectorAll('.btn-select');
+        let cupom = esse.shadowRoot.querySelector('.cupom');
+        let pagamentos = esse.shadowRoot.querySelector('.pagamentos');
+        let divConcluir = esse.shadowRoot.querySelector('.concluir');
+        let confirmar = esse.shadowRoot.querySelector('.btn-confirmar-sms');
+        let concluir = esse.shadowRoot.querySelector('.btn-taxi-concluir');
+
+        selects.forEach((value, key) => {
+            value.removeAttribute("disabled");
+
+        });
+        concluir.style.display = "block";
+        cupom.style.display = "block";
+        divConcluir.style.display = "block";
+        pagamentos.style.display = "none";
+        confirmar.style.display = "none";
+    }
+
+    abrirConfirmarFn(esse) {
         var pagamentos = esse.shadowRoot.querySelector('.pagamentos');
         var divConcluirSMS = esse.shadowRoot.querySelector('.confirmar-sms');
         var concluir = esse.shadowRoot.querySelector('.btn-concluir-sms');
+        var confirmar = esse.shadowRoot.querySelector('.btn-confirmar-sms');
 
-        this.style.display = "none";
+        confirmar.style.display = "none";
         divConcluirSMS.style.display = "block";
         pagamentos.style.display = "none";
         concluir.style.display = "block";
     }
+    fecharConfirmarFn(esse) {
+        var pagamentos = esse.shadowRoot.querySelector('.pagamentos');
+        var divConcluirSMS = esse.shadowRoot.querySelector('.confirmar-sms');
+        var concluir = esse.shadowRoot.querySelector('.btn-concluir-sms');
+        var confirmar = esse.shadowRoot.querySelector('.btn-confirmar-sms');
 
-    concluirSMSFn(esse) {
+        confirmar.style.display = "block";
+        divConcluirSMS.style.display = "none";
+        pagamentos.style.display = "block";
+        concluir.style.display = "none";
+    }
 
+    abrirConcluirSMSFn(esse) {
         esse.loader.abrir();
         esse.fechar();
         //vaiTela("/taxiacaminho");
         localStorage.setItem("corridapendente", "sim");
         esse.loader.fechar();
-        handleLocation();
     }
-    status = 1;
 
 
     connectedCallback() {
@@ -478,66 +540,19 @@ class debliwuicorrida extends HTMLElement {
         //console.log(chamar, concluir, container);
 
         btnChamarUm.addEventListener("click", function() {
-            let inputs = esse.shadowRoot.querySelector('.inputs');
-            container.style.background = "#ffffff";
-            container.style.boxShadow = "0px 0px 5px 2px rgba(0, 0, 0, 0.25)";
-            btnChamarUm.style.display = "none";
-            if (inputs.style.display == "flex") {
-
-            } else {
-                inputs.style.display = "flex";
-
-            }
-        }, true);
+            vaiTela("#chamarumtaxi");
+        });
         chamar.addEventListener("click", function() {
-            let inputs = esse.shadowRoot.querySelectorAll('.status-um');
-            inputs.forEach((value, key) => {
-                if (value.style.display == "block") {
-                    console.log(value.style);
-                }
-                if (value.style.display != "block") {
-                    chamar.style.display = "none";
-                    value.style.display = "block";
-                    concluir.style.display = "block";
-                }
-            })
-
+            vaiTela("#chamarotaxi");
         });
         concluir.addEventListener("click", function() {
-            var selects = esse.shadowRoot.querySelectorAll('.btn-select');
-            var cupom = esse.shadowRoot.querySelector('.cupom');
-            var pagamentos = esse.shadowRoot.querySelector('.pagamentos');
-            var divConcluir = esse.shadowRoot.querySelector('.concluir');
-            var confirmar = esse.shadowRoot.querySelector('.btn-confirmar-sms');
-
-            selects.forEach((value, key) => {
-                value.setAttribute("disabled", "disabled");
-
-            });
-            this.style.display = "none";
-            cupom.style.display = "none";
-            divConcluir.style.display = "none";
-            pagamentos.style.display = "block";
-            confirmar.style.display = "block";
+            vaiTela("#concluirpedidodotaxi");
         })
         confirmar.addEventListener("click", function() {
-            var pagamentos = esse.shadowRoot.querySelector('.pagamentos');
-            var divConcluirSMS = esse.shadowRoot.querySelector('.confirmar-sms');
-            var concluir = esse.shadowRoot.querySelector('.btn-concluir-sms');
-
-            this.style.display = "none";
-            divConcluirSMS.style.display = "block";
-            pagamentos.style.display = "none";
-            concluir.style.display = "block";
+            vaiTela("#confirmarpedidodotaxi");
         })
         concluirSMS.addEventListener("click", function() {
-
-            esse.loader.abrir();
-            esse.fechar();
-            //vaiTela("/taxiacaminho");
-            localStorage.setItem("corridapendente", "sim");
-            esse.loader.fechar();
-            handleLocation();
+            vaiTela("#pedidoconcluido");
         })
 
     }

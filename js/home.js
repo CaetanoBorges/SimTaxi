@@ -58,7 +58,10 @@ const HOME = {
         }, 10)
     },
     "fechaCorridaPendente": function() {
-        document.querySelector(".corrida-pendente").style.display = "none";
+        if (document.querySelector(".corrida-pendente")) {
+            document.querySelector(".corrida-pendente").style.display = "none";
+        }
+
     },
     "abreCorridaPendente": function() {
         if (document.querySelector(".corrida-pendente")) {

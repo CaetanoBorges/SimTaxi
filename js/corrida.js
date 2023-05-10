@@ -6,8 +6,11 @@ const CORRIDA = {
             '<img src="assets/fotocarro.png">'
         ]);
         setTimeout(function() {
-            var root = document.querySelector(".corrida-pendente");
-            root.append(sli);
+            if (document.querySelector(".corrida-pendente")) {
+                var root = document.querySelector(".corrida-pendente");
+                root.append(sli);
+            }
+
         }, 1000);
     }
 }

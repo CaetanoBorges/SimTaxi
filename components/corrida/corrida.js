@@ -8,13 +8,24 @@ debliwui_corrida.innerHTML = `
             height:fit-content;
             right: 0;
             bottom:0;
-            background: #FFFFFF;
-            box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.25);
+            background: none;
+            /*box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.25);*/
             border-radius:50px 50px 0 0;
             z-index: 10101;
             width:400px;
         }
 
+        .btn-chamar-um{
+            width: 75%;
+            height: 31px;
+            background: #ffffff;
+            box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.25);
+            border-radius: 5px;
+            display:block;
+            margin:0 auto;
+            border: 1px solid #ffffff;
+            cursor:pointer;
+        }
         .inputs{
             width:100%;
             display: none;
@@ -277,6 +288,7 @@ color: rgba(0, 0, 0, 0.67);}
     </style>
 
     <div class="container">
+        <button class="btn-chamar-um">CHAMAR UM TAXI</button>
         <div class="inputs">
             <img src="assets/start-finish.png" style="margin-right:1%;">
             <section class="centro">
@@ -385,12 +397,79 @@ class debliwuicorrida extends HTMLElement {
         container.style.display = "block";
     }
 
+    chamarUmFn(esse){
+        let inputs = esse.shadowRoot.querySelector('.inputs');
+        container.style.background = "#ffffff";
+        container.style.boxShadow = "0px 0px 5px 2px rgba(0, 0, 0, 0.25)";
+        btnChamarUm.style.display = "none";
+        if (inputs.style.display == "flex") {
+
+        } else {
+            inputs.style.display = "flex";
+
+        }
+    }
+
+    chamarFn(esse){
+        let inputs = esse.shadowRoot.querySelectorAll('.status-um');
+        inputs.forEach((value, key) => {
+            if (value.style.display == "block") {
+                console.log(value.style);
+            }
+            if (value.style.display != "block") {
+                chamar.style.display = "none";
+                value.style.display = "block";
+                concluir.style.display = "block";
+            }
+        })
+
+    }
+
+    concluirFn(esse){
+        var selects = esse.shadowRoot.querySelectorAll('.btn-select');
+        var cupom = esse.shadowRoot.querySelector('.cupom');
+        var pagamentos = esse.shadowRoot.querySelector('.pagamentos');
+        var divConcluir = esse.shadowRoot.querySelector('.concluir');
+        var confirmar = esse.shadowRoot.querySelector('.btn-confirmar-sms');
+
+        selects.forEach((value, key) => {
+            value.setAttribute("disabled", "disabled");
+
+        });
+        this.style.display = "none";
+        cupom.style.display = "none";
+        divConcluir.style.display = "none";
+        pagamentos.style.display = "block";
+        confirmar.style.display = "block";
+    }
+
+    confirmarFn(esse) {
+        var pagamentos = esse.shadowRoot.querySelector('.pagamentos');
+        var divConcluirSMS = esse.shadowRoot.querySelector('.confirmar-sms');
+        var concluir = esse.shadowRoot.querySelector('.btn-concluir-sms');
+
+        this.style.display = "none";
+        divConcluirSMS.style.display = "block";
+        pagamentos.style.display = "none";
+        concluir.style.display = "block";
+    }
+
+    concluirSMSFn(esse) {
+
+        esse.loader.abrir();
+        esse.fechar();
+        //vaiTela("/taxiacaminho");
+        localStorage.setItem("corridapendente", "sim");
+        esse.loader.fechar();
+        handleLocation();
+    }
     status = 1;
 
 
     connectedCallback() {
         var esse = this;
         var container = this.shadowRoot.querySelector('.container');
+        var btnChamarUm = this.shadowRoot.querySelector('.btn-chamar-um');
         var chamar = this.shadowRoot.querySelector('.btn-chamar-taxi');
         var concluir = this.shadowRoot.querySelector('.btn-taxi-concluir');
         var confirmar = this.shadowRoot.querySelector('.btn-confirmar-sms');
@@ -398,9 +477,11 @@ class debliwuicorrida extends HTMLElement {
 
         //console.log(chamar, concluir, container);
 
-        container.addEventListener("click", function() {
+        btnChamarUm.addEventListener("click", function() {
             let inputs = esse.shadowRoot.querySelector('.inputs');
-
+            container.style.background = "#ffffff";
+            container.style.boxShadow = "0px 0px 5px 2px rgba(0, 0, 0, 0.25)";
+            btnChamarUm.style.display = "none";
             if (inputs.style.display == "flex") {
 
             } else {

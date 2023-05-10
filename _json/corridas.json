@@ -1,0 +1,26 @@
+[
+    {
+        "identificador":"ea986478jgb654azmnu",
+        "passageiro":"ea98",
+        "motorista":"546564",
+        "data_hora":"1234567",
+        "partida": [
+            "ABC-78-67",
+            "Nome da partida"
+            ],
+        "destino": [
+            "Toyota",
+            "Nome da chegada"
+            ],
+        "distancia": "12 KM",
+        "tempo_estimado":"1H",
+        "preco":67542,
+        "cupom":"kxta-7098",
+        "rota":"poua",
+        "cancelado":false,
+        "chegou":false,
+        "ida_volta":false,
+        "extra":""
+    }
+]
+    

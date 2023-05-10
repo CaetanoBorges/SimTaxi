@@ -1,0 +1,20 @@
+[
+    {
+        "identificador":"546564",
+        "foto":"foto.png",
+        "nome":"Nome do motorista",
+        "nascimento": "12-09-1990",
+        "genero": "M",
+        "bi":"78967823g87g",
+        "telefone": "9999999999",
+        "email": "email@email.com",
+        "provincia":"Luanda",
+        "Municipio":"Viana",
+        "Bairro": "Bairro",
+        "palavra_passe":"",
+        "data_hora":"123456789",
+        "estado": "ativo",
+        "extra": ""
+    }
+]
+    

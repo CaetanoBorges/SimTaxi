@@ -1,0 +1,17 @@
+[
+    {
+        "identificador":"ea98",
+        "foto":"foto.png",
+        "nome":"Nome do passageiro",
+        "genero": "M",
+        "telefone": "9999999999",
+        "provincia":"Luanda",
+        "Municipio":"Viana",
+        "Bairro": "Bairro",
+        "palavra_passe":"",
+        "data_hora":"123456789",
+        "estado": "ativo",
+        "extra": ""
+    }
+]
+    

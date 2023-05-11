@@ -516,7 +516,7 @@ debliwui_pendente.innerHTML = `
         padding: 5%;
         background: #D9D9D9;
         box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.25);
-        border-radius: 20px;
+        border-radius: 5px;
     }
     
     .card .identificacao {
@@ -565,7 +565,7 @@ debliwui_pendente.innerHTML = `
             </div>
             <div class="reagir">
                 <div class="okay btn-aceitar-regeitar">
-                    OKAY
+                    SIM
                 </div>
                 <div class="nao btn-aceitar-regeitar">
                     NAO

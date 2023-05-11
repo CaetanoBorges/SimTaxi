@@ -51,7 +51,8 @@ debliwui_menu.innerHTML = `
         }
         
         ul li:hover {
-            background: rgba(0, 0, 0, .1)
+            background: #961A1A;
+            color:white;
         }
         
         ul li {
@@ -75,7 +76,7 @@ debliwui_menu.innerHTML = `
             z-index:11111;
         }
         .user{
-            background-color:#6EC85F;
+            background-color:#961A1A;
             width:90%;
             height:25vh;
             display:flex;
@@ -83,6 +84,7 @@ debliwui_menu.innerHTML = `
             flex-direction:column;
             justify-content: flex-end;
             padding: 0 0 3vh 10%;
+            color:white;
 
         }
         .user div{
@@ -93,7 +95,7 @@ debliwui_menu.innerHTML = `
             width:100%;
             }
 
-            .sair{position:absolute;bottom:10pt;right:10pt;color:#2fd913;}
+            .sair{position:absolute;bottom:10pt;right:10pt;color:#961A1A;}
         @media screen and (max-width:700px) {
             .conteudo{
                 display:none;
@@ -123,7 +125,7 @@ debliwui_menu.innerHTML = `
                         <li> <img src="assets/rota-menu.svg"> <span>Rotas</span></li>
                     </a>
                     <a href="/pagamentos" class="pagamentos">
-                        <li> <img src="assets/pagamento-menu.svg"> <span>Pagamentos</span></li>
+                        <li> <img src="assets/sack-menu.svg"> <span>Meu fundo</span></li>
                     </a>
                     <div class="linha-divisoria"></div>
                     <a href="/conta" class="conta">

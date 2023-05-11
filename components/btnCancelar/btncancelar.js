@@ -8,10 +8,10 @@ debliwui_btncancelar.innerHTML = `
         .btn{
             width: 114px;
             height: 31px;
-            background: #D97E13;
+            background: #ff0000;
             border-radius: 5px;
             margin:5px 0;
-            border: 1px solid #D97E13;
+            border: 1px solid #ff0000;
             cursor:pointer;
         }
         
@@ -19,10 +19,10 @@ debliwui_btncancelar.innerHTML = `
             display:block;
             width: fit-content;
             height: 31px;
-            background: #D97E13;
+            background: #ff0000;
             border-radius: 5px;
             margin:5px auto;
-            border: 1px solid #D97E13;
+            border: 1px solid #ff0000;
             cursor:pointer;
         }
         

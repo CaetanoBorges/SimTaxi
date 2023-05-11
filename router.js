@@ -14,7 +14,15 @@ const vaiTela = (route) => {
 const prefixed = "SimTaxi/";
 const routes = {
     404: "/pages/404.html",
-    "/": "/pages/home.html",
+    "/": "/pages/inicio.html",
+    "/entrar": "/pages/entrar.html",
+    "/esqueceuapasse": "/pages/esqueceuapasse.html",
+    "/confirmaresqueceuapasse": "/pages/confirmaresqueceuapasse.html",
+    "/novapalavrapasse": "/pages/novapalavrapasse.html",
+    "/criarconta": "/pages/criarconta.html",
+    "/verificarcadastro": "/pages/verificarcadastro.html",
+    "/concluircadastro": "/pages/concluircadastro.html",
+    "/home": "/pages/home.html",
     "/corridas": "/pages/corridas.html",
     "/rotas": "/pages/rotas.html",
     "/conta": "/pages/conta.html",

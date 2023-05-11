@@ -8,10 +8,10 @@ debliwui_btnpanico.innerHTML = `
         .btn{
             width: 114px;
             height: 31px;
-            background: #ff0000;
+            background: #D97E13;
             border-radius: 5px;
             margin:5px 0;
-            border: 1px solid #ff0000;
+            border: 1px solid #D97E13;
             cursor:pointer;
         }
         .um{
@@ -38,10 +38,10 @@ debliwui_btnpanico.innerHTML = `
             display:block;
             width: 114px;
             height: 31px;
-            background: #ff0000;
+            background: #D97E13;
             border-radius: 5px;
             margin:5px auto;
-            border: 1px solid #ff0000;
+            border: 1px solid #D97E13;
             cursor:pointer;
         }
 

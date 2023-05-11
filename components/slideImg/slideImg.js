@@ -405,7 +405,7 @@ debliwui_slideimg.innerHTML = `
  .container{
         width:100%;
         height:fit-content;
-        background: #fff;
+        background: none;
         /*border:1px solid #ff008f;*/
         position: relative;
        

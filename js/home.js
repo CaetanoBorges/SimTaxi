@@ -3,13 +3,13 @@ const HOME = {
     "corridaStatus": function() {
         setInterval(() => {
 
-            if ((window.location.pathname) != "/") {
+            if ((window.location.pathname) != "/home") {
                 menu.fechar();
                 corrida.fechar();
                 pesquisa.fechar();
                 btncorrida.fechar();
             }
-            if ((window.location.pathname) == "/") {
+            if ((window.location.pathname) == "/home") {
                 var corridaAtiva = localStorage.getItem("corridaativa");
                 var corridaPendente = localStorage.getItem("corridapendente");
 

@@ -3,6 +3,9 @@ const HOME = {
     "corridaStatus": function() {
         setInterval(() => {
 
+            if ((window.location.pathname) == "/") {
+                INICIO.slide();
+            }
             if ((window.location.pathname) != "/home") {
                 menu.fechar();
                 corrida.fechar();

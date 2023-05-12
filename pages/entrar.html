@@ -1,6 +1,34 @@
-<div>
-
+<div class="principal">
+    <div class="principal-corpo">
+        <img src="assets/Travel Distance.svg" class="header-img">
+        <input type="text" class="input-telas-inicio entrar-telefone" placeholder="Telefone">
+        <input type="password" class="input-telas-inicio entrar-password" placeholder="Palavra-passe">
+        <p class="esqueci-password" onclick='vaiTela("esqueceuapasse")'>Esqueci a palavra-passe</p>
+        <button class="button-telas-inicio btn-entrar" onclick='vaiTela("home")'>ENTRAR</button>
+        <button class="button-telas-inicio btn-criar-conta" onclick='vaiTela("criarconta")'>CRIAR CONTA</button>
+    </div>
+    
 </div>
 <style>
-    
+
+    .entrar-telefone{
+    }
+    .entrar-password{
+    }
+    .esqueci-password{
+        font-size: 12px;
+        text-align: right;
+        cursor: pointer;
+    }
+
+    .btn-entrar {
+        margin: 40px auto 0 auto;
+        border: 1px solid #2FD913;
+        background: #2FD913;
+    }
+    .btn-criar-conta {
+        margin: 30px auto 0 auto;
+        border: 1px solid #d9d9d9;
+        background: #FFFFFF;
+    }
 </style>

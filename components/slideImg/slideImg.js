@@ -413,10 +413,20 @@ debliwui_slideimg.innerHTML = `
 .container li{
         display: block;
         width: 100%;
+        position:relative;
 
 }
 .container img{
         width: 100%;
+}
+
+.container h3{
+        text-align:center;
+        font-size:16px;
+}
+.container P{
+        text-align:center;
+        font-size:12px;
 }
 
 @media screen and (max-width:1000px) {
@@ -434,7 +444,7 @@ debliwui_slideimg.innerHTML = `
 
 class debliwuislideimg extends HTMLElement {
 
-    constructor($, imagens, mostrarquantos = 1) {
+    constructor($, imagens, mostrarquantos = 1, pager = true, speed = 800, pause = 2000) {
         super();
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(debliwui_slideimg.content.cloneNode(true));
@@ -442,6 +452,9 @@ class debliwuislideimg extends HTMLElement {
         this.jquery = $;
         this.imagens = imagens;
         this.itens = mostrarquantos;
+        this.pager = pager;
+        this.speed = speed;
+        this.pause = pause;
 
     }
 
@@ -462,14 +475,14 @@ class debliwuislideimg extends HTMLElement {
         var slider = $(container).lightSlider({
             gallery: false,
             item: esse.itens,
-            speed: 800,
+            speed: esse.speed,
             loop: true,
             keyPress: true,
             auto: true,
             controls: false,
-            pager: true,
+            pager: esse.pager,
             pauseOnHover: true,
-            pause: 2000,
+            pause: esse.pause,
             adaptiveHeight: true,
             onSliderLoad: function() {
                 $(container).removeClass('cS-hidden');

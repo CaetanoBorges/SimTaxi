@@ -115,7 +115,7 @@ debliwui_menu.innerHTML = `
                     <p>Nome do usuario</p>
                 </div>
                 <ul>
-                    <a href="/" class="home">
+                    <a href="/home" class="home">
                         <li> <img src="assets/home.svg"> <span>Início</span></li>
                     </a>
                     <a href="/corridas" class="corridas">
@@ -124,17 +124,14 @@ debliwui_menu.innerHTML = `
                     <a href="/rotas" class="rotas">
                         <li> <img src="assets/rota-menu.svg"> <span>Rotas</span></li>
                     </a>
-                    <a href="/pagamentos" class="pagamentos">
-                        <li> <img src="assets/sack-menu.svg"> <span>Meu fundo</span></li>
-                    </a>
                     <div class="linha-divisoria"></div>
                     <a href="/conta" class="conta">
                         <li> <img src="assets/user-menu.svg"> <span>Minha conta</span></li>
                     </a>
-                    <a href="/reembolso" class="reembolso">
-                        <li> <img src="assets/money-menu.svg"> <span>Políticas de reembolso</span></li>
+                    <a href="/termosdeuso" class="termosdeuso">
+                        <li> <img src="assets/money-menu.svg"> <span>Termos de uso do serviço</span></li>
                     </a>
-                    <a href="/taxiacaminho" class="privacidade">
+                    <a href="/privacidade" class="privacidade">
                         <li> <img src="assets/handshake-menu.svg"> <span>Políticas de privacidade</span></li>
                     </a>
                 </ul>
@@ -169,15 +166,12 @@ class debliwuimenu extends HTMLElement {
     }
     routes = {
         404: "/pages/404.html",
-        "/": "/pages/home.html",
+        "/home": "/pages/home.html",
         "/corridas": "/pages/corridas.html",
         "/rotas": "/pages/rotas.html",
-        "/pagamentos": "/pages/pagamentos.html",
-        "/conta": "/pages/conta.html",
-        "/reembolso": "/pages/reembolso.html",
-        "/privacidade": "/pages/privacidade.html",
-
-        "/taxiacaminho": "/pages/taxiacaminho.html"
+        "/conta": "/pages/minhaconta.html",
+        "/termosdeuso": "/pages/termosdeuso.html",
+        "/privacidade": "/pages/politicasdeprivacidade.html"
     }
 
     handleLocation = async(routes) => {
@@ -218,11 +212,53 @@ class debliwuimenu extends HTMLElement {
             }
         });
 
+        this.shadowRoot.querySelector('.home').addEventListener("click", function(event) {
+            event = event || window.event;
+            event.preventDefault();
+            window.history.pushState({}, "", "/" + (this.href).split("/")[3]);
+            esse.handleLocation(esse.routes);
+            let container = esse.shadowRoot.querySelector('.conteudo');
+            container.style.display == "none"
+        });
+        this.shadowRoot.querySelector('.rotas').addEventListener("click", function(event) {
+            event = event || window.event;
+            event.preventDefault();
+            window.history.pushState({}, "", "/" + (this.href).split("/")[3]);
+            esse.handleLocation(esse.routes);
+            let container = esse.shadowRoot.querySelector('.conteudo');
+            container.style.display == "none"
+        });
+        this.shadowRoot.querySelector('.corridas').addEventListener("click", function(event) {
+            event = event || window.event;
+            event.preventDefault();
+            window.history.pushState({}, "", "/" + (this.href).split("/")[3]);
+            esse.handleLocation(esse.routes);
+            let container = esse.shadowRoot.querySelector('.conteudo');
+            container.style.display == "none"
+        });
+        this.shadowRoot.querySelector('.conta').addEventListener("click", function(event) {
+            event = event || window.event;
+            event.preventDefault();
+            window.history.pushState({}, "", "/" + (this.href).split("/")[3]);
+            esse.handleLocation(esse.routes);
+            let container = esse.shadowRoot.querySelector('.conteudo');
+            container.style.display == "none"
+        });
+        this.shadowRoot.querySelector('.termosdeuso').addEventListener("click", function(event) {
+            event = event || window.event;
+            event.preventDefault();
+            window.history.pushState({}, "", "/" + (this.href).split("/")[3]);
+            esse.handleLocation(esse.routes);
+            let container = esse.shadowRoot.querySelector('.conteudo');
+            container.style.display == "none"
+        });
         this.shadowRoot.querySelector('.privacidade').addEventListener("click", function(event) {
             event = event || window.event;
             event.preventDefault();
             window.history.pushState({}, "", "/" + (this.href).split("/")[3]);
             esse.handleLocation(esse.routes);
+            let container = esse.shadowRoot.querySelector('.conteudo');
+            container.style.display == "none"
         });
 
 

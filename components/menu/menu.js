@@ -211,54 +211,55 @@ class debliwuimenu extends HTMLElement {
                 container.style.display = "none";
             }
         });
+        let lis = this.shadowRoot.querySelectorAll('li');
+        lis.forEach(element => {
+            element.addEventListener("click", function() {
+                let container = esse.shadowRoot.querySelector('.conteudo');
+
+                if (container.style.display == "none") {
+                    container.style.display = "block";
+                } else {
+                    container.style.display = "none";
+                }
+            });
+        });
+
 
         this.shadowRoot.querySelector('.home').addEventListener("click", function(event) {
             event = event || window.event;
             event.preventDefault();
             window.history.pushState({}, "", "/" + (this.href).split("/")[3]);
             esse.handleLocation(esse.routes);
-            let container = esse.shadowRoot.querySelector('.conteudo');
-            container.style.display == "none"
         });
         this.shadowRoot.querySelector('.rotas').addEventListener("click", function(event) {
             event = event || window.event;
             event.preventDefault();
             window.history.pushState({}, "", "/" + (this.href).split("/")[3]);
             esse.handleLocation(esse.routes);
-            let container = esse.shadowRoot.querySelector('.conteudo');
-            container.style.display == "none"
         });
         this.shadowRoot.querySelector('.corridas').addEventListener("click", function(event) {
             event = event || window.event;
             event.preventDefault();
             window.history.pushState({}, "", "/" + (this.href).split("/")[3]);
             esse.handleLocation(esse.routes);
-            let container = esse.shadowRoot.querySelector('.conteudo');
-            container.style.display == "none"
         });
         this.shadowRoot.querySelector('.conta').addEventListener("click", function(event) {
             event = event || window.event;
             event.preventDefault();
             window.history.pushState({}, "", "/" + (this.href).split("/")[3]);
             esse.handleLocation(esse.routes);
-            let container = esse.shadowRoot.querySelector('.conteudo');
-            container.style.display == "none"
         });
         this.shadowRoot.querySelector('.termosdeuso').addEventListener("click", function(event) {
             event = event || window.event;
             event.preventDefault();
             window.history.pushState({}, "", "/" + (this.href).split("/")[3]);
             esse.handleLocation(esse.routes);
-            let container = esse.shadowRoot.querySelector('.conteudo');
-            container.style.display == "none"
         });
         this.shadowRoot.querySelector('.privacidade').addEventListener("click", function(event) {
             event = event || window.event;
             event.preventDefault();
             window.history.pushState({}, "", "/" + (this.href).split("/")[3]);
             esse.handleLocation(esse.routes);
-            let container = esse.shadowRoot.querySelector('.conteudo');
-            container.style.display == "none"
         });
 
 

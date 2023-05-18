@@ -22,14 +22,15 @@ const routes = {
     "/criarconta": "/pages/criarconta.html",
     "/verificarcadastro": "/pages/verificarcadastro.html",
     "/concluircadastro": "/pages/concluircadastro.html",
-        "/home": "/pages/home.html",
-        "/corridas": "/pages/corridas.html",
-        "/rotas": "/pages/rotas.html",
-        "/conta": "/pages/minhaconta.html",
-        "/termosdeuso": "/pages/termosdeuso.html",
-        "/privacidade": "/pages/politicasdeprivacidade.html",
+    "/home": "/pages/home.html",
+    "/corridas": "/pages/corridas.html",
+    "/rotas": "/pages/rotas.html",
+    "/conta": "/pages/minhaconta.html",
+    "/termosdeuso": "/pages/termosdeuso.html",
+    "/privacidade": "/pages/politicasdeprivacidade.html",
     "/taxiacaminho": "/pages/taxiacaminho.html",
     "/corrida": "/pages/corrida.html",
+    "/rota": "/pages/rota.html",
     "/motorista": "/pages/motorista.html"
 }
 

@@ -31,7 +31,8 @@ const routes = {
     "/taxiacaminho": "/pages/taxiacaminho.html",
     "/corrida": "/pages/corrida.html",
     "/rota": "/pages/rota.html",
-    "/motorista": "/pages/motorista.html"
+    "/motorista": "/pages/motorista.html",
+    "/confirmarrota": "/pages/confirmarrota.html"
 }
 
 const handleLocation = async() => {

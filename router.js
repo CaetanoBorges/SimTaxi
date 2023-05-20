@@ -4,7 +4,7 @@ const route = (event) => {
     event.preventDefault();
     window.history.pushState({}, "", event.target.href);
     handleLocation();
-};
+}
 
 const vaiTela = (route) => {
     window.history.pushState({}, "", route);
@@ -32,7 +32,9 @@ const routes = {
     "/corrida": "/pages/corrida.html",
     "/rota": "/pages/rota.html",
     "/motorista": "/pages/motorista.html",
-    "/confirmarrota": "/pages/confirmarrota.html"
+    "/confirmarrota": "/pages/confirmarrota.html",
+    "/rentacar": "/pages/rentacar.html",
+    "/car": "/pages/car.html"
 }
 
 const handleLocation = async() => {

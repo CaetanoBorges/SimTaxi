@@ -3,8 +3,8 @@
         <div class="inputs">
             <img src="assets/start-finish.png" style="margin-right:1%;">
             <section class="centro">
-                <div><span class="span">De</span><input type="text" class="inputde btn-select"></div>
-                <div><span class="span">para</span><input type="text" class="inputpara btn-select"></div>
+                <div><span class="span">De</span><input type="text" class="inputde btn-select" disabled></div>
+                <div><span class="span">para</span><input type="text" class="inputpara btn-select" disabled></div>
                 <section class="basic-info">
                     <p class="basic-distancia-preco"> KM: 12 km </p>
                     <p class="basic-tempo"> Tempo <br><span>1h20</span></p>
@@ -13,14 +13,14 @@
                     <section class="selects">
                         <div>
                             <p>Carro ou moto?</p>
-                            <select class="btn-select">
+                            <select class="btn-select" disabled>
                                 <option>Carro</option>
                                 <option>Moto</option>
                             </select>
                         </div>
                         <div>
                             <p>Nº de pessoas</p>
-                            <select class="btn-select">
+                            <select class="btn-select" disabled>
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -30,7 +30,7 @@
                     <section class="selects">
                         <div>
                             <p>Categoria</p>
-                            <select class="btn-select">
+                            <select class="btn-select" disabled>
                                 <option>Normal</option>
                                 <option>VIP</option>
                                 <option>Executivo</option>
@@ -38,7 +38,7 @@
                         </div>
                         <div>
                             <p>Ida e volta?</p>
-                            <select class="btn-select">
+                            <select class="btn-select" disabled>
                                 <option>Não</option>
                                 <option>Sim</option>
                             </select>
@@ -56,9 +56,10 @@
                 </div>
                 
             </section>
-            <img src="assets/switch.png" class="switch">
+            <img src="assets/switch.png" class="switch" style="opacity:0;">
         </div>
         <button class="btn-taxi-concluir status-um">CONCLUIR</button>
+        <br>
     </div>
 </div>
 <style>
@@ -66,7 +67,6 @@
 .background{
     opacity:0;
 }
-
 
 .container{
     padding: 45px 1% 20px 1%;
@@ -143,7 +143,6 @@
     margin-top:30px !important;
 }
 
-
 .basic-info{
     width:100%;
     padding:2% 0;
@@ -153,26 +152,9 @@
     margin: 10px 0 15px 0;
 }
 
-.basic-info p{}
-
 .basic-info .basic-distancia-preco span{
     color:#6EC85F;
 }
-.basic-tempo{
-            
-}
-
-.btn-chamar-taxi{
-    width: 100%;
-    height: 31px;
-    background: #2FD913;
-    border-radius: 5px;
-    display:block;
-    margin:0 auto;
-    border: 1px solid #2FD913;
-    cursor:pointer;
-}
-
 .status-um{
     display:block;
     }
@@ -192,29 +174,6 @@
     color: rgba(0, 0, 0, 0.67);
 }
 
-
-.cupom{width:100%;}
-.cupom .titulo{
-    font-size: 12px;
-    text-transform:uppercase;
-    line-height: 15px;
-    color: rgba(0, 0, 0, 0.67);
-}
-.cupom .descricao{
-    font-size: 10px;
-    line-height: 12px;
-    color: rgba(0, 0, 0, 0.51);
-    margin: 0 0 5px 0;
-}
-.cupom input{
-    width: 98%;
-    height: 31px;
-    background: #FFFFFF;
-    border: 1px solid rgba(0, 0, 0, 0.41);
-    border-radius: 5px;
-    padding-left:2%;
-}
-
 .concluir{width:100%;}
         
 .btn-taxi-concluir{
@@ -226,60 +185,8 @@
     border: 1px solid #2FD913;
     cursor:pointer;
 }
-.concluir .preco{
-    font-size: 16px;
-    line-height: 19px;
-    color: rgba(0, 0, 0, 0.53);
-    margin-top:10px;
-}
-.concluir .desconto{
-    font-size: 16px;
-    line-height: 19px;
-    color: #D97E13;
-}
-.concluir .total{
-    font-size: 16px;
-    line-height: 19px;
-    color: #2FD913;margin-bottom:10px;
-}
 
 .centro{width:75%;}
-
-.pagamentos{
-    background: rgba(217, 217, 217, 0.1);
-    display:block;
-    margin-top:20px !important;
-}
-.pagamentos .header{
-    width:100%;
-    text-align:center;
-    padding:15px 0;
-    background: rgba(217, 217, 217, 0.45);
-    border-radius: 5px 5px 0px 0px;
-    font-size:16pt;
-}
-.pagamentos .descricao{
-    text-align:center;
-    padding:15px 0;
-    font-size: 10px;
-    line-height: 12px;
-    color: rgba(0, 0, 0, 0.54);
-    margin-top:15px;
-}
-.pagamentos div{
-    width:100%;
-    display:flex;
-    align-items:center;
-    justify-content:space-evenly;
-    text-align:center;
-    border-radius: 0px 0px 5px 5px;
-}
-.pagamentos div img{
-    width:22%;
-    cursor:pointer;
-    filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
-    border-radius: 10px;
-}
 
 .confirmar-sms{
     background: rgba(217, 217, 217, 0.1);
@@ -307,7 +214,7 @@
     border-radius: 0px 0px 5px 5px;
     padding-bottom:15px;
 }
-        .confirmar-sms div input{
+.confirmar-sms div input{
     display:block;
     margin: 0 auto;
     width: 80%;
@@ -317,33 +224,14 @@
     border-radius: 5px;
     padding-left:10px;
 }
-.btn-confirmar-sms{
-    width: 100%;
-    height: 31px;
-    background: #2FD913;
-    border-radius: 5px;
-    margin:15px 0;
-    border: 1px solid #2FD913;
-    cursor:pointer;
-    display:block;
-}
-.btn-concluir-sms{
-    width: 100%;
-    height: 31px;
-    background: #2FD913;
-    border-radius: 5px;
-    margin:15px 0;
-    border: 1px solid #2FD913;
-    cursor:pointer;
-    display:block;
-}
 
-        @media screen and (max-width:500px) {
-            .container{
-                width:98%;}
-                .pagamentos div img{
+@media screen and (max-width:500px) {
+    .container{
+        width:98%;
+    }
+    .pagamentos div img{
             width:38%;
-        }
-                
-        }
+    }
+
+}
 </style>

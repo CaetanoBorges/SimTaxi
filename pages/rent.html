@@ -1,0 +1,160 @@
+<div class="principal">
+    <div class="nome-carro">
+        Nome do carro
+    </div>
+    <div class="schroller">
+        <div class="rouller" style="width:575px">
+
+            <div class="info">
+                <img src="assets/cadeira.svg" alt="">
+                <p>4 cadeiras</p>
+            </div>
+            <div class="info">
+                <img src="assets/porta.svg" alt="">
+                <p>4 portas</p>
+            </div>
+            <div class="info">
+                <img src="assets/motor.svg" alt="">
+                <p>manual</p>
+            </div>
+            <div class="info">
+                <img src="assets/volante.svg" alt="">
+                <p>a direita</p>
+            </div>
+            <div class="info">
+                <img src="assets/pneu.svg" alt="">
+                <p>radial</p>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="data">
+        <div class="data-inicio">
+            <span>Data de inicio</span>
+            <input type="date">
+        </div> <br>
+        <div class="data-fim">
+            <span>Data de termino</span>
+            <input type="date">
+        </div>
+    </div>
+
+
+    <div class="concluir">
+        <p class="preco">Preço: 4 000 kz<p>
+        <p class="desconto">Desconto: 0 kz<p>
+        <p class="total">Total: 4 000 kz<p>
+    </div>
+
+    <button class="btn-taxi-concluir">CONCLUIR</button>
+</div>
+
+<style>
+.btn-taxi-concluir{
+    width: 100%;
+    height: 31px;
+    background: #2FD913;
+    border-radius: 5px;
+    margin:15px 0;
+    border: 1px solid #2FD913;
+    cursor:pointer;
+}
+
+.background{opacity: 1;}
+
+.concluir{
+    margin: 2vh 0 2vh 0;
+    padding:4vh 10%;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+}
+
+        .concluir .preco{
+            font-size: 16px;
+            line-height: 19px;
+            color: rgba(0, 0, 0, 0.53);
+            margin-top:10px;
+        }
+        .concluir .desconto{
+            font-size: 16px;
+            line-height: 19px;
+            color: #D97E13;
+        }
+        .concluir .total{
+            font-size: 16px;
+            line-height: 19px;
+            color: #2FD913;margin-bottom:10px;
+        }
+
+.data{
+    margin: 2vh 0 2vh 0;
+    padding:4vh 10%;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+}
+
+.data span{
+    font-size: 12px;
+    margin: 0;
+    display: block;
+}
+
+.data input{
+    font-size: 12px;
+    margin: 0;
+    display: block;
+    width:100%;
+    height: 31px;
+    background: rgba(217, 217, 217, 0.35);
+    border-radius: 5px;
+    border: 1px solid rgba(217, 217, 217, 0.35);
+}
+
+.nome-carro{
+    font-size: 20px;
+    font-weight: bold;
+    margin: 7vh 0 2vh 0;
+    padding:10px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+}
+.info{
+    display: inline-flex;
+    width: 85px;
+    height: 86px;
+    padding: 10px;
+    flex-direction: column;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    margin:auto 5px auto 0;
+}
+.info p {margin-bottom:0;}
+.info img{width:30px}
+.schroller{
+    display: block;
+    width: 100%;
+    height: fit-content;
+    overflow-x: scroll;
+    margin:2vh 0;
+}
+
+.rouller{
+    display: block;
+    width: 800px;
+    height: fit-content;
+    padding:1vh;
+}
+
+
+
+@media screen and (max-width:500px) {
+   
+}
+</style>

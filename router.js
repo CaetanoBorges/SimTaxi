@@ -34,7 +34,9 @@ const routes = {
     "/motorista": "/pages/motorista.html",
     "/confirmarrota": "/pages/confirmarrota.html",
     "/rentacar": "/pages/rentacar.html",
-    "/car": "/pages/car.html"
+    "/car": "/pages/car.html",
+    "/rent": "/pages/rent.html",
+    "/confirmarrent": "/pages/confirmarrent.html"
 }
 
 const handleLocation = async() => {
@@ -62,9 +64,6 @@ const handleLocation = async() => {
     if (hash == "#concluirpedidodotaxi") {
         corrida ? corrida.fecharConfirmarFn(corrida) : "";
         corrida ? corrida.abrirConcluirFn(corrida) : "";
-    }
-    if (hash == "#confirmarpedidodotaxi") {
-        corrida ? corrida.abrirConfirmarFn(corrida) : "";
     }
     if (hash == "#pedidoconcluido") {
         corrida ? corrida.abrirConcluirSMSFn(corrida) : "";

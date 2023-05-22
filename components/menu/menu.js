@@ -124,6 +124,9 @@ debliwui_menu.innerHTML = `
                     <a href="/rotas" class="rotas">
                         <li> <img src="assets/rota-menu.svg"> <span>Rotas</span></li>
                     </a>
+                    <a href="/rentacar" class="rentacar">
+                        <li> <img src="assets/car.svg"> <span>Renta a car</span></li>
+                    </a>
                     <div class="linha-divisoria"></div>
                     <a href="/conta" class="conta">
                         <li> <img src="assets/user-menu.svg"> <span>Minha conta</span></li>
@@ -171,7 +174,9 @@ class debliwuimenu extends HTMLElement {
         "/rotas": "/pages/rotas.html",
         "/conta": "/pages/minhaconta.html",
         "/termosdeuso": "/pages/termosdeuso.html",
-        "/privacidade": "/pages/politicasdeprivacidade.html"
+        "/privacidade": "/pages/politicasdeprivacidade.html",
+        
+        "/rentacar": "/pages/rentacar.html"
     }
 
     handleLocation = async(routes) => {
@@ -256,6 +261,12 @@ class debliwuimenu extends HTMLElement {
             esse.handleLocation(esse.routes);
         });
         this.shadowRoot.querySelector('.privacidade').addEventListener("click", function(event) {
+            event = event || window.event;
+            event.preventDefault();
+            window.history.pushState({}, "", "/" + (this.href).split("/")[3]);
+            esse.handleLocation(esse.routes);
+        });
+        this.shadowRoot.querySelector('.rentacar').addEventListener("click", function(event) {
             event = event || window.event;
             event.preventDefault();
             window.history.pushState({}, "", "/" + (this.href).split("/")[3]);

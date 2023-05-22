@@ -1,117 +1,23 @@
 <div class="principal">
-    <div class="prod-top">
-        <img src="assets/car.jpeg" alt="">
-        <div class="action">
-            <button>ALUGAR AGORA</button>
-            <div>
-                <p>Marca do carro</p>
-                <p>kz 27 000 / dia</p>
-            </div>
-        </div>
+    <div class="principal-corpo">
+
+        <button class="btn-iniciar" onclick='vaiTela("entrar")'>INICIAR</button>
     </div>
 
-    <div class="schroller">
-        <div class="rouller" style="width:460px">
-
-            <div class="info">
-                <img src="assets/cadeira.svg" alt="">
-                <p>4 cadeiras</p>
-            </div>
-            <div class="info">
-                <img src="assets/cadeira.svg" alt="">
-                <p>4 cadeiras</p>
-            </div>
-            <div class="info">
-                <img src="assets/cadeira.svg" alt="">
-                <p>4 cadeiras</p>
-            </div>
-            <div class="info">
-                <img src="assets/cadeira.svg" alt="">
-                <p>4 cadeiras</p>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="descricao">
-        Free Download Engine Motor 13 SVG vector 
-        file in monocolor and multicolor type for 
-        Sketch...
-    </div>
 </div>
-
 <style>
-.info{
-    display: inline-flex;
-    width: 85px;
-    height: 86px;
-    padding: 10px;
-    flex-direction: column;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.25);
-    border-radius: 5px;
-    align-items: center;
-    justify-content: center;
-    margin:auto 5px auto 0;
-}
-.info p {margin-bottom:0;}
-.prod-top{
-    display: block;
-    width: 100%;
-    height: fit-content;
-    margin-top: 7vh;
-    
-}
-.prod-top img{
-    width: 100%;
-    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.25);
-    border-radius: 5px;
-    
-}
-.prod-top .action{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(255, 255, 255, 0.5);
-    box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 5px;
-    padding:20px;
-    margin:2vh 0;
+    .btn-iniciar {
+        width: 100%;
+        height: 31px;
+        display: block;
+        margin: 100px auto 0 auto;
+        border: 1px solid #d9d9d9;
+        cursor: pointer;
+        background: #FFFFFF;
+        box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.25);
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 12pt;
+        line-height: 14pt;
     }
-.prod-top .action button{
-    background: rgba(255, 255, 255, 0.5);
-    box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.25);
-    border-radius: 5px;
-    padding:10px;border:none;
-    cursor:pointer;
-}
-.prod-top .action p{
-    margin:1px
-    
-}
-.schroller{
-    display: block;
-    width: 100%;
-    height: fit-content;
-    overflow-x: scroll;
-    margin:2vh 0;
-}
-
-.rouller{
-    display: block;
-    width: 800px;
-    height: fit-content;
-    padding:1vh;
-}
-
-
-.card-bottom p{text-align: center;margin:5px}
-@media screen and (max-width:500px) {
-    .container{
-        width:98%;
-    }
-    .pagamentos div img{
-            width:38%;
-    }
-}
 </style>

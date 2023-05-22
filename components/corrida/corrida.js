@@ -122,14 +122,14 @@ debliwui_corrida.innerHTML = `
         .status-um{ display:none;}
         .selects{display:flex;width:100%;align-items:center;justify-content:space-between;}
         .selects select {width: 87px;
-height: 31px;background: #FFFFFF;
-border: 1px solid rgba(0, 0, 0, 0.41);
-border-radius: 5px;text-align:center;}
-        .selects p{
-height: 15px;
-font-size: 12px;
-line-height: 15px;
-color: rgba(0, 0, 0, 0.67);}
+            height: 31px;background: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.41);
+            border-radius: 5px;text-align:center;}
+                    .selects p{
+            height: 15px;
+            font-size: 12px;
+            line-height: 15px;
+            color: rgba(0, 0, 0, 0.67);}
 
 
         .cupom{width:100%;}
@@ -461,10 +461,10 @@ class debliwuicorrida extends HTMLElement {
     abrirConcluirFn(esse) {
         let selects = esse.shadowRoot.querySelectorAll('.btn-select');
         let cupom = esse.shadowRoot.querySelector('.cupom');
-        let pagamentos = esse.shadowRoot.querySelector('.pagamentos');
+        var divConcluirSMS = esse.shadowRoot.querySelector('.confirmar-sms');
         let divConcluir = esse.shadowRoot.querySelector('.concluir');
-        let confirmar = esse.shadowRoot.querySelector('.btn-confirmar-sms');
         let concluir = esse.shadowRoot.querySelector('.btn-taxi-concluir');
+        var confirmar = esse.shadowRoot.querySelector('.btn-concluir-sms');
 
         selects.forEach((value, key) => {
             value.setAttribute("disabled", "disabled");
@@ -473,17 +473,17 @@ class debliwuicorrida extends HTMLElement {
         concluir.style.display = "none";
         cupom.style.display = "none";
         divConcluir.style.display = "none";
-        pagamentos.style.display = "block";
+        divConcluirSMS.style.display = "block";
         confirmar.style.display = "block";
     }
 
     fecharConcluirFn(esse) {
         let selects = esse.shadowRoot.querySelectorAll('.btn-select');
         let cupom = esse.shadowRoot.querySelector('.cupom');
-        let pagamentos = esse.shadowRoot.querySelector('.pagamentos');
+        var divConcluirSMS = esse.shadowRoot.querySelector('.confirmar-sms');
         let divConcluir = esse.shadowRoot.querySelector('.concluir');
-        let confirmar = esse.shadowRoot.querySelector('.btn-confirmar-sms');
         let concluir = esse.shadowRoot.querySelector('.btn-taxi-concluir');
+        var confirmar = esse.shadowRoot.querySelector('.btn-concluir-sms');
 
         selects.forEach((value, key) => {
             value.removeAttribute("disabled");
@@ -492,30 +492,24 @@ class debliwuicorrida extends HTMLElement {
         concluir.style.display = "block";
         cupom.style.display = "block";
         divConcluir.style.display = "block";
-        pagamentos.style.display = "none";
+        divConcluirSMS.style.display = "none";
         confirmar.style.display = "none";
     }
 
     abrirConfirmarFn(esse) {
-        var pagamentos = esse.shadowRoot.querySelector('.pagamentos');
         var divConcluirSMS = esse.shadowRoot.querySelector('.confirmar-sms');
         var concluir = esse.shadowRoot.querySelector('.btn-concluir-sms');
         var confirmar = esse.shadowRoot.querySelector('.btn-confirmar-sms');
 
         confirmar.style.display = "none";
         divConcluirSMS.style.display = "block";
-        pagamentos.style.display = "none";
         concluir.style.display = "block";
     }
     fecharConfirmarFn(esse) {
-        var pagamentos = esse.shadowRoot.querySelector('.pagamentos');
         var divConcluirSMS = esse.shadowRoot.querySelector('.confirmar-sms');
         var concluir = esse.shadowRoot.querySelector('.btn-concluir-sms');
-        var confirmar = esse.shadowRoot.querySelector('.btn-confirmar-sms');
 
-        confirmar.style.display = "block";
         divConcluirSMS.style.display = "none";
-        pagamentos.style.display = "block";
         concluir.style.display = "none";
     }
 

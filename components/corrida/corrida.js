@@ -1,7 +1,7 @@
 const debliwui_corrida = document.createElement('template');
 debliwui_corrida.innerHTML = `
     <style>
-        	*{margin:0;padding:0;}
+        *{margin:0;padding:0;}
         .container{
             position:fixed;
             padding: 45px 1% 20px 1%;
@@ -13,17 +13,18 @@ debliwui_corrida.innerHTML = `
             border-radius:50px 50px 0 0;
             z-index: 10101;
             width:400px;
+            z-index: 999999999;
         }
 
         .btn-chamar-um{
             width: 75%;
             height: 31px;
-            background: #ffffff;
+            background: #ff0000;
             box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.25);
             border-radius: 5px;
             display:block;
             margin:0 auto;
-            border: 1px solid #ffffff;
+            border: 1px solid #ff0000;
             cursor:pointer;
         }
         .inputs{

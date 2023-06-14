@@ -7,7 +7,7 @@ debliwui_menu.innerHTML = `
             left: 0;
             top:0;
             height:fit-content;
-            z-index: 10102;
+            z-index: 9999999999;
             padding:0;
             font-size:12pt;
         }

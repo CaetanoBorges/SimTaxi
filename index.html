@@ -15,6 +15,8 @@
         
         * {
             font-family: principal;
+            padding:0;
+            margin:0;
         }
         
         input:focus {
@@ -39,25 +41,22 @@
         <div id="main">
         </div>
         <div >
-                
-                    <input type="text" id="from">
-                    <input type="text" id="to">
-                    <button>Pesquisar</button>
-                    <p id="output"></p>
-                
-                <div id="mapa-global" style="width:100%;height:100vh;z-index: 99999999;">
+            <div id="mapa-global" style="width:100%;height:100vh;z-index: 9999999;display: none;">
 
-                </div>
+            </div>    
+                
         </div> 
     </div>
 
     <script src="assets/jquery.js"></script>
     <script src="assets/lightSlider.js"></script>
     <script src="router.js"></script>
+    <script src="js/mapa.js"></script>
     <script src="js/inicio.js"></script>
     <script src="js/home.js"></script>
     <script src="js/corrida.js"></script>
     <script src="js/motorista.js"></script>
+    <script src="components/notificacao/notificacao.js"></script>
     <script src="components/menu/menu.js"></script>
     <script src="components/pesquisa/pesquisa.js"></script>
     <script src="components/pesquisaRentacar/pesquisaRentacar.js"></script>
@@ -77,9 +76,10 @@
      
     <script>
         var root = document.querySelector(".root");
-        
+        var notificacao = new debliwuinotificacao("mensagem");
         var loader = new debliwuiloader();
-        var pesquisa = new debliwuipesquisa();
+
+        var pesquisa = new debliwuipesquisa(loader,notificacao);
         var corrida = new debliwuicorrida(loader);
         var menu = new debliwuimenu();
         var btncorrida = new debliwuibtncorrida();
@@ -106,7 +106,20 @@
             var opcoes = {
                 zoom: 7,
                 center: inicial,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                panControl: false,
+                scaleControl: false,
+                zoomControl: false,
+                streetViewControl: false,
+                zoomControlOptions: {
+                    style: google.maps.ZoomControlStyle.SMALL
+                },
+                overviewMapControl: false,
+                overviewMapControlOptions: {
+                    opened: false
+                },
+                
+                mapTypeControl: false
             }
 
             //Criação do mapa
@@ -130,8 +143,8 @@
             function calcRoute(){
                 //Create request
                 var request = {
-                    origin: document.getElementById("from").value,
-                    destination: document.getElementById("to").value,
+                    origin: window.from.value,
+                    destination: window.to.value,
                     travelMode: google.maps.TravelMode.DRIVING,
                     unitSystem: google.maps.UnitSystem.METRIC
                 }
@@ -158,18 +171,12 @@
                     }
                 });
             }
-            window.calc = calcRoute;
+            window.mapa= map;
+            window.calculaRota = calcRoute;
             //Create autocomplite object for all inputs
-            var options = {
-                types: ['establishment']
-            }
-
-            var input1 = document.getElementById("from");
-            var autocomplete1 = new google.maps.places.Autocomplete(input1, options);
-
-            var input2 = document.getElementById("to");
-            var autocomplete2 = new google.maps.places.Autocomplete(input2, options);
-
+            
+            
+            localizacao();
         }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDIBzfwJcp9dUOBuo_6ZgBsEqqUoHwRHY&callback=initMap&libraries=places" defer></script>

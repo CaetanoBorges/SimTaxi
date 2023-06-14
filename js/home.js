@@ -19,6 +19,7 @@ const HOME = {
                 if (corridaAtiva != "sim" && corridaPendente != "sim") {
                     corrida.abrir();
                     pesquisa.abrir();
+                    
                     this.fechaCorridaPendente();
                 }
                 if (corridaAtiva == "sim") {

@@ -43,6 +43,19 @@ const handleLocation = async() => {
     const path = window.location.pathname;
     const hash = window.location.hash;
     console.log(path);
+    if (path == "/home") {
+        var corridaAtiva = localStorage.getItem("corridaativa");
+        var corridaPendente = localStorage.getItem("corridapendente");
+
+        if (corridaAtiva != "sim" && corridaPendente != "sim") {
+            toggleMapa();
+            setInterval(function(){
+                document.querySelector(".gm-fullscreen-control").parentElement.style.display = "none";
+            },1000)
+            
+        }        
+        
+    }
     if (path == "/motorista") {
         MOTORISTA.carroSlide();
 

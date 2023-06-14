@@ -9,7 +9,7 @@ debliwui_notificacao.innerHTML = `
             height:fit-content;
             background: #fff;
             border:1px solid #ff008f;
-            z-index: 10000;
+            z-index: 9999999999999;
             border-radius:10px;
         }
         
@@ -38,24 +38,30 @@ debliwui_notificacao.innerHTML = `
 
 class debliwuinotificacao extends HTMLElement {
 
-    constructor() {
-        super();
+    constructor(mensagem) {
+        super(mensagem);
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(debliwui_notificacao.content.cloneNode(true));
+        this.mensagem = mensagem;
     }
 
     fechar(esse) {
         let container = esse.shadowRoot.querySelector('.container');
         container.style.display = "none";
     }
+    abrir() {
+        let container = this.shadowRoot.querySelector('.container');
+        container.style.display = "block";
+    }
 
     connectedCallback() {
         var esse = this;
         var fechar = this.fechar;
+        var mensagem = this.mensagem;
         this.shadowRoot.querySelector('#fechar').addEventListener("click", function() {
             fechar(esse);
         });
-
+        this.sms(mensagem);
         setTimeout(function() {
             fechar(esse);
         }, 10000);

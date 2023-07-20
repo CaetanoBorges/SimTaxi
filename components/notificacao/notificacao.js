@@ -5,12 +5,12 @@ debliwui_notificacao.innerHTML = `
             position:fixed;
             width:94%;
             left: 3%;
-            bottom:1.5vh;
+            top:1.5vh;
             height:fit-content;
-            background: #fff;
-            border:1px solid #ff008f;
+            background: #2FD913;
             z-index: 9999999999999;
-            border-radius:10px;
+            border-radius:5px;
+            display:none
         }
         
 
@@ -19,16 +19,13 @@ debliwui_notificacao.innerHTML = `
             position:relative;
             width:100%;
             height:fit-content;
-            font-size:17px;
         }
-       #fechar{position: absolute; top: 10px;right:10px;background:#ff008f;width:15px;height:15px;border-radius:7.5px}
-       #fechar:hover{width:10px;height:10px;border-radius:5px;top:12.5px;right:12.5px;opacity:.5}
-       #sms{display:flex;justify-content:center;align-items:center;padding:1vh 5%;font-size:20px}
+       
+       #sms{display:flex;justify-content:center;align-items:center;padding:1vh 5%;font-size:14px;text-transform:capitalize;font-weight:bold;}
     </style>
 
     <div class="container">
         <div class="header">
-        <span id="fechar"></span>
         <div id="sms">
         <slot name="notificacao"></slot>
         </div>
@@ -38,11 +35,10 @@ debliwui_notificacao.innerHTML = `
 
 class debliwuinotificacao extends HTMLElement {
 
-    constructor(mensagem) {
-        super(mensagem);
+    constructor() {
+        super();
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(debliwui_notificacao.content.cloneNode(true));
-        this.mensagem = mensagem;
     }
 
     fechar(esse) {
@@ -57,19 +53,26 @@ class debliwuinotificacao extends HTMLElement {
     connectedCallback() {
         var esse = this;
         var fechar = this.fechar;
-        var mensagem = this.mensagem;
-        this.shadowRoot.querySelector('#fechar').addEventListener("click", function() {
+        this.shadowRoot.querySelector('.container').addEventListener("click", function() {
             fechar(esse);
         });
-        this.sms(mensagem);
-        setTimeout(function() {
-            fechar(esse);
-        }, 10000);
     }
 
-    sms(qual) {
+    sms(mensagem,tipo = 0) {
+        var esse = this;
+        var fechar = this.fechar;
         let sms = this.shadowRoot.querySelector('#sms');
-        sms.innerHTML = qual;
+        sms.innerHTML = mensagem;
+        if(tipo == 1){
+            this.shadowRoot.querySelector('.container').style.background = "#FF0000";
+        }else{
+            this.shadowRoot.querySelector('.container').style.background = "#2FD913";
+        }
+
+        this.abrir();
+        setTimeout(function() {
+            fechar(esse);
+        }, 5000);
     }
 
 

@@ -23,3 +23,10 @@
 .principal-corpo{width: 70%;display: block;margin:10vh auto 3vh auto;}
 .header-img{width:150px;display:block;margin:50px auto;}
 .header-title{text-align: center;text-transform: uppercase;}
+
+.pac-container{
+    z-index: 999999999;
+}
+.pac-icon{
+    display: none;
+}

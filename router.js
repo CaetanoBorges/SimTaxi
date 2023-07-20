@@ -43,14 +43,21 @@ const handleLocation = async() => {
     const path = window.location.pathname;
     const hash = window.location.hash;
     console.log(path);
+    if(path != "/home"){
+        document.querySelector("#mapa-global").style.display = "none";
+    }
     if (path == "/home") {
         var corridaAtiva = localStorage.getItem("corridaativa");
         var corridaPendente = localStorage.getItem("corridapendente");
 
         if (corridaAtiva != "sim" && corridaPendente != "sim") {
-            toggleMapa();
+            document.querySelector("#mapa-global").style.display = "block";
             setInterval(function(){
-                document.querySelector(".gm-fullscreen-control").parentElement.style.display = "none";
+                var element = document.querySelector(".gm-fullscreen-control");
+                if(element){
+                    element.parentElement.style.display = "none";
+                }
+                
             },1000)
             
         }        
@@ -62,6 +69,13 @@ const handleLocation = async() => {
         setTimeout(function() {
             MOTORISTA.reagirButtons(MOTORISTA);
         }, 100);
+    }
+    if (path == "/criarconta") {
+        
+
+        setTimeout(function() {
+            CADASTRO.setDados();
+        }, 1000);
     }
     if (hash == "") {
         corrida ? corrida.fecharChamarUmFn(corrida) : "";

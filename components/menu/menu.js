@@ -181,6 +181,9 @@ class debliwuimenu extends HTMLElement {
 
     handleLocation = async(routes) => {
         const path = window.location.pathname;
+        if(path != "/home"){
+            window.document.querySelector("#mapa-global").style.display = "none";
+        }
         const route = routes[path] || routes[404];
         const html = await fetch(route).then((data) => data.text());
         window.document.querySelector("#main").innerHTML = html;

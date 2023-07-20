@@ -49,6 +49,10 @@
     </div>
 
     <script src="assets/jquery.js"></script>
+    <script src="territorios.js"></script>
+
+    <script src="_requests/Cadastro.js"></script>
+
     <script src="assets/lightSlider.js"></script>
     <script src="router.js"></script>
     <script src="js/mapa.js"></script>
@@ -59,6 +63,7 @@
     <script src="components/notificacao/notificacao.js"></script>
     <script src="components/menu/menu.js"></script>
     <script src="components/pesquisa/pesquisa.js"></script>
+    <script src="components/psqsa/pesquisa.js"></script>
     <script src="components/pesquisaRentacar/pesquisaRentacar.js"></script>
     <script src="components/corrida/corrida.js"></script>
     <script src="components/loader/loader.js"></script>
@@ -66,6 +71,7 @@
     <script src="components/btnMotorista/btnmotorista.js"></script>
     <script src="components/btnCheguei/btncheguei.js"></script>
     <script src="components/btnCancelar/btncancelar.js"></script>
+    <script src="components/btnAtualizarDados/btnatualizardados.js"></script>
     <script src="components/btnPanico/btnpanico.js"></script>
     <script src="components/slideImg/slideImg.js"></script>
     <script src="components/pendente/pendente.js"></script>
@@ -75,36 +81,31 @@
     <script src="components/cardCorridas/corridas.js"></script>
      
     <script>
-        var root = document.querySelector(".root");
-        var notificacao = new debliwuinotificacao("mensagem");
-        var loader = new debliwuiloader();
-
-        var pesquisa = new debliwuipesquisa(loader,notificacao);
-        var corrida = new debliwuicorrida(loader);
-        var menu = new debliwuimenu();
-        var btncorrida = new debliwuibtncorrida();
-
-        root.prepend(menu);
-        root.prepend(corrida);
-        root.prepend(pesquisa);
-        root.prepend(btncorrida);
-        HOME.corridaStatus();
-        CORRIDA.pendente();
-
-        root.prepend(loader);
 
 
+function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                } else {
 
+                }
+            }
 
-        
+            function showPosition(position) {
+                window.latitude = position.coords.latitude;
+                window.longitude = position.coords.longitude;
+            }
 
+            
 
         function initMap(){
             //Localização Inicial
-            var inicial = { lat: 55.0302, lng: 29.55 };
+            getLocation();
 
+            var inicial = { lat: window.latitude, lng: window.longitude };
+            
             var opcoes = {
-                zoom: 7,
+                zoom: 12,
                 center: inicial,
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 panControl: false,
@@ -138,6 +139,15 @@
             direcoesDisplay.setMap(map);
 
 
+        //var from = document.querySelector("#from");
+        //var to = document.querySelector("#to");
+        //var options = {
+        //    types: ['cities']
+        //}
+        
+        //var autocomplete1 = new google.maps.places.Autocomplete(from, options);
+        //var autocomplete2 = new google.maps.places.Autocomplete(to, options);
+
             //calc route
 
             function calcRoute(){
@@ -157,8 +167,8 @@
                         direcoesDisplay.setDirections(result);
 
                         //get distance and time
-                        const output = document.querySelector("#output");
-                        output.innerHTML = result.routes[0].legs[0].distance.text + "<br>" + result.routes[0].legs[0].duration.text;
+                        //const output = document.querySelector("#output");
+                        console.log(result.routes[0].legs[0].distance.text + "<br>" + result.routes[0].legs[0].duration.text);
                     }else{
                         //delete route from map
                         direcoesDisplay.setDirections({routes: []});
@@ -176,10 +186,39 @@
             //Create autocomplite object for all inputs
             
             
-            localizacao();
+            localizacao(map);
         }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDIBzfwJcp9dUOBuo_6ZgBsEqqUoHwRHY&callback=initMap&libraries=places" defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDIBzfwJcp9dUOBuo_6ZgBsEqqUoHwRHY&libraries=places&callback=initMap" defer></script>
+
+<script>
+
+        const api = "http://127.0.0.1/simtaxiapi/Passageiro";
+        var root = document.querySelector(".root");
+        var notificacao = new debliwuinotificacao();
+        var loader = new debliwuiloader();
+
+        var pesquisa = new debliwuipesquisa(loader,notificacao);
+        var corrida = new debliwuicorrida(loader);
+        var menu = new debliwuimenu();
+        var btncorrida = new debliwuibtncorrida();
+
+        root.prepend(menu);
+        root.prepend(corrida);
+        root.prepend(pesquisa);
+        root.prepend(btncorrida);
+        root.prepend(notificacao);
+        HOME.corridaStatus();
+        CORRIDA.pendente();
+
+        root.prepend(loader);
+
+        const CADASTRO = new Cadastro($,api,loader,notificacao);
+
+
+
+</script>
+        
 </body>
 
 </html>

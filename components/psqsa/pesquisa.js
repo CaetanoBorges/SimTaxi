@@ -1,5 +1,8 @@
-const debliwui_pesquisa = document.createElement('template');
-debliwui_pesquisa.innerHTML = `
+function componentPesquisar(element, localizao, mapa){
+   
+
+    const pesquisar = document.createElement('div');
+pesquisar.innerHTML = `
     <style>
         .container{
             position:fixed;
@@ -77,7 +80,7 @@ debliwui_pesquisa.innerHTML = `
                 <input type="text" placeholder="Partida" id="from" style="margin-bottom: 5px;">
                 <input type="text" placeholder="Destino" id="to">
             </div>
-            <img src="assets/location-header.svg" class="aciona-pesquisa">
+            <img src="assets/location-header.svg" class="aciona-pesquisa" >
         </div>
         
     </div>
@@ -87,31 +90,26 @@ debliwui_pesquisa.innerHTML = `
     </script>
 
 `;
+pesquisar.querySelector(".aciona-pesquisa").addEventListener("click",function(){
+    localizao(mapa)
+})
 
-class debliwuipesquisa extends HTMLElement {
-
-    constructor() {
-        super();
-        this.attachShadow({ mode: 'open' });
-        this.shadowRoot.appendChild(debliwui_pesquisa.content.cloneNode(true));
-    }
-
-    fechar() {
-        let container = this.shadowRoot.querySelector('.container');
-        let background = this.shadowRoot.querySelector('.background');
-        container.style.display = "none";
-        background.style.display = "none";
-    }
-    abrir() {
-        let container = this.shadowRoot.querySelector('.container');
-        let background = this.shadowRoot.querySelector('.background');
-        background.style.display = "block";
-        container.style.display = "block";
-    }
-
-    connectedCallback() {
-        
-    }
-
+var from = pesquisar.querySelector("#from");
+var to = pesquisar.querySelector("#to");
+var options = {
+    bounds: new google.maps.LatLngBounds(
+        new google.maps.LatLng(-8.838333,13.234444)
+    ),
+    componentRestrictions: { country: "ao" },
+    types: []
 }
-window.customElements.define('debliwui-pesquisa', debliwuipesquisa)
+
+var bounds = new google.maps.LatLngBounds(
+    new google.maps.LatLng(-8.838333,13.234444)
+)
+
+new google.maps.places.Autocomplete(from, options);
+new google.maps.places.Autocomplete(to, options);
+
+document.querySelector(element).prepend(pesquisar)
+}

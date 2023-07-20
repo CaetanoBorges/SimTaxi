@@ -1,26 +1,42 @@
 <div class="principal">
     <div class="principal-corpo">
         <img src="assets/Map.svg" class="header-img">
-        <input type="text" class="input-telas-inicio" placeholder="Nome">
-        <input type="number" class="input-telas-inicio" placeholder="Telefone">
-        <select class="input-telas-inicio">
+        <input type="text" class="input-telas-inicio" placeholder="Nome" id="nome" autocomplete="off">
+        <input type="number" class="input-telas-inicio" placeholder="Telefone" id="telefone">
+        <input type="email" class="input-telas-inicio" placeholder="Email" id="email" autocomplete="off">
+
+        <select class="input-telas-inicio" id="genero"> 
             <option value="0">Gênero</option>
-            <option value="1">Masculino</option>
-            <option value="2">Feminino</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Feminino">Feminino</option>
         </select>
         
-        <select class="input-telas-inicio">
+        <select class="input-telas-inicio" id="provincia">
             <option value="0">Província</option>
-            <option value="1">Masculino</option>
-            <option value="2">Feminino</option>
+            <option value="Bengo">Bengo</option>
+            <option value="Benguela">Benguela</option>
+            <option value="Bie">Bié</option>
+            <option value="Cabinda">Cabinda</option>
+            <option value="Cuando_Cubango">Cuando_Cubango</option>
+            <option value="Cuanza_Norte">Cuanza_Norte</option>
+            <option value="Cuanza_Norte">Cuanza_Norte</option>
+            <option value="Cuanza_Sul">Cuanza_Sul</option>
+            <option value="Cunene">Cunene</option>
+            <option value="Huambo">Huambo</option>
+            <option value="Huila">Huíla</option>
+            <option value="Luanda">Luanda</option>
+            <option value="Lunda_Norte">Lunda_Norte</option>
+            <option value="Lunda_Sul">Lunda_Sul</option>
+            <option value="Malanje">Malanje</option>
+            <option value="Moxico">Moxico</option>
+            <option value="Namibe">Namibe</option>
+            <option value="Uige">Uíge</option>
+            <option value="Zaire">Zaire</option>
         </select>
-        <select class="input-telas-inicio">
+        <select class="input-telas-inicio" disabled id="municipio">
             <option value="0">Município</option>
-            <option value="1">Masculino</option>
-            <option value="2">Feminino</option>
         </select>
-        <input type="text" class="input-telas-inicio" placeholder="Bairro">
-        <button class="button-telas-inicio btn-criar-conta" onclick='vaiTela("verificarcadastro")'>SEGUINTE</button>
+        <button class="button-telas-inicio btn-criar-conta" onclick='CADASTRO.continuarCadastro()' disabled id="btn-seguinte">SEGUINTE</button>
     </div>
     
 </div>

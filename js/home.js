@@ -18,7 +18,7 @@ const HOME = {
 
                 if (corridaAtiva != "sim" && corridaPendente != "sim") {
                     corrida.abrir();
-                    pesquisa.abrir();
+                    //pesquisa.abrir();
                     
                     this.fechaCorridaPendente();
                 }
@@ -45,6 +45,15 @@ const HOME = {
                 menu.abrir();
                 this.smsschrol = false;
 
+            }
+            if ((window.location.pathname) == "/conta") {
+                menu.abrir();
+            }
+            if ((window.location.pathname) == "/rentacar") {
+                menu.abrir();
+            }
+            if ((window.location.pathname) == "/corridas") {
+                menu.abrir();
             }
             if ((window.location.pathname) == "/corrida") {
 

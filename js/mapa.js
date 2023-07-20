@@ -1,25 +1,19 @@
-function toggleMapa(){
-    var mapa = document.querySelector("#mapa-global").style;
-    if(mapa.display=="block"){
-        mapa.display="none";
-    }else{
-        mapa.display="block";
-    }
-}
 
-function localizacao() {
+
+function localizacao(mapa) {
     
     if (navigator.geolocation) {
         navigator.geolocation.
         getCurrentPosition(function(position) {
+            console.log(position);
             var lat = position.coords.latitude;
             var lng = position.coords.longitude;
             var devCenter = new google.maps.LatLng(lat, lng);
-            window.mapa.setCenter(devCenter);
-            window.mapa.setZoom(15);
+            mapa.setCenter(devCenter);
+            mapa.setZoom(15);
             var marker = new google.maps.Marker({
                 position: devCenter,
-                map: window.mapa,
+                map: mapa,
             });
         });
     }

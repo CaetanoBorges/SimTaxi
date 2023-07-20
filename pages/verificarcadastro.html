@@ -5,9 +5,11 @@
             CONFIRME O NÚMERO<br>
             QUE RECEBEU POR SMS</p>
         <br><br>
-        <input type="number" class="input-telas-inicio input-numero" placeholder="Número recebido">
-        <br><br><br><br><br>
-        <button class="button-telas-inicio btn-criar-conta" onclick='vaiTela("concluircadastro")'>CONFIRMAR</button>
+        <input type="number" class="input-telas-inicio input-numero" placeholder="Número recebido" id="numero">
+        <br><br>
+        <p>Não recebi SMS, <span onclick="CADASTRO.reenviarCodigo()" style="color:red;font-weight: bold;"> reenviar</span> </p>
+        <br><br><br>
+        <button class="button-telas-inicio btn-criar-conta" onclick='CADASTRO.verificarCadastro()'>CONFIRMAR</button>
     </div>
     
 </div>

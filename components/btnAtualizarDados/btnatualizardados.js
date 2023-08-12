@@ -96,6 +96,11 @@ class debliwuibtnatualizardados extends HTMLElement {
             esse.shadowRoot.querySelector(".content").style.display = "none";
             this.style.display = "none";
         })
+        this.shadowRoot.querySelector(".dois").addEventListener("click", function() {
+            window._conta.editar();
+            esse.shadowRoot.querySelector(".content").style.display = "none";
+            esse.shadowRoot.querySelector(".backdrop").style.display = "none";
+        })
     }
 
 

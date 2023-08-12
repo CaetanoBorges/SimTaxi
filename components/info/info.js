@@ -41,8 +41,8 @@ debliwui_info.innerHTML = `
     <div class="container">     
         <br><br><br>
         <div class="info">
-            <div class="quantos">3</div>
-            <p>CORRIDAS</b></p>
+            <div class="quantos"></div>
+            <p class="nome"></p>
         </div>
         <br><br>
     </div>
@@ -50,10 +50,11 @@ debliwui_info.innerHTML = `
 
 class debliwuiinfo extends HTMLElement {
 
-    constructor() {
-        super();
+    constructor(dados) {
+        super(dados);
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(debliwui_info.content.cloneNode(true));
+        this.dados = dados;
     }
 
     fechar() {
@@ -66,8 +67,12 @@ class debliwuiinfo extends HTMLElement {
     }
 
     connectedCallback() {
+        
         var esse = this;
-
+        var dados = this.dados;
+        
+        this.shadowRoot.querySelector(".quantos").innerHTML = dados.qtd;
+        this.shadowRoot.querySelector(".nome").innerHTML = dados.nome;
 
     }
 

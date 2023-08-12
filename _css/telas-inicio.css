@@ -21,6 +21,11 @@
 }
 .principal{background: none;}
 .principal-corpo{width: 70%;display: block;margin:10vh auto 3vh auto;}
+.div-user-image{width: 150px;height: 150px;display: block;margin:50px auto;border-radius: 75px;position: relative;}
+.div-user-image #foto-perfil{width: 100%;}
+.div-user-image label{position: absolute;bottom: 0;}
+.div-user-image label img{width: 40px;}
+
 .header-img{width:150px;display:block;margin:50px auto;}
 .header-title{text-align: center;text-transform: uppercase;}
 

@@ -64,11 +64,14 @@ const handleLocation = async() => {
         
     }
     if (path == "/motorista") {
-        MOTORISTA.carroSlide();
+
+        loader.abrir();
 
         setTimeout(function() {
-            MOTORISTA.reagirButtons(MOTORISTA);
-        }, 100);
+            _corrida.verMotorista()
+            _corrida.classificarMotorista()
+            loader.fechar();
+        }, 500);
     }
     if (path == "/criarconta") {
         
@@ -77,16 +80,57 @@ const handleLocation = async() => {
             CADASTRO.setDados();
         }, 1000);
     }
-    if (hash == "") {
-        corrida ? corrida.fecharChamarUmFn(corrida) : "";
+    if (path == "/conta") {
+        loader.abrir();
+
+        setTimeout(function() {
+            _conta.set();
+            loader.fechar();
+        }, 500);
     }
-    if (hash == "#chamarumtaxi") {
+    if (path == "/corridas") {
+        loader.abrir();
+
+        setTimeout(function() {
+            _corrida.verCorridas();
+            loader.fechar();
+        }, 500);
+    }
+    if (path == "/corrida") {
+        loader.abrir();
+
+        setTimeout(function() {
+            _corrida.verCorrida();
+            loader.fechar();
+        }, 500);
+    }
+    if (path == "/rentacar") {
+        loader.abrir();
+
+        setTimeout(function() {
+            _rentacar.getCarros();
+            loader.fechar();
+        }, 500);
+    }
+    
+    
+    if (hash == "") {
         corrida ? corrida.fecharChamarFn(corrida) : "";
         corrida ? corrida.abrirChamarUmFn(corrida) : "";
+        if (path == "/home") {
+            if(document.querySelector("#from")){
+                document.querySelector("#from").removeAttribute("disabled");
+            }
+            if(document.querySelector("#to")){
+                document.querySelector("#to").removeAttribute("disabled");
+            }  
+        }
     }
     if (hash == "#chamarotaxi") {
         corrida ? corrida.fecharConcluirFn(corrida) : "";
         corrida ? corrida.abrirChamarFn(corrida) : "";
+        document.querySelector("#from").setAttribute("disabled","disabled");
+        document.querySelector("#to").setAttribute("disabled","disabled");
     }
     if (hash == "#concluirpedidodotaxi") {
         corrida ? corrida.fecharConfirmarFn(corrida) : "";

@@ -4,7 +4,7 @@ debliwui_corrida.innerHTML = `
         *{margin:0;padding:0;}
         .container{
             position:fixed;
-            padding: 45px 1% 20px 1%;
+            padding: 25px 1% 20px 1%;
             height:fit-content;
             right: 0;
             bottom:0;
@@ -91,7 +91,7 @@ debliwui_corrida.innerHTML = `
         .basic-info{
             width:100%;
             padding:2% 0;
-            display:flex;
+            display:none;
             font-size:13px;
             justify-content:space-between;
             margin: 10px 0 15px 0;
@@ -183,7 +183,7 @@ debliwui_corrida.innerHTML = `
             color: #2FD913;margin-bottom:10px;
         }
 
-        .centro{width:75%;}
+        .centro{width:80%;}
 
         .pagamentos{
             background: rgba(217, 217, 217, 0.1);
@@ -289,49 +289,45 @@ debliwui_corrida.innerHTML = `
     </style>
 
     <div class="container">
-        <button class="btn-chamar-um">CHAMAR UM TAXI</button>
+        
         <div class="inputs">
-            <img src="assets/start-finish.png" style="margin-right:1%;">
             <section class="centro">
-                <div><span class="span">De</span><input type="text" class="inputde btn-select"></div>
-                <div><span class="span">para</span><input type="text" class="inputpara btn-select"></div>
                 <section class="basic-info">
-                    <p class="basic-distancia-preco"> KM: 12 km <br><span>Preço: 4 000 kz</span></p>
-                    <p class="basic-tempo"> Tempo <br><span>1h20</span></p>
+                    <p class="basic-distancia-preco"><br><span></span></p>
+                    <p class="basic-tempo"><br><span></span></p>
                 </section>
                 <button class="btn-chamar-taxi">CHAMAR TAXI</button>
                 <div class="status-um">
                     <section class="selects">
                         <div>
                             <p>Carro ou moto?</p>
-                            <select class="btn-select">
-                                <option>Carro</option>
-                                <option>Moto</option>
+                            <select class="btn-select" id="carromoto">
+                                <option value="carro">Carro</option>
+                                <option value="moto">Moto</option>
                             </select>
                         </div>
                         <div>
                             <p>Nº de pessoas</p>
-                            <select class="btn-select">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
+                            <select class="btn-select" id="npessoas">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
                             </select>
                         </div>
                     </section>
                     <section class="selects">
                         <div>
                             <p>Categoria</p>
-                            <select class="btn-select">
-                                <option>Normal</option>
-                                <option>VIP</option>
-                                <option>Executivo</option>
+                            <select class="btn-select" id="categoria">
+                                <option value="normal">Normal</option>
+                                <option value="vip">VIP</option>
                             </select>
                         </div>
                         <div>
                             <p>Ida e volta?</p>
-                            <select class="btn-select">
-                                <option>Não</option>
-                                <option>Sim</option>
+                            <select class="btn-select" id="idavolta">
+                                <option value="nao">Não</option>
+                                <option value="sim">Sim</option>
                             </select>
                         </div>
                     </section>
@@ -339,13 +335,13 @@ debliwui_corrida.innerHTML = `
                 <div class="cupom status-um">
                     <p class="titulo">TEM CUPOM</p>
                     <p class="descricao">Insira o código do cupom para obter desconto.</p>
-                    <input type="text">
+                    <input type="text" id="cupom">
                 </div>
                 
                 <div class="concluir status-um">
-                    <p class="preco">Preço: 4 000 kz<p>
+                    <p class="preco">Preço: <p>
                     <p class="desconto">Desconto: 0 kz<p>
-                    <p class="total">Total: 4 000 kz<p>
+                    <p class="total">Total: <p>
                 </div>
                  
 
@@ -362,19 +358,18 @@ debliwui_corrida.innerHTML = `
 
                 
                 <div class="confirmar-sms">
-                    <p class="header">TOTAL 8 6431</p>
+                    <p class="header">TOTAL 8</p>
                     <p class="descricao">POR FAVOR
-                    <br>CONFIRME O NÚMERO<br>
-                    QUE RECEBEU POR SMS</p>
+                    <br>CONFIRME<br>
+                    A CORRIDA</p>
                     <div>
-                        <input type="text" placeholder="Número de verificação">
+                        <!--<input type="text" placeholder="Número de verificação" id="nConfirmacao">-->
                     </div>
                 </div>
 
                 <button class="btn-concluir-sms">CONFIRMAR E CONCLUIR</button>
 
             </section>
-            <img src="assets/switch.png" class="switch">
         </div>
         <button class="btn-taxi-concluir status-um">CONCLUIR</button>
     </div>
@@ -382,11 +377,14 @@ debliwui_corrida.innerHTML = `
 
 class debliwuicorrida extends HTMLElement {
 
-    constructor(loader) {
-        super(loader);
+    constructor(jquery, loader, notificacao) {
+        super(jquery, loader, notificacao);
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(debliwui_corrida.content.cloneNode(true));
+        this.jquery = jquery;
         this.loader = loader;
+        this.notificacao = notificacao;
+        this.precoNormal = 0;
     }
 
     fechar() {
@@ -401,11 +399,9 @@ class debliwuicorrida extends HTMLElement {
     abrirChamarUmFn(esse) {
         let inputs = esse.shadowRoot.querySelector('.inputs');
         let container = esse.shadowRoot.querySelector('.container');
-        let btnChamarUm = esse.shadowRoot.querySelector('.btn-chamar-um');
 
         container.style.background = "#ffffff";
         container.style.boxShadow = "0px 0px 5px 2px rgba(0, 0, 0, 0.25)";
-        btnChamarUm.style.display = "none";
         if (inputs.style.display == "flex") {
 
         } else {
@@ -416,11 +412,9 @@ class debliwuicorrida extends HTMLElement {
     fecharChamarUmFn(esse) {
         let inputs = esse.shadowRoot.querySelector('.inputs');
         let container = esse.shadowRoot.querySelector('.container');
-        let btnChamarUm = esse.shadowRoot.querySelector('.btn-chamar-um');
 
         container.style.background = "none";
         container.style.boxShadow = "none";
-        btnChamarUm.style.display = "block";
         if (inputs.style.display == "flex") {
             inputs.style.display = "none";
         } else {
@@ -525,20 +519,176 @@ class debliwuicorrida extends HTMLElement {
 
     connectedCallback() {
         var esse = this;
+        var notificacao = this.notificacao;
         var container = this.shadowRoot.querySelector('.container');
-        var btnChamarUm = this.shadowRoot.querySelector('.btn-chamar-um');
+        var basic = this.shadowRoot.querySelector('.basic-info');
         var chamar = this.shadowRoot.querySelector('.btn-chamar-taxi');
         var concluir = this.shadowRoot.querySelector('.btn-taxi-concluir');
         var confirmar = this.shadowRoot.querySelector('.btn-confirmar-sms');
         var concluirSMS = this.shadowRoot.querySelector('.btn-concluir-sms');
 
-        //console.log(chamar, concluir, container);
+        /**
+         * COMECA A LOGICA DE PREFERENCIAS DA CORRIDA
+         */
+        this.shadowRoot.querySelector("#npessoas").addEventListener("change",function(){
+            var input = this.value;
+            if(input == "1" || input == 1){
+                
+                var distancia = localStorage.getItem("distanciaCorrida");
+                var precoPorKilometro = localStorage.getItem("precoPorKilometro");
 
-        btnChamarUm.addEventListener("click", function() {
-            vaiTela("#chamarumtaxi");
-        });
+                var total = Number((distancia.split(" ")[0]).replace(",",".")) * Number(precoPorKilometro);
+
+                localStorage.setItem("precoCorrida", total);
+                esse.shadowRoot.querySelector(".total").innerHTML = "Total: "+ formataPreco(total)+ " kz";
+                esse.shadowRoot.querySelector(".preco").innerHTML = "Preco: "+ formataPreco(total)+ " kz";
+                esse.shadowRoot.querySelector(".basic-distancia-preco span").innerHTML = "Preço: "+formataPreco(total)+" kz";
+
+            }
+            if(input == "2" || input == 2){
+                
+                var preco = localStorage.getItem("precoCorrida");
+                var prec = Number(preco);
+
+                var total = (prec * 0.2) + prec;
+                localStorage.setItem("precoCorrida", total);
+                esse.shadowRoot.querySelector(".total").innerHTML = "Total: "+ formataPreco(total)+ " kz";
+                esse.shadowRoot.querySelector(".preco").innerHTML = "Preco: "+ formataPreco(total)+ " kz";
+                esse.shadowRoot.querySelector(".basic-distancia-preco span").innerHTML = "Preço: "+formataPreco(total)+" kz";
+
+            }
+            if(input == "3" || input == 3){
+                
+                var preco = localStorage.getItem("precoCorrida");
+                var prec = Number(preco);
+
+                var total = (prec * 0.3) + prec;
+                localStorage.setItem("precoCorrida", total);
+                esse.shadowRoot.querySelector(".total").innerHTML = "Total: "+ formataPreco(total)+ " kz";
+                esse.shadowRoot.querySelector(".preco").innerHTML = "Preco: "+ formataPreco(total)+ " kz";
+                esse.shadowRoot.querySelector(".basic-distancia-preco span").innerHTML = "Preço: "+formataPreco(total)+" kz";
+
+            }
+        })
+        this.shadowRoot.querySelector("#carromoto").addEventListener("change",function(){
+            var input = this.value;
+            if(input == "moto" ){
+
+                esse.shadowRoot.querySelector("#categoria").setAttribute("disabled","disabled");
+                esse.shadowRoot.querySelector("#npessoas").setAttribute("disabled","disabled");
+                
+                var preco = localStorage.getItem("precoCorrida");
+                var prec = Number(preco);
+
+                var total = (prec / 2);
+                localStorage.setItem("precoCorrida", total);
+                esse.shadowRoot.querySelector(".total").innerHTML = "Total: "+ formataPreco(total)+ " kz";
+                esse.shadowRoot.querySelector(".preco").innerHTML = "Preco: "+ formataPreco(total)+ " kz";
+                esse.shadowRoot.querySelector(".basic-distancia-preco span").innerHTML = "Preço: "+formataPreco(total)+" kz";
+
+            }
+            if(input == "carro" ){
+                
+                esse.shadowRoot.querySelector("#categoria").removeAttribute("disabled");
+                esse.shadowRoot.querySelector("#npessoas").removeAttribute("disabled");
+                var preco = localStorage.getItem("precoCorrida");
+                var prec = Number(preco);
+
+                var total = (prec * 2);
+                localStorage.setItem("precoCorrida", total);
+                esse.shadowRoot.querySelector(".total").innerHTML = "Total: "+ formataPreco(total)+ " kz";
+                esse.shadowRoot.querySelector(".preco").innerHTML = "Preco: "+ formataPreco(total)+ " kz";
+                esse.shadowRoot.querySelector(".basic-distancia-preco span").innerHTML = "Preço: "+formataPreco(total)+" kz";
+
+            }
+        })
+        this.shadowRoot.querySelector("#categoria").addEventListener("change",function(){
+            var input = this.value;
+            if(input == "vip" ){
+                
+                var preco = localStorage.getItem("precoCorrida");
+                var prec = Number(preco);
+
+                var total = (prec * 2);
+                localStorage.setItem("precoCorrida", total);
+                esse.shadowRoot.querySelector(".total").innerHTML = "Total: "+ formataPreco(total)+ " kz";
+                esse.shadowRoot.querySelector(".preco").innerHTML = "Preco: "+ formataPreco(total)+ " kz";
+                esse.shadowRoot.querySelector(".basic-distancia-preco span").innerHTML = "Preço: "+formataPreco(total)+" kz";
+
+            }
+            if(input == "normal" ){
+                
+                var preco = localStorage.getItem("precoCorrida");
+                var prec = Number(preco);
+
+                var total = (prec / 2);
+                localStorage.setItem("precoCorrida", total);
+                esse.shadowRoot.querySelector(".total").innerHTML = "Total: "+ formataPreco(total)+ " kz";
+                esse.shadowRoot.querySelector(".preco").innerHTML = "Preco: "+ formataPreco(total)+ " kz";
+                esse.shadowRoot.querySelector(".basic-distancia-preco span").innerHTML = "Preço: "+formataPreco(total)+" kz";
+
+            }
+        })
+        this.shadowRoot.querySelector("#idavolta").addEventListener("change",function(){ var input = this.value;
+            if(input == "sim" ){
+                
+                var preco = localStorage.getItem("precoCorrida");
+                var prec = Number(preco);
+
+                var total = (prec * 2);
+                localStorage.setItem("precoCorrida", total);
+                esse.shadowRoot.querySelector(".total").innerHTML = "Total: "+ formataPreco(total)+ " kz";
+                esse.shadowRoot.querySelector(".preco").innerHTML = "Preco: "+ formataPreco(total)+ " kz";
+                esse.shadowRoot.querySelector(".basic-distancia-preco span").innerHTML = "Preço: "+formataPreco(total)+" kz";
+
+            }
+            if(input == "nao" ){
+                
+                var preco = localStorage.getItem("precoCorrida");
+                var prec = Number(preco);
+
+                var total = (prec / 2);
+                localStorage.setItem("precoCorrida", total);
+                esse.shadowRoot.querySelector(".total").innerHTML = "Total: "+ formataPreco(total)+ " kz";
+                esse.shadowRoot.querySelector(".preco").innerHTML = "Preco: "+ formataPreco(total)+ " kz";
+                esse.shadowRoot.querySelector(".basic-distancia-preco span").innerHTML = "Preço: "+formataPreco(total)+" kz";
+
+            }
+        })
+
+
+        
+        /**
+         * TERMINA A LOGICA DE PREFERENCIAS DA CORRIDA
+         */
+        /**
+         * COMECA A LOGIA DO CUPOM
+         */
+        this.shadowRoot.querySelector("#cupom").addEventListener("input",function(){
+            
+            console.log(this.value);
+            if((this.value).length >= 9 ){
+                localStorage.setItem("cupom",(this.value));
+                window._corrida.verCupom();
+            }
+        })
+        /**
+         * TERMINA LOGICA DE CUPOM
+         */
+
         chamar.addEventListener("click", function() {
-            vaiTela("#chamarotaxi");
+            esse.loader.abrir();
+            if(basic.style.display == "none" || basic.style.display == ""){
+                notificacao.sms("Precisa dizer para onde vai",1);
+            }else{
+                vaiTela("#chamarotaxi");
+                var preco = localStorage.getItem("precoCorrida");
+                var prec = formataPreco(Number(preco));
+                esse.shadowRoot.querySelector(".total").innerHTML = "Total: "+ prec+ " kz";
+                esse.shadowRoot.querySelector(".preco").innerHTML = "Preco: "+ prec+ " kz";
+                
+            }
+            esse.loader.fechar();
         });
         concluir.addEventListener("click", function() {
             vaiTela("#concluirpedidodotaxi");

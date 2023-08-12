@@ -1,65 +1,67 @@
 <div class="principal">
-    <debliwui-pesquisa-rentacar></debliwui-pesquisa-rentacar>
-
+    <br><br>
     <div class="schroller" style="margin: 0;">
         <div class="rouller">
-            <span class="rentaca-menu"><b>Populares</b></span>
-            <span class="rentaca-menu">De Luxo</span>
-            <span class="rentaca-menu">Terra-Batida</span>
-            <span class="rentaca-menu">Desportivo</span>
-            <span class="rentaca-menu">Carrinhas</span>
-            <span class="rentaca-menu">Mini-autocarros</span>
-            <span class="rentaca-menu">Descapotaveis</span>
+            <span class="rentaca-menu" id="populares"><b>Populares</b></span>
+            <span class="rentaca-menu" id="luxo">De Luxo</span>
+            <span class="rentaca-menu" id="terrabatida">Terra-Batida</span>
+            <span class="rentaca-menu" id="desportivo">Desportivo</span>
+            <span class="rentaca-menu" id="carrinhas">Carrinhas</span>
+            <span class="rentaca-menu" id="miniautocarros">Mini-autocarros</span>
+            <span class="rentaca-menu" id="descapotaveis">Descapotaveis</span>
         </div>
     </div>
-    
+
 </div>
-<div class="schroller">
+<div id="cards-carros">
+
+</div>
+<!--<div class="schroller">
     <div class="rouller">
-    <div class="card-rentacar">
-        <div class="card-container">
-            <button>Alugar agora</button>
-            <img src="assets/car.jpeg" alt="">
-            <div class="card-bottom">
-                <p>Marca do carro</p>
-                <p>kz 27 000 / dia</p>
+        <div class="card-rentacar">
+            <div class="card-container">
+                <button>Alugar agora</button>
+                <img src="assets/car.jpeg" alt>
+                <div class="card-bottom">
+                    <p>Marca do carro</p>
+                    <p>kz 27 000 / dia</p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="card-rentacar">
-        <div class="card-container">
-            <button>Alugar agora</button>
-            <img src="assets/car.jpeg" alt="">
-            <div class="card-bottom">
-                <p>Marca do carro</p>
-                <p>kz 27 000 / dia</p>
+        <div class="card-rentacar">
+            <div class="card-container">
+                <button>Alugar agora</button>
+                <img src="assets/car.jpeg" alt>
+                <div class="card-bottom">
+                    <p>Marca do carro</p>
+                    <p>kz 27 000 / dia</p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="card-rentacar">
-        <div class="card-container">
-            <button>Alugar agora</button>
-            <img src="assets/car.jpeg" alt="">
-            <div class="card-bottom">
-                <p>Marca do carro</p>
-                <p>kz 27 000 / dia</p>
+        <div class="card-rentacar">
+            <div class="card-container">
+                <button>Alugar agora</button>
+                <img src="assets/car.jpeg" alt>
+                <div class="card-bottom">
+                    <p>Marca do carro</p>
+                    <p>kz 27 000 / dia</p>
+                </div>
             </div>
         </div>
-    </div>
 
     </div>
 </div>
 
 <div class="card-rentacar-grande">
-        <div class="card-container">
-            <button>Alugar agora</button>
-            <img src="assets/car.jpeg" alt="">
-            <div class="card-bottom">
-                <p>Marca do carro</p>
-                <p>kz 27 000 / dia</p>
-            </div>
+    <div class="card-container">
+        <button>Alugar agora</button>
+        <img src="assets/car.jpeg" alt>
+        <div class="card-bottom">
+            <p>Marca do carro</p>
+            <p>kz 27 000 / dia</p>
         </div>
     </div>
+</div>-->
 <style>
 
 .rentaca-menu{
@@ -89,20 +91,20 @@
 .card-rentacar{
     display: inline-block;
     width:200px;
-    height:350px;
+    height:fit-content;
     padding: 10px;
-    margin:auto 2% auto auto;
+    margin:auto 10px auto auto;
     background: #FFFFFF;
     box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
 
 }
 .card-rentacar-grande{
-    display: block;
-    width:91%;
+    display: inline-block;
+    width:42%;
     height:fit-content;
     padding: 10px;
-    margin:auto 2% auto auto;
+    margin:auto 0% 10px 2%;
     background: #FFFFFF;
     box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.25);
     border-radius: 5px;

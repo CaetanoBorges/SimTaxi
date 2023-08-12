@@ -1,8 +1,10 @@
-function componentPesquisar(element, localizao, mapa){
-   
+function componentPesquisar(element, localizao, mapa) {
+
 
     const pesquisar = document.createElement('div');
-pesquisar.innerHTML = `
+    pesquisar.setAttribute("class","barradepesquisa");
+    pesquisar.style.display = "none";
+    pesquisar.innerHTML = `
     <style>
         .container{
             position:fixed;
@@ -56,7 +58,7 @@ pesquisar.innerHTML = `
             border-radius:15px;
             padding:1px;
         }
-        .background{
+        .backgroun{
             position:fixed;
             top:0;
             left:0;
@@ -72,13 +74,13 @@ pesquisar.innerHTML = `
             }
         }
     </style>
-    <div class="background"></div>
+    <div class="backgroun"></div>
     <div class="container">
         
         <div class="pesquisar">
             <div>
-                <input type="text" placeholder="Partida" id="from" style="margin-bottom: 5px;">
-                <input type="text" placeholder="Destino" id="to">
+                <input type="text" placeholder="Partida" id="from" style="margin-bottom: 5px;" oninput='docode()' onchange='docode()'>
+                <input type="text" placeholder="Destino" id="to" oninput='docode()' onchange='docode()'>
             </div>
             <img src="assets/location-header.svg" class="aciona-pesquisa" >
         </div>
@@ -90,26 +92,50 @@ pesquisar.innerHTML = `
     </script>
 
 `;
-pesquisar.querySelector(".aciona-pesquisa").addEventListener("click",function(){
-    localizao(mapa)
-})
+    pesquisar.querySelector(".aciona-pesquisa").addEventListener("click", function () {
+        localizao(mapa)
+    })
 
-var from = pesquisar.querySelector("#from");
-var to = pesquisar.querySelector("#to");
-var options = {
-    bounds: new google.maps.LatLngBounds(
-        new google.maps.LatLng(-8.838333,13.234444)
-    ),
-    componentRestrictions: { country: "ao" },
-    types: []
+    var from = pesquisar.querySelector("#from");
+    var to = pesquisar.querySelector("#to");
+
+    const defaultBounds = {
+        north: window.latitude + 0.5,
+        south: window.latitude - 0.5,
+        east: window.longitude + 0.5,
+        west: window.longitude - 0.5,
+    };
+    var options = {
+        bounds:defaultBounds,
+        componentRestrictions: { country: "ao" },
+        strictBounds: true,
+        types: []
+    }
+
+    var bounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng(-8.838333, 13.234444)
+    )
+
+    new google.maps.places.Autocomplete(from, options);
+    new google.maps.places.Autocomplete(to, options);
+
+    document.querySelector(element).prepend(pesquisar)
+
 }
 
-var bounds = new google.maps.LatLngBounds(
-    new google.maps.LatLng(-8.838333,13.234444)
-)
 
-new google.maps.places.Autocomplete(from, options);
-new google.maps.places.Autocomplete(to, options);
+function abreBarraDePesquisas(){
+    if(document.querySelector(".barradepesquisa")){
+        document.querySelector(".barradepesquisa").style.display = "block";
+    }
 
-document.querySelector(element).prepend(pesquisar)
+}
+
+function fechaBarraDePesquisas(){
+    if(document.querySelector(".barradepesquisa")){
+        document.querySelector(".barradepesquisa").style.display = "none";
+    }else{
+    
+    }
+    
 }

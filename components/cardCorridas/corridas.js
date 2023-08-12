@@ -64,15 +64,15 @@ debliwui_corridas.innerHTML = `
 
     <div class="container">
             <div class="detalhes">
-                <p class="quando">12-07-22 15h30m16s</p>
-                <p class="preco">20 000 kz</p>
+                <p class="quando"></p>
+                <p class="preco"></p>
             </div>
         <div class="top">
             <div class="endereco">
                 <img src="assets/start-finish.svg" style="margin-right:1%;">
                 <section>
-                    <p class="partida">Humpata</p>
-                    <p class="destino">Lubango</p>
+                    <p class="partida"></p>
+                    <p class="destino"></p>
                 </section>
             </div>
         </div>
@@ -82,10 +82,11 @@ debliwui_corridas.innerHTML = `
 
 class debliwuicorridas extends HTMLElement {
 
-    constructor() {
-        super();
+    constructor(array) {
+        super(array);
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(debliwui_corridas.content.cloneNode(true));
+        this.dados = array;
     }
 
     fechar() {
@@ -97,11 +98,20 @@ class debliwuicorridas extends HTMLElement {
         container.style.display = "block";
     }
 
+
     connectedCallback() {
         var esse = this;
+        var dados = this.dados;
+        this.shadowRoot.querySelector(".partida").innerHTML = dados.corrida.partida;
+        this.shadowRoot.querySelector(".destino").innerHTML = dados.corrida.destino;
+        this.shadowRoot.querySelector(".quando").innerHTML = timestampToDate(Number(dados.corrida.quando));
+        this.shadowRoot.querySelector(".preco").innerHTML = formataPreco(Number(dados.corrida.total)) + " kz";
+
         this.shadowRoot.querySelector(".container").addEventListener("click", function() {
+            localStorage.setItem("abrirCorrida",JSON.stringify(dados));
             vaiTela("corrida");
         })
+
     }
 
 

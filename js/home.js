@@ -11,10 +11,14 @@ const HOME = {
                 corrida.fechar();
                 pesquisa.fechar();
                 btncorrida.fechar();
+                fechaBarraDePesquisas();
             }
             if ((window.location.pathname) == "/home") {
+                
                 var corridaAtiva = localStorage.getItem("corridaativa");
                 var corridaPendente = localStorage.getItem("corridapendente");
+                
+                abreBarraDePesquisas();
 
                 if (corridaAtiva != "sim" && corridaPendente != "sim") {
                     corrida.abrir();
@@ -50,6 +54,13 @@ const HOME = {
                 menu.abrir();
             }
             if ((window.location.pathname) == "/rentacar") {
+                menu.abrir();
+            }
+            if ((window.location.pathname) == "/car") {
+                menu.abrir();
+            }
+            
+            if ((window.location.pathname) == "/rent") {
                 menu.abrir();
             }
             if ((window.location.pathname) == "/corridas") {

@@ -121,9 +121,6 @@ debliwui_menu.innerHTML = `
                     <a href="/corridas" class="corridas">
                         <li> <img src="assets/location-menu.svg"> <span>Corridas</span></li>
                     </a>
-                    <a href="/rotas" class="rotas">
-                        <li> <img src="assets/rota-menu.svg"> <span>Rotas</span></li>
-                    </a>
                     <a href="/rentacar" class="rentacar">
                         <li> <img src="assets/car.svg"> <span>Renta a car</span></li>
                     </a>
@@ -175,14 +172,41 @@ class debliwuimenu extends HTMLElement {
         "/conta": "/pages/minhaconta.html",
         "/termosdeuso": "/pages/termosdeuso.html",
         "/privacidade": "/pages/politicasdeprivacidade.html",
-        
+
         "/rentacar": "/pages/rentacar.html"
     }
 
-    handleLocation = async(routes) => {
+    handleLocation = async (routes) => {
         const path = window.location.pathname;
-        if(path != "/home"){
+        if (path != "/home") {
             window.document.querySelector("#mapa-global").style.display = "none";
+        }
+        if (path == "/home") {
+            window.document.querySelector("#mapa-global").style.display = "block";
+        }
+        if (path == "/conta") {
+            loader.abrir();
+
+            setTimeout(function () {
+                _conta.set();
+                loader.fechar();
+            }, 500);
+        }
+        if (path == "/corridas") {
+            loader.abrir();
+
+            setTimeout(function () {
+                _corrida.verCorridas();
+                loader.fechar();
+            }, 500);
+        }
+        if (path == "/rentacar") {
+            loader.abrir();
+
+            setTimeout(function () {
+                _rentacar.getCarros();
+                loader.fechar();
+            }, 500);
         }
         const route = routes[path] || routes[404];
         const html = await fetch(route).then((data) => data.text());
@@ -201,7 +225,7 @@ class debliwuimenu extends HTMLElement {
         var esse = this;
 
         var route = this.getAttribute('route');
-        this.shadowRoot.querySelector('.aciona-menu').addEventListener("click", function() {
+        this.shadowRoot.querySelector('.aciona-menu').addEventListener("click", function () {
             let container = esse.shadowRoot.querySelector('.conteudo');
 
             if (container.style.display == "none") {
@@ -210,7 +234,7 @@ class debliwuimenu extends HTMLElement {
                 container.style.display = "none";
             }
         });
-        this.shadowRoot.querySelector('.backdrop').addEventListener("click", function() {
+        this.shadowRoot.querySelector('.backdrop').addEventListener("click", function () {
             let container = esse.shadowRoot.querySelector('.conteudo');
 
             if (container.style.display == "none") {
@@ -221,7 +245,7 @@ class debliwuimenu extends HTMLElement {
         });
         let lis = this.shadowRoot.querySelectorAll('li');
         lis.forEach(element => {
-            element.addEventListener("click", function() {
+            element.addEventListener("click", function () {
                 let container = esse.shadowRoot.querySelector('.conteudo');
 
                 if (container.style.display == "none") {
@@ -233,43 +257,37 @@ class debliwuimenu extends HTMLElement {
         });
 
 
-        this.shadowRoot.querySelector('.home').addEventListener("click", function(event) {
+        this.shadowRoot.querySelector('.home').addEventListener("click", function (event) {
             event = event || window.event;
             event.preventDefault();
             window.history.pushState({}, "", "/" + (this.href).split("/")[3]);
             esse.handleLocation(esse.routes);
         });
-        this.shadowRoot.querySelector('.rotas').addEventListener("click", function(event) {
+        this.shadowRoot.querySelector('.corridas').addEventListener("click", function (event) {
             event = event || window.event;
             event.preventDefault();
             window.history.pushState({}, "", "/" + (this.href).split("/")[3]);
             esse.handleLocation(esse.routes);
         });
-        this.shadowRoot.querySelector('.corridas').addEventListener("click", function(event) {
+        this.shadowRoot.querySelector('.conta').addEventListener("click", function (event) {
             event = event || window.event;
             event.preventDefault();
             window.history.pushState({}, "", "/" + (this.href).split("/")[3]);
             esse.handleLocation(esse.routes);
         });
-        this.shadowRoot.querySelector('.conta').addEventListener("click", function(event) {
+        this.shadowRoot.querySelector('.termosdeuso').addEventListener("click", function (event) {
             event = event || window.event;
             event.preventDefault();
             window.history.pushState({}, "", "/" + (this.href).split("/")[3]);
             esse.handleLocation(esse.routes);
         });
-        this.shadowRoot.querySelector('.termosdeuso').addEventListener("click", function(event) {
+        this.shadowRoot.querySelector('.privacidade').addEventListener("click", function (event) {
             event = event || window.event;
             event.preventDefault();
             window.history.pushState({}, "", "/" + (this.href).split("/")[3]);
             esse.handleLocation(esse.routes);
         });
-        this.shadowRoot.querySelector('.privacidade').addEventListener("click", function(event) {
-            event = event || window.event;
-            event.preventDefault();
-            window.history.pushState({}, "", "/" + (this.href).split("/")[3]);
-            esse.handleLocation(esse.routes);
-        });
-        this.shadowRoot.querySelector('.rentacar').addEventListener("click", function(event) {
+        this.shadowRoot.querySelector('.rentacar').addEventListener("click", function (event) {
             event = event || window.event;
             event.preventDefault();
             window.history.pushState({}, "", "/" + (this.href).split("/")[3]);

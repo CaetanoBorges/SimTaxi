@@ -18,7 +18,7 @@ class Conta {
         var provincia = document.querySelector('#provincia').value;
         var municipio = document.querySelector('#municipio').value;
 
-        loader.abrir();
+        loader.abrir(); 
         (this.jquery).post((this.apiUrl) + "/Conta/editar.php", { token: token, nome: nome, telefone: telefone, email: email, genero: genero, provincia: provincia, municipio: municipio }).done(function (dados) {
             console.log(dados);
             var obj = JSON.parse(dados);
@@ -51,11 +51,13 @@ class Conta {
         var genero = localStorage.getItem('genero');
         var provincia = localStorage.getItem('provincia');
         var municipio = localStorage.getItem('municipio');
+        var foto = localStorage.getItem('foto');
 
         document.querySelector('#nome').value = nome;
         document.querySelector('#telefone').value = telefone;
         document.querySelector('#email').value = email;
 
+        document.querySelector("#foto-perfil").setAttribute("src",(this.apiUrl)+"/Conta/foto/"+foto);
 
         var gen = document.createElement('option');
         gen.value = genero;

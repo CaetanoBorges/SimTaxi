@@ -1,53 +1,34 @@
 <div class="principal">
+    <br><br>
     <div class="nome-carro">
-        Nome do carro
     </div>
-    <div class="schroller">
-        <div class="rouller" style="width:575px">
+    <div class="schroller" id="especificacoes">
+        
 
-            <div class="info">
-                <img src="assets/cadeira.svg" alt="">
-                <p>4 cadeiras</p>
-            </div>
-            <div class="info">
-                <img src="assets/porta.svg" alt="">
-                <p>4 portas</p>
-            </div>
-            <div class="info">
-                <img src="assets/motor.svg" alt="">
-                <p>manual</p>
-            </div>
-            <div class="info">
-                <img src="assets/volante.svg" alt="">
-                <p>a direita</p>
-            </div>
-            <div class="info">
-                <img src="assets/pneu.svg" alt="">
-                <p>radial</p>
-            </div>
-
-        </div>
     </div>
 
     <div class="data">
+        <input type="hidden" id="precoDia">
         <div class="data-inicio">
             <span>Data de inicio</span>
-            <input type="date">
+            <input type="date" id="inicio">
+            <input type="hidden" id="inicioFormatado" value="0">
         </div> <br>
         <div class="data-fim">
             <span>Data de termino</span>
-            <input type="date">
+            <input type="date" id="fim">
+            <input type="hidden" id="fimFormatado" value="0">
         </div>
     </div>
 
 
     <div class="concluir">
-        <p class="preco">Preço: 4 000 kz<p>
-        <p class="desconto">Desconto: 0 kz<p>
-        <p class="total">Total: 4 000 kz<p>
+        <p class="preco">Preço: Kz <span>0,00</span><p>
+        <p class="desconto">Dias: <span></span><p>
+        <p class="total">Total: <span>0,00</span> kz<p>
     </div>
 
-    <button class="btn-taxi-concluir">CONCLUIR</button>
+    <button class="btn-taxi-concluir" id="concluir-rent">CONCLUIR</button>
 </div>
 
 <style>

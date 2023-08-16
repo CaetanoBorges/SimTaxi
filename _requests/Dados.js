@@ -28,6 +28,22 @@ class Dados{
         }).always(function(always){
             
         });
+
+        (this.jquery).get((this.apiUrl)+"/Conta/ver.php",{token:token}).done(function(dados){
+            
+            var obj = JSON.parse(dados);
+            var payload = obj.payload;
+            localStorage.setItem('nome',payload.nome);
+            localStorage.setItem('telefone',payload.telefone);
+            localStorage.setItem('email',payload.email);
+            localStorage.setItem('genero',payload.genero);
+            localStorage.setItem('provincia',payload.provincia);
+            localStorage.setItem('municipio',payload.municipio);
+            localStorage.setItem('foto',payload.foto);
+            
+        }).always(function(always){
+            
+        });
     }
 
     

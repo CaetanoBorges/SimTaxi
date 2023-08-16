@@ -112,6 +112,22 @@ const handleLocation = async() => {
             loader.fechar();
         }, 500);
     }
+    if (path == "/car") {
+        loader.abrir();
+
+        setTimeout(function() {
+            _rentacar.verCarro();
+            loader.fechar();
+        }, 500);
+    }
+    if (path == "/rent") {
+        loader.abrir();
+
+        setTimeout(function() {
+            _rentacar.rent();
+            loader.fechar();
+        }, 500);
+    }
     
     
     if (hash == "") {

@@ -11,6 +11,10 @@ class Dados{
         var notificacao = this.notificacao;
         var loader = this.loader;
         
+        if(!token){
+            return;
+        }
+
         (this.jquery).get((this.apiUrl)+"/Corrida/corridas.php",{token:token}).done(function(dados){
             localStorage.setItem("corridas",dados);  
         }).always(function(always){

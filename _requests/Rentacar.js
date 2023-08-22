@@ -7,9 +7,20 @@ class Rentacar {
     }
 
     poeschroller(elementos) {
-
+        var elementos = elementos.toReversed();
         var schroller = document.createElement("div");
         schroller.setAttribute("class", "schroller");
+
+        var total = document.createElement("p");
+        total.innerHTML =(elementos.length)+ " Carros";
+        total.style.position = "absolute";
+        total.style.top = "-13px";
+        total.style.fontSize = "13px";
+        total.style.left = "6px";
+        total.style.zIndex = "1";
+        total.style.fontWeight = "bold";
+        total.style.opacity = ".5";
+        schroller.append(total);
 
         var rouller = document.createElement("div");
         rouller.setAttribute("class", "rouller");
@@ -233,8 +244,10 @@ class Rentacar {
     rent() {
         var esse = this;
         var carro = JSON.parse(localStorage.getItem("abrirCarro"));
-        console.log(carro);
 
+        let currentDate = new Date().toJSON().slice(0, 10);
+        document.querySelector("#inicio").value = currentDate;
+        document.querySelector("#inicioFormatado").value = this.dataDeHoje();
 
 
 
@@ -249,9 +262,7 @@ class Rentacar {
         document.querySelector(".preco span").innerHTML = `
                 <b>${preco}</b> / dia`;
 
-        document.querySelector("#concluir-rent").addEventListener("click", function () {
-            vaiTela("/rent");
-        })
+
 
 
 
@@ -294,42 +305,115 @@ class Rentacar {
 
         document.querySelector("#inicio").addEventListener("change", function () {
             var dataFinal = esse.formataData(this.value);
+            var dataDeHoje = esse.dataDeHoje();
+
+            if (dataDeHoje > dataFinal) {
+                esse.notificacao.sms("Não pode usar datas passadas", 1);
+                return;
+            }
             document.querySelector("#inicioFormatado").value = dataFinal;
             console.log(this.value);
+
+
         });
         document.querySelector("#fim").addEventListener("change", function () {
             var dataFinal = esse.formataData(this.value);
             var inicio = document.querySelector("#inicioFormatado").value;
 
-            if(inicio == "0"){
-                esse.notificacao.sms("Precisa de uma data inicial",1);
+
+            if (inicio == "0") {
+                esse.notificacao.sms("Precisa de uma data inicial", 1);
                 return;
             }
-            if(inicio >= dataFinal){
-                esse.notificacao.sms("As datas de aluguer são inválidas",1);
+            if (inicio >= dataFinal) {
+                esse.notificacao.sms("As datas de aluguer são inválidas", 1);
                 return;
             }
-            if(inicio < dataFinal){
-                var dias = (dataFinal-inicio);
+            if (inicio < dataFinal) {
+                var dias = (dataFinal - inicio);
                 var preco = Number(document.querySelector("#precoDia").value);
-                var total = formataPreco(dias*preco)
-                console.log(total);
+                var total = formataPreco(dias * preco)
+
                 document.querySelector(".total span").innerHTML = `
                 <b>${total}</b>`;
                 document.querySelector(".desconto span").innerHTML = `
                 <b>${dias}</b>`;
-                return;
+
             }
-            
+
             document.querySelector("#fimFormatado").value = dataFinal;
-            console.log(inicio);
+            console.log(inicio, dataFinal);
         });
+
+    }
+    alugar() {
+        this.loader.abrir();
+        let currentDate = new Date().toJSON().slice(0, 10);
+        var esse = this;
+        var api = (this.apiUrl);
+        var inicio = Number(document.querySelector("#inicioFormatado").value);
+        var fim = Number(document.querySelector("#fimFormatado").value);
+        var dias = (fim - inicio);
+
+        var esse = this;
+        var carro = JSON.parse(localStorage.getItem("abrirCarro"));
+        var rentacarId = (carro.rentacar).identificador;
+        var carroId = carro.identificador;
+
+        var de = document.querySelector("#inicio").value;
+        var ate = document.querySelector("#fim").value;
+
+        var preco = carro.preco;
+        var total = Number(preco) * dias;
+        var token = localStorage.getItem("token");
+
+        var obj = {};
+
+        obj.rentacar = rentacarId;
+        obj.carro = carroId;
+        obj.de = de;
+        obj.ate = ate;
+        obj.dias = dias;
+        obj.preco = preco;
+        obj.total = total;
+        obj.token = token;
+
+
+        (this.jquery).post(api + "/Rentacar/alugar.php", obj).done(function (data) {
+            console.log(data);
+            var objeto = JSON.parse(data);
+            if (objeto.ok) {
+                var post = obj;
+                post.quando = currentDate;
+
+                var aluguer = {carro: carro, aluguer: post};
+                var aluguerPendente = localStorage.getItem("alugueres");
+                var alugueres = JSON.parse(aluguerPendente);
+                (alugueres.payload).push(aluguer);
+
+                localStorage.setItem("alugueres", JSON.stringify(alugueres));
+
+                esse.notificacao.sms("Concluido com sucesso");
+                window.scrollTo(0, 0);
+                vaiTela("/rentacaminho");
+
+            } else {
+                esse.notificacao.sms("Erro, algo inexperado aconteceu", 1);
+            }
+        }).always(function (a) {
+            esse.loader.fechar();
+        })
+
 
     }
     formataData(data) {
         var dat = data;
         var dataFormatada = dat.replaceAll("-", "");
         return Number(dataFormatada);
+    }
+    dataDeHoje() {
+        let currentDate = new Date().toJSON().slice(0, 10);
+        return this.formataData(currentDate);
     }
 
 }

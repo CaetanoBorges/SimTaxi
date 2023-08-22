@@ -60,6 +60,7 @@
     <script src="_requests/Corrida.js"></script>
     <script src="_requests/Rentacar.js"></script>
     <script src="_requests/Conta.js"></script>
+    <script src="_requests/Definicoes.js"></script>
 
     <script src="assets/lightSlider.js"></script>
     <script src="router.js"></script>
@@ -80,6 +81,7 @@
     <script src="components/btnCheguei/btncheguei.js"></script>
     <script src="components/btnCancelar/btncancelar.js"></script>
     <script src="components/btnAtualizarDados/btnatualizardados.js"></script>
+    <script src="components/btnConcluirRent/btnconcluirrent.js"></script>
     <script src="components/btnPanico/btnpanico.js"></script>
     <script src="components/slideImg/slideImg.js"></script>
     <script src="components/pendente/pendente.js"></script>
@@ -87,6 +89,8 @@
     <script src="components/info/info.js"></script>
     <script src="components/cardRota/rota.js"></script>
     <script src="components/cardCorridas/corridas.js"></script>
+    <script src="components/meusAlugueres/meusAlugueres.js"></script>
+    <script src="components/btnAtualizarPasse/btnAtualizarPasse.js"></script>
      
     <script>
 
@@ -243,6 +247,7 @@ function getLocation() {
 <script>
 
         const api = "http://127.0.0.1/simtaxiapi/Passageiro";
+        window._api = api;
         var root = document.querySelector(".root");
         var notificacao = new debliwuinotificacao();
         var loader = new debliwuiloader();
@@ -252,6 +257,7 @@ function getLocation() {
         var corrida = new debliwuicorrida($,loader, notificacao);
         var menu = new debliwuimenu();
         var btncorrida = new debliwuibtncorrida();
+        var btnmeusalugueres = new debliwuimeusalugueres();
 
 
 
@@ -270,15 +276,18 @@ function getLocation() {
         const _CONTA = new Conta($,api,loader,notificacao);
         const _RENTACAR = new Rentacar($,api,loader,notificacao);
         const _DADOS = new Dados($,api,loader,notificacao);
+        const _DEFINICOES = new Definicoes($,api,loader,notificacao);
 
         var token = localStorage.getItem("token");
-        if(token.length > 5){
+        if(!(!token)){
             _DADOS.buscar();
         }
 
         window._corrida = _CORRIDA;
         window._conta = _CONTA;
         window._rentacar = _RENTACAR;
+        window._definicoes = _DEFINICOES;
+        window._notificacao = notificacao;
 
 
         var intervalo = setInterval(function(){

@@ -76,7 +76,7 @@ debliwui_menu.innerHTML = `
             z-index:11111;
         }
         .user{
-            background-color:#961A1A;
+            background-color:#9f0600;
             width:90%;
             height:25vh;
             display:flex;
@@ -85,17 +85,28 @@ debliwui_menu.innerHTML = `
             justify-content: flex-end;
             padding: 0 0 3vh 10%;
             color:white;
+            position:relative;
 
         }
         .user div{
             width:72pt;height:72pt;
             border-radius:50%;
         }
-        .user img{
+        .user .perfil{
             width:100%;
+            height:100%;
+            border-radius:36pt;
             }
+        .user .definicoes-user{
+            position:absolute;
+            top:20px;
+            right:20px;
+            width:40px;
+            height:40px;
+            cursor:pointer;
+        }
 
-            .sair{position:absolute;bottom:10pt;right:10pt;color:#961A1A;}
+        .sair{position:absolute;bottom:10pt;right:10pt;color:#9f0600;cursor:pointer;}
         @media screen and (max-width:700px) {
             .conteudo{
                 display:none;
@@ -111,8 +122,9 @@ debliwui_menu.innerHTML = `
             <div class="relativa">
                 <span class="sair">Sair</span>
                 <div class="user">
-                    <div> <img src="assets/avatar.png"> </div>
-                    <p>Nome do usuario</p>
+                    <a href="/definicoes" class="go-definicoes"><img class="definicoes-user" src="assets/gear.svg"></a>
+                    <div> <img src="" class="perfil"> </div>
+                    <p></p>
                 </div>
                 <ul>
                     <a href="/home" class="home">
@@ -172,6 +184,7 @@ class debliwuimenu extends HTMLElement {
         "/conta": "/pages/minhaconta.html",
         "/termosdeuso": "/pages/termosdeuso.html",
         "/privacidade": "/pages/politicasdeprivacidade.html",
+        "/definicoes": "/pages/definicoes.html",
 
         "/rentacar": "/pages/rentacar.html"
     }
@@ -205,6 +218,14 @@ class debliwuimenu extends HTMLElement {
 
             setTimeout(function () {
                 _rentacar.getCarros();
+                loader.fechar();
+            }, 500);
+        }
+        if (path == "/definicoes") {
+            loader.abrir();
+
+            setTimeout(function() {
+                _definicoes.set();
                 loader.fechar();
             }, 500);
         }
@@ -256,7 +277,6 @@ class debliwuimenu extends HTMLElement {
             });
         });
 
-
         this.shadowRoot.querySelector('.home').addEventListener("click", function (event) {
             event = event || window.event;
             event.preventDefault();
@@ -293,12 +313,35 @@ class debliwuimenu extends HTMLElement {
             window.history.pushState({}, "", "/" + (this.href).split("/")[3]);
             esse.handleLocation(esse.routes);
         });
+        this.shadowRoot.querySelector('.go-definicoes').addEventListener("click", function (event) {
+            let container = esse.shadowRoot.querySelector('.conteudo');
 
+            if (container.style.display == "none") {
+                container.style.display = "block";
+            } else {
+                container.style.display = "none";
+            }
 
+            event = event || window.event;
+            event.preventDefault();
+            window.history.pushState({}, "", "/" + (this.href).split("/")[3]);
+            esse.handleLocation(esse.routes);
+        });
 
+        var foto = setInterval(function(){
+            if(localStorage.getItem("foto")){
+                esse.shadowRoot.querySelector('.user img.perfil').setAttribute("src", (window._api) + "/Conta/foto/" + localStorage.getItem("foto"));
+                clearInterval(foto);
+            }
+            //console.log(1);
+        }, 100);
+        this.shadowRoot.querySelector('.user img.perfil').setAttribute("src", (window._api) + "/Conta/foto/" + localStorage.getItem("foto"));
+        this.shadowRoot.querySelector('.user p').innerHTML = localStorage.getItem("nome");
 
-
-
+        this.shadowRoot.querySelector('.sair').addEventListener("click", function (event) {
+            localStorage.clear();
+            location.href = ".";
+        });
     }
 
 }

@@ -79,6 +79,9 @@ const HOME = {
 
 
             }
+            if ((window.location.pathname) == "/definicoes") {
+                menu.abrir();
+            }
         }, 10)
     },
     "fechaCorridaPendente": function() {

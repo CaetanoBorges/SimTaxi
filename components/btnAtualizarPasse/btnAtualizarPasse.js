@@ -1,12 +1,12 @@
-const debliwui_btnatualizardados = document.createElement('template');
-debliwui_btnatualizardados.innerHTML = `
+const debliwui_btnatualizarpasse = document.createElement('template');
+debliwui_btnatualizarpasse.innerHTML = `
     <style>
         .container{
             position:relative;
             display:block;
         }
         .btn{
-            margin: 30px auto 0 auto;
+            margin: 0 auto;
             border: 1px solid #d9d9d9;
             background: #FFFFFF;
             cursor: pointer;
@@ -14,9 +14,21 @@ debliwui_btnatualizardados.innerHTML = `
             border-radius: 5px;
             font-size: 12pt;
             line-height: 14pt;
-            width: 100%;
-            height: 31px;
+            width: 90%;
             display: block;
+            padding:5%;
+        }
+
+        #atual, #nova{}
+        .input-telas-inicio{
+            width: 100%;
+            padding: 0 10px;
+            height: 31px;
+            box-sizing: border-box;
+            background: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.41);
+            border-radius: 5px;
+            margin: 10px 0;
         }
         
         
@@ -43,8 +55,8 @@ debliwui_btnatualizardados.innerHTML = `
             position: fixed;
             top: 25vh;
             /* display: block; */
-            width: 76%;
-            padding: 2%;
+            width: 60%;
+            padding: 10%;
             /* margin: 15vh 0 0 20%; */
             background: #ffffff;
             border-radius: 5px;
@@ -57,25 +69,33 @@ debliwui_btnatualizardados.innerHTML = `
             border: 1px solid rgba(0, 0, 0, 0.15);
             border-radius: 5px;
             padding:4px;}
-        
+            input:valid,
+            textarea:valid {
+                background-color: palegreen;
+            }
     </style>
 
     <div class="container">
-        <button class="btn">ATUALIZAR DADOS</button>
+        <button class="btn"> ATUALIZAR <br> PALAVRA-PASSE </button>
         <div class="backdrop"></div>
         <div class="content">
+            <p> ATUALIZAR <br> PALAVRA-PASSE </p>
             <p>Tem certeza?</p>
-            <button class="dois">SIM, ATUALIZAR</button>
+            <form id="formulario">
+            <input type="password" placeholder="Palavra-passe atual" id="atual" class="input-telas-inicio" required="required">
+            <input type="password" placeholder="Nova palavra-passe" id="nova" class="input-telas-inicio" required="required" minlength="6">
+            <button class="dois" type="submit">SIM, ATUALIZAR</button>
+            </form>
         </div>
     </div>
 `;
 
-class debliwuibtnatualizardados extends HTMLElement {
+class debliwuibtnatualizarpasse extends HTMLElement {
 
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
-        this.shadowRoot.appendChild(debliwui_btnatualizardados.content.cloneNode(true));
+        this.shadowRoot.appendChild(debliwui_btnatualizarpasse.content.cloneNode(true));
     }
     fechar() {
         let container = this.shadowRoot.querySelector('.container');
@@ -88,22 +108,24 @@ class debliwuibtnatualizardados extends HTMLElement {
 
     connectedCallback() {
         var esse = this;
-        this.shadowRoot.querySelector(".btn").addEventListener("click", function() {
+        this.shadowRoot.querySelector(".btn").addEventListener("click", function () {
             esse.shadowRoot.querySelector(".content").style.display = "block";
             esse.shadowRoot.querySelector(".backdrop").style.display = "block";
         })
-        this.shadowRoot.querySelector(".backdrop").addEventListener("click", function() {
+        this.shadowRoot.querySelector(".backdrop").addEventListener("click", function () {
             esse.shadowRoot.querySelector(".content").style.display = "none";
             this.style.display = "none";
         })
-        this.shadowRoot.querySelector(".dois").addEventListener("click", function() {
-            window._conta.editar();
-            esse.shadowRoot.querySelector(".content").style.display = "none";
-            esse.shadowRoot.querySelector(".backdrop").style.display = "none";
+        this.shadowRoot.querySelector("#formulario").addEventListener("submit", function (ev) {
+            ev.preventDefault();
+            console.log("saquei");
+            var atual = esse.shadowRoot.querySelector("#atual").value;
+            var nova = esse.shadowRoot.querySelector("#nova").value;
+            window._definicoes.alteraPasse(atual,nova);
         })
     }
 
 
 }
 
-window.customElements.define('debliwui-btnatualizardados', debliwuibtnatualizardados)
+window.customElements.define('debliwui-btnatualizarpasse', debliwuibtnatualizarpasse)

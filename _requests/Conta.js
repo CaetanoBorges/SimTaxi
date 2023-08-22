@@ -45,6 +45,10 @@ class Conta {
     }
 
     set() {
+        var token = localStorage.getItem("token");
+        if(!token){
+            return;
+        }
         var nome = localStorage.getItem('nome');
         var telefone = localStorage.getItem('telefone');
         var email = localStorage.getItem('email');
@@ -107,6 +111,7 @@ class Conta {
                      console.log(dados);
                     var obj = JSON.parse(dados);
                     if (obj.ok) {
+                        localStorage.setItem("foto",obj.payload);
                         document.querySelector("#foto-perfil").setAttribute("src", (esse.apiUrl) + "/Conta/foto/"+obj.payload);
                     } else {
 

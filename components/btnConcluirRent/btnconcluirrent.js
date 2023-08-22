@@ -1,5 +1,5 @@
-const debliwui_btnatualizardados = document.createElement('template');
-debliwui_btnatualizardados.innerHTML = `
+const debliwui_btnconcluirrent = document.createElement('template');
+debliwui_btnconcluirrent.innerHTML = `
     <style>
         .container{
             position:relative;
@@ -8,15 +8,17 @@ debliwui_btnatualizardados.innerHTML = `
         .btn{
             margin: 30px auto 0 auto;
             border: 1px solid #d9d9d9;
-            background: #FFFFFF;
+            background: #2FD913;
             cursor: pointer;
             box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.25);
             border-radius: 5px;
-            font-size: 12pt;
-            line-height: 14pt;
+            font-size: 15pt;
+            line-height: 17pt;
             width: 100%;
-            height: 31px;
+            height: fit-content;
             display: block;
+            font-weight:bold;
+            padding:10px 0;
         }
         
         
@@ -61,21 +63,21 @@ debliwui_btnatualizardados.innerHTML = `
     </style>
 
     <div class="container">
-        <button class="btn">ATUALIZAR DADOS</button>
+        <button class="btn">CONCLUIR ALUGUER</button>
         <div class="backdrop"></div>
         <div class="content">
             <p>Tem certeza?</p>
-            <button class="dois">SIM, ATUALIZAR</button>
+            <button class="dois">SIM, QUERO ALUGAR</button>
         </div>
     </div>
 `;
 
-class debliwuibtnatualizardados extends HTMLElement {
+class debliwuibtnconcluirrent extends HTMLElement {
 
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
-        this.shadowRoot.appendChild(debliwui_btnatualizardados.content.cloneNode(true));
+        this.shadowRoot.appendChild(debliwui_btnconcluirrent.content.cloneNode(true));
     }
     fechar() {
         let container = this.shadowRoot.querySelector('.container');
@@ -89,6 +91,10 @@ class debliwuibtnatualizardados extends HTMLElement {
     connectedCallback() {
         var esse = this;
         this.shadowRoot.querySelector(".btn").addEventListener("click", function() {
+            if(document.querySelector("#fimFormatado").value == "0"){
+                window._notificacao.sms("Precisa preencher os dados corretamente",1);
+                return;
+            }
             esse.shadowRoot.querySelector(".content").style.display = "block";
             esse.shadowRoot.querySelector(".backdrop").style.display = "block";
         })
@@ -97,7 +103,7 @@ class debliwuibtnatualizardados extends HTMLElement {
             this.style.display = "none";
         })
         this.shadowRoot.querySelector(".dois").addEventListener("click", function() {
-            window._conta.editar();
+            window._rentacar.alugar();
             esse.shadowRoot.querySelector(".content").style.display = "none";
             esse.shadowRoot.querySelector(".backdrop").style.display = "none";
         })
@@ -106,4 +112,4 @@ class debliwuibtnatualizardados extends HTMLElement {
 
 }
 
-window.customElements.define('debliwui-btnatualizardados', debliwuibtnatualizardados)
+window.customElements.define('debliwui-btnconcluirrent', debliwuibtnconcluirrent)

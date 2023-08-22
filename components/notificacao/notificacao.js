@@ -8,7 +8,7 @@ debliwui_notificacao.innerHTML = `
             top:1.5vh;
             height:fit-content;
             background: #2FD913;
-            z-index: 9999999999999;
+            z-index: 9999999999999 !important;
             border-radius:5px;
             display:none
         }
@@ -21,10 +21,10 @@ debliwui_notificacao.innerHTML = `
             height:fit-content;
         }
        
-       #sms{display:flex;justify-content:center;align-items:center;padding:1vh 5%;font-size:14px;text-transform:capitalize;font-weight:bold;}
+       #sms{display:flex;justify-content:center;align-items:center;padding:1vh 5%;font-size:23px;text-transform:capitalize;font-weight:bold;text-align:center;}
     </style>
 
-    <div class="container">
+    <div class="container" style="z-index: 9999999999999 !important"> 
         <div class="header">
         <div id="sms">
         <slot name="notificacao"></slot>

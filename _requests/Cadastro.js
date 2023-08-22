@@ -257,8 +257,96 @@ class Cadastro{
             
             if(obj.ok){
                 localStorage.setItem('token', obj.payload);
+                _DADOS.buscar();
                 vaiTela("/home");
                 notificacao.sms("É bom que esteja de volta");
+            }else{
+                notificacao.sms(obj.payload, 1);
+            }
+            
+        }).always(function(always){
+            loader.fechar();
+        })
+    }
+
+    /**
+     * COMECA RECUPERAR CONTA
+     * 
+     */
+
+    receberNumeroRecuperacao(){
+        var telefone = document.querySelector("#telefone").value;
+        this.esqueceuPasse(telefone);
+    }
+    confirmarRecuperacao(){
+        var telefone = localStorage.getItem("telefone");
+        var numero = document.querySelector("#numero").value;
+        this.confirmarEsqueceuPasse(telefone,numero);
+    }
+    renovarPalavraPasse(){
+        var telefone = localStorage.getItem("telefone");
+        var numero = localStorage.getItem("numero");
+        var passe = document.querySelector("#passe").value;
+        this.novaPalavraPasse(telefone, numero, passe)
+    }
+
+
+    esqueceuPasse(telefone){
+        var notificacao = this.notificacao;
+        var loader = this.loader;
+        loader.abrir();
+        (this.jquery).post((this.apiUrl)+"/_recuperarConta/receberNumeroRecuperacao.php",{telefone:telefone}).done(function(dados){
+            console.log(dados);
+            var obj = JSON.parse(dados);
+            
+            if(obj.ok){
+                //vaiTela("/verificarcadastro");
+                localStorage.setItem("telefone",telefone);
+                notificacao.sms(obj.payload);
+                vaiTela("confirmaresqueceuapasse");
+            }else{
+                notificacao.sms(obj.payload, 1);
+            }
+            
+        }).always(function(always){
+            loader.fechar();
+        })
+    }
+    confirmarEsqueceuPasse(telefone,numero){
+        var notificacao = this.notificacao;
+        var loader = this.loader;
+        loader.abrir();
+        (this.jquery).post((this.apiUrl)+"/_recuperarConta/confirmarNumeroRecuperacao.php",{telefone:telefone, numero: numero}).done(function(dados){
+            console.log(dados);
+            var obj = JSON.parse(dados);
+            
+            if(obj.ok){
+                //vaiTela("/verificarcadastro");
+                localStorage.setItem("numero",numero);
+                notificacao.sms(obj.payload);
+                vaiTela("novapalavrapasse");
+            }else{
+                notificacao.sms(obj.payload, 1);
+            }
+            
+        }).always(function(always){
+            loader.fechar();
+        })
+    }
+    novaPalavraPasse(telefone, numero, passe){
+        var notificacao = this.notificacao;
+        var loader = this.loader;
+        loader.abrir();
+        (this.jquery).post((this.apiUrl)+"/_recuperarConta/renovarPalavraPasse.php",{palavra_passe:passe, telefone: telefone, numero: numero}).done(function(dados){
+            console.log(dados);
+            var obj = JSON.parse(dados);
+            
+            if(obj.ok){
+                //vaiTela("/verificarcadastro");
+                localStorage.setItem('token', obj.payload);
+                _DADOS.buscar();
+                notificacao.sms("Renovou a palavra passe");
+                vaiTela("/home");
             }else{
                 notificacao.sms(obj.payload, 1);
             }

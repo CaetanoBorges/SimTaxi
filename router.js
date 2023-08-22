@@ -36,7 +36,9 @@ const routes = {
     "/rentacar": "/pages/rentacar.html",
     "/car": "/pages/car.html",
     "/rent": "/pages/rent.html",
-    "/confirmarrent": "/pages/confirmarrent.html"
+    "/confirmarrent": "/pages/confirmarrent.html",
+    "/rentacaminho": "/pages/rentacaminho.html",
+    "/definicoes": "/pages/definicoes.html"
 }
 
 const handleLocation = async() => {
@@ -125,6 +127,25 @@ const handleLocation = async() => {
 
         setTimeout(function() {
             _rentacar.rent();
+            loader.fechar();
+        }, 500);
+    }
+    if (path == "/rentacaminho") {
+        setTimeout(function(){
+            loader.abrir();
+        },1000);
+        
+
+        setTimeout(function() {
+            vaiTela("/home");
+            loader.fechar();
+        }, 1500);
+    }
+    if (path == "/definicoes") {
+        loader.abrir();
+
+        setTimeout(function() {
+            _definicoes.set();
             loader.fechar();
         }, 500);
     }

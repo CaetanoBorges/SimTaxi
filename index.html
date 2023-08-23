@@ -93,7 +93,7 @@
     <script src="components/btnAtualizarPasse/btnAtualizarPasse.js"></script>
      
     <script>
-
+    var mapa = null;
 function timestampToDate(unix_timestamp){
     var date = new Date(unix_timestamp);
 
@@ -289,16 +289,30 @@ function getLocation() {
         window._definicoes = _DEFINICOES;
         window._notificacao = notificacao;
 
+    
+       
+            var watch = 0;
+            var controle = setInterval(function(){
+                if(!mapa){
+                    if(watch == 2){
+                        location.reload();
+
+                    }
+                    notificacao.sms("Verifique a conexão de internet",1);
+                    watch++
+                }
+            },10000);
 
         var intervalo = setInterval(function(){
-            console.log(this);
+            
             if(mapa){
                 componentPesquisar(".root", localizacao, mapa);
                 clearInterval(intervalo);
+                clearInterval(controle);
                 loader.fechar();
-                console.warn(this);
             }
         },100);
+
 
 </script>
         

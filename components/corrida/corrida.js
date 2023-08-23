@@ -296,7 +296,7 @@ debliwui_corrida.innerHTML = `
                     <p class="basic-distancia-preco"><br><span></span></p>
                     <p class="basic-tempo"><br><span></span></p>
                 </section>
-                <button class="btn-chamar-taxi">CHAMAR TAXI</button>
+                <button class="btn-chamar-taxi" disabled="disabled">CHAMAR TAXI</button>
                 <div class="status-um">
                     <section class="selects">
                         <div>

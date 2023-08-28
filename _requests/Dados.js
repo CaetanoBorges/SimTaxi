@@ -21,6 +21,12 @@ class Dados{
             
         });
         
+        (this.jquery).get((this.apiUrl)+"/Corrida/precoporkilometro.php",{token:token}).done(function(dados){
+            localStorage.setItem("precoPorKilometro",dados);  
+        }).always(function(always){
+            
+        });
+        
         (this.jquery).get((this.apiUrl)+"/Rentacar/alugueres.php",{token:token}).done(function(dados){
             localStorage.setItem("alugueres",dados);  
         }).always(function(always){

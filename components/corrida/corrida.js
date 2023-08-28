@@ -91,7 +91,7 @@ debliwui_corrida.innerHTML = `
         .basic-info{
             width:100%;
             padding:2% 0;
-            display:none;
+            display:none !important;
             font-size:13px;
             justify-content:space-between;
             margin: 10px 0 15px 0;

@@ -106,15 +106,11 @@ function componentPesquisar(element, localizao, mapa) {
         west: window.longitude - 0.5,
     };
     var options = {
-        bounds:defaultBounds,
+        //bounds:defaultBounds,
         componentRestrictions: { country: "ao" },
-        strictBounds: true,
+        //strictBounds: true,
         types: []
     }
-
-    var bounds = new google.maps.LatLngBounds(
-        new google.maps.LatLng(-8.838333, 13.234444)
-    )
 
     new google.maps.places.Autocomplete(from, options);
     new google.maps.places.Autocomplete(to, options);

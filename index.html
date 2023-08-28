@@ -71,7 +71,6 @@
     <script src="js/motorista.js"></script>
     <script src="components/notificacao/notificacao.js"></script>
     <script src="components/menu/menu.js"></script>
-    <script src="components/pesquisa/pesquisa.js"></script>
     <script src="components/psqsa/pesquisa.js"></script>
     <script src="components/pesquisaRentacar/pesquisaRentacar.js"></script>
     <script src="components/corrida/corrida.js"></script>
@@ -253,7 +252,6 @@ function getLocation() {
         var loader = new debliwuiloader();
         loader.abrir();
 
-        var pesquisa = new debliwuipesquisa(loader,notificacao);
         var corrida = new debliwuicorrida($,loader, notificacao);
         var menu = new debliwuimenu();
         var btncorrida = new debliwuibtncorrida();
@@ -263,7 +261,6 @@ function getLocation() {
 
         root.prepend(menu);
         root.prepend(corrida);
-        root.prepend(pesquisa);
         root.prepend(btncorrida);
         root.prepend(notificacao);
         HOME.corridaStatus();
@@ -281,6 +278,9 @@ function getLocation() {
         var token = localStorage.getItem("token");
         if(!(!token)){
             _DADOS.buscar();
+            vaiTela("/home");
+        }else{
+            vaiTela(".");
         }
 
         window._corrida = _CORRIDA;
@@ -295,6 +295,7 @@ function getLocation() {
             var controle = setInterval(function(){
                 if(!mapa){
                     if(watch == 2){
+                        vaiTela(".");
                         location.reload();
 
                     }
